@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from "../lib/base-url";
 import { BASE_URL } from "./base-url";
 
-export function getProducts() {
-    return axios.get(`/products/`,{baseURL:BASE_URL})
-                .then((res)=>res.data)
+export async function getProducts() {
+    const res=await axios.get(`/products/`)
+    return  res.data
 }
 export function getProduct({id}:{id:number}) {
     return axios.get(`/products/${id}`,{baseURL:BASE_URL})
