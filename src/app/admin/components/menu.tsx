@@ -6,6 +6,10 @@ const links = [
     title: "Productos",
     link: "/admin/products",
   },
+  {
+    title: "Categories",
+    link: "/admin/categories",
+  },
 ];
 
 export default function Menu() {
