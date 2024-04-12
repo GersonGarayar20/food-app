@@ -1,23 +1,54 @@
-import axios from "axios";
-import { BASE_URL } from "./base-url";
+import { api } from "./api";
 
-export function getClient({id}:{id:number}) {
-    return axios.get(`/clients/${id}`,{baseURL:BASE_URL})
-                .then((res)=>res.data)
+export async function getClient({ id }: { id: number }) {
+  const res = await api.get(`/clients/${id}`);
+  return res.data;
 }
-export function getClients() {
-    return axios.get(`/clients`,{baseURL:BASE_URL})
-                .then((res)=>res.data)
+export async function getClients() {
+  const res = await api.get(`/clients`);
+  return res.data;
 }
-export function deleteClient({id}:{id:number}) {
-    return axios.delete(`/clients/${id}`,{baseURL:BASE_URL})
-                .then((res)=>res.data)
+export async function deleteClient({ id }: { id: number }) {
+  const res = await api.delete(`/clients/${id}`);
+  return res.data;
 }
-export function updateClient({id,address,email,image,name,password}:{name:string,id:number,address:string,email:string,password:string,image:string}) {
-    return axios.put(`/clients/${id}`,{baseURL:BASE_URL,data:{address,name,email,image,password}})
-                .then((res)=>res.data)
+export async function updateClient({
+  id,
+  address,
+  email,
+  image,
+  name,
+  password,
+}: {
+  name: string;
+  id: number;
+  address: string;
+  email: string;
+  password: string;
+  image: string;
+}) {
+  const res = await api.put(`/clients/${id}`, {
+    data: { address, name, email, image, password },
+  });
+  return res.data;
 }
-export function createClient({address,email,image,name,password,phone}:{name:string,address:string,email:string,password:string,image:string,phone:string}) {
-    return axios.post(`/clients/create`,{baseURL:BASE_URL,data:{address,name,email,image,password,phone}})
-                .then((res)=>res.data)
+export async function createClient({
+  address,
+  email,
+  image,
+  name,
+  password,
+  phone,
+}: {
+  name: string;
+  address: string;
+  email: string;
+  password: string;
+  image: string;
+  phone: string;
+}) {
+  const res = await api.post(`/clients/create`, {
+    data: { address, name, email, image, password, phone },
+  });
+  return res.data;
 }

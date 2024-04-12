@@ -1,21 +1,35 @@
-import axios from "axios";
-import { BASE_URL } from "./base-url";
+import { api } from "./api";
 
-export function getOrder({id}:{id:number}) {
-    return axios.get(`/orders/${id}`,{baseURL:BASE_URL})
-                .then((res)=>res.data)
+export async function getOrder({ id }: { id: number }) {
+  const res = await api.get(`/orders/${id}`);
+  return res.data;
 }
-export function getCRoOrders() {
-    return axios.get(`/orders`,{baseURL:BASE_URL})
-                .then((res)=>res.data)
+export async function getCRoOrders() {
+  const res = await api.get(`/orders`);
+  return res.data;
 }
-export function createOrder({client_id,date,name,orders_status,payment_status,total}:{name:string,date:Date,total:number,client_id:number,orders_status:string,payment_status:string}) {
-    return axios.post(`/orders/create`,{baseURL:BASE_URL,data:{client_id,date,name,orders_status,payment_status,total}})
-                .then((res)=>res.data)
+export async function createOrder({
+  client_id,
+  date,
+  name,
+  orders_status,
+  payment_status,
+  total,
+}: {
+  name: string;
+  date: Date;
+  total: number;
+  client_id: number;
+  orders_status: string;
+  payment_status: string;
+}) {
+  const res = await api.post(`/orders/create`, {
+    data: { client_id, date, name, orders_status, payment_status, total },
+  });
+  return res.data;
 }
 
-
-export function getCRoOrdersDetails() {
-    return axios.get(`/o`,{baseURL:BASE_URL})
-                .then((res)=>res.data)
+export async function getCRoOrdersDetails() {
+  const res = await api.get(`/o`);
+  return res.data;
 }
