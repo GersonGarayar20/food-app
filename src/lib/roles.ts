@@ -1,23 +1,22 @@
-import axios from "axios";
-import { BASE_URL } from "./base-url";
+import { api } from "./api";
 
-export function getRol({id}:{id:number}) {
-    return axios.get(`/roles/${id}`,{baseURL:BASE_URL})
-                .then((res)=>res.data)
+export async function getRol({ id }: { id: number }) {
+  const res = await api.get(`/roles/${id}`);
+  return res.data;
 }
-export function getCRoles() {
-    return axios.get(`/roles`,{baseURL:BASE_URL})
-                .then((res)=>res.data)
+export async function getCRoles() {
+  const res = await api.get(`/roles`);
+  return res.data;
 }
-export function deleteRol({id}:{id:number}) {
-    return axios.delete(`/roles/${id}`,{baseURL:BASE_URL})
-                .then((res)=>res.data)
+export async function deleteRol({ id }: { id: number }) {
+  const res = await api.delete(`/roles/${id}`);
+  return res.data;
 }
-export function updateRol({id,name}:{name:string,id:number}) {
-    return axios.put(`/roles/${id}`,{baseURL:BASE_URL,data:{name}})
-                .then((res)=>res.data)
+export async function updateRol({ id, name }: { name: string; id: number }) {
+  const res = await api.put(`/roles/${id}`, { data: { name } });
+  return res.data;
 }
-export function createRol({name}:{name:string}) {
-    return axios.post(`/roles/create`,{baseURL:BASE_URL,data:{name}})
-                .then((res)=>res.data)
+export async function createRol({ name }: { name: string }) {
+  const res = await api.post(`/roles/create`, { data: { name } });
+  return res.data;
 }
