@@ -1,6 +1,6 @@
 import { BASE_URL } from "./base-url";
 
-export async function getClient(id) {
+export async function getClient(id: string) {
   const res = await fetch(`${BASE_URL}/clients/${id}`);
   return res.json();
 }
@@ -10,14 +10,14 @@ export async function getClients() {
   return res.json();
 }
 
-export async function deleteClient(id) {
+export async function deleteClient(id: string) {
   const res = await fetch(`${BASE_URL}/clients/${id}`, {
     method: "DELETE",
   });
   return res;
 }
 
-export async function updateClient(id, data) {
+export async function updateClient(id: string, data: any) {
   const res = await fetch(`${BASE_URL}/clients/${id}`, {
     method: "PUT",
     headers: {
@@ -28,7 +28,7 @@ export async function updateClient(id, data) {
   return res.json();
 }
 
-export async function createClient(data) {
+export async function createClient(data: any) {
   const res = await fetch(`${BASE_URL}/clients/create`, {
     method: "POST",
     headers: {
