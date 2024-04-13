@@ -85,7 +85,7 @@ export default function ProductCreateForm({ categories }: any) {
           name="category_id"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Categorias</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
@@ -93,9 +93,9 @@ export default function ProductCreateForm({ categories }: any) {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {categories?.map(({ id }: any) => (
-                    <SelectItem key={id} value="m@example.com">
-                      m@example.com
+                  {categories?.map(({ id, name }: any) => (
+                    <SelectItem key={id} value={id}>
+                      {name}
                     </SelectItem>
                   ))}
                 </SelectContent>

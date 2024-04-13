@@ -7,7 +7,7 @@ export async function getOrder(id: number) {
 
 export async function getOrders() {
   const res = await api.get(`/orders`);
-  return res.data;
+  return res;
 }
 
 export async function createOrder(data: {
@@ -19,5 +19,5 @@ export async function createOrder(data: {
   payment_status: string;
 }) {
   const res = await api.post(`/orders/create`, data);
-  return res.data;
+  return res;
 }

@@ -15,8 +15,7 @@ import { getCategories } from "@/lib/api/categories";
 export default async function AdminCategoriesPage() {
   const categories = await getCategories();
 
-  console.log(categories.data);
-
+  console.log("->", categories.data);
   return (
     <div>
       <header className="flex justify-between items-center">
@@ -38,7 +37,7 @@ export default async function AdminCategoriesPage() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {categories?.data?.map(({ id, name, image }: any) => (
+          {categories?.data.map(({ id, name, image }: any) => (
             <TableRow key={id}>
               <TableCell className="font-medium">{id}</TableCell>
               <TableCell>{name}</TableCell>
