@@ -1,15 +1,30 @@
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 
 
 
 export default function OrderPage() {
     return (
-      <main className="flex flex-col justify-between h-[88vh]">
-        <div className="bg-[#f1f1f1] w-full flex flex-col px-4 py-4 flex-grow">
+      <main className="flex flex-col justify-between h-screen">
+        <div className="bg-[#f1f1f1] dark:bg-black/50 w-full flex flex-col px-4 py-4 flex-grow">
+          {/* navegacion */}
+          <header className="flex justify-between mb-4">
+            <nav className="flex gap-x-2 items-center">
+              <Button>--</Button>
+              <h1>Order Details</h1>
+            </nav>
+            <div className="flex items-center gap-x-4">
+              <Button>:3</Button>
+              <ThemeSwitcher />
+            </div>
+          </header>
+
+
           <section className="flex flex-col gap-y-4">
             <div className="flex gap-x-4 rounded-3xl bg-white dark:bg-black  px-3 py-4" >
+              {/* mapear products of car */}
               <div className="w-28"><img src="https://d31npzejelj8v1.cloudfront.net/media/recipemanager/recipe/1687289598_doble-carne.jpg" alt="" className="rounded-2xl" /></div>
               <div className="w-full flex flex-col justify-between">
                 <h1 >here, you write your title</h1>
@@ -22,19 +37,15 @@ export default function OrderPage() {
                   </div>
                 </div>
               </div>
+
+
             </div>
-            <div className="grid w-full max-w-sm items-center gap-1.5 rounded-3xl bg-white dark:bg-black   px-3 py-4 gap-y-4">
-              <Label htmlFor="email">Email</Label>
-              <Input type="email" id="email" placeholder="Email" className="bg-[#f7f7f7]" />
-            </div>
-            <div className="grid w-full max-w-sm items-center gap-1.5 rounded-3xl bg-white  dark:bg-black  px-3 py-4 gap-y-4">
-              <Label htmlFor="email">addres</Label>
-              <Input type="email" id="email" placeholder="address" className="bg-[#f7f7f7]"/>
-            </div>
+            
           </section>
         </div>
+        
         <div className="bg-[#fbfbfb] dark:bg-black py-2 flex flex-col ga-y-4 min-h-40 px-4">
-          <div className="border-b-[1px] w-full mx-auto border-black flex flex-col gap-y-1 pb-2">
+          <div className="border-b-[1px] w-full mx-auto border-black dark:border-white flex flex-col gap-y-1 pb-2">
             <div className="w-full flex justify-between">
               <p>subtotal</p>
               <span>20</span>
