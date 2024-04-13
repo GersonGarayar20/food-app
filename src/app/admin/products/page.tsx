@@ -7,7 +7,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { getProducts } from "@/lib/products";
+import { getProducts } from "@/lib/api/products";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export default async function AdminProductsPage() {
   const products = await getProducts();
@@ -16,7 +19,13 @@ export default async function AdminProductsPage() {
 
   return (
     <div>
-      <h1>products</h1>
+      <header className="flex justify-between items-center">
+        <h1>products</h1>
+        <Link className={cn(buttonVariants())} href={"/admin/products/create"}>
+          Crear
+        </Link>
+      </header>
+
       <Table>
         <TableHeader>
           <TableRow>
