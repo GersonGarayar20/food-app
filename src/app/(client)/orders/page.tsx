@@ -3,13 +3,14 @@ import { Button } from "@/components/ui/button"
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import useStore from "@/store/useStore";
 import { useCartStore } from "@/store/cart";
+import { OrderFooter } from "../components/OrderFooter";
 
 
 
 export default function OrderPage() {
 
     const stateCart=useStore(useCartStore,useCartStore.getState)
-    
+    const total=stateCart?.totalPrice()
     return (
       <main className="flex flex-col justify-between h-screen">
         <div className="bg-[#f1f1f1] dark:bg-[#050505] w-full flex flex-col px-4 py-4 flex-grow">
@@ -49,32 +50,10 @@ export default function OrderPage() {
                   </article>
                 )
               })}
-
-            
-            
           </section>
         </div>
               {/* foot */}
-        <div className="bg-[#fbfbfb] dark:bg-black py-2 flex flex-col gap-y-0 min-h-40 px-8">
-          <div className="border-b-[1px] w-full mx-auto border-black dark:border-white flex flex-col gap-y-1 pb-2">
-            <div className="w-full flex justify-between">
-              <p>subtotal</p>
-              <span>${stateCart?.totalPrice()}</span>
-            </div>
-            {/* <div className="w-full flex justify-between">
-              <p>Delivery</p>
-              <span>20</span>
-            </div> */}
-          </div>
-          <div className="w-full flex justify-between py-4 font-bold text-lg">
-            <p >Total</p>
-            <span>${stateCart?.totalPrice()}</span>
-          </div>
-          <div className="flex justify-between w-full mx-auto">
-             <Button className="rounded-xl" variant="outline" size="icon">:3</Button>
-             <Button className="rounded-3xl px-12">Proceed to Pay</Button>
-          </div>
-        </div>
+        <OrderFooter total={total}/>
       </main>
     );
   }
