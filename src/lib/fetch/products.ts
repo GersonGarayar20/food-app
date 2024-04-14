@@ -39,3 +39,11 @@ export async function createProduct(data: any): Promise<ProductI> {
   const json = await res.json();
   return json.data;
 }
+
+export async function deleteProduct(id: string | number): Promise<ProductI> {
+  const res = await fetch(`${BASE_URL}/products/delete/${id}`, {
+    method: "DELETE",
+  });
+  const json = await res.json();
+  return json.data;
+}
