@@ -2,7 +2,7 @@ import { api } from "./axios";
 
 export async function getProducts() {
   const res = await api.get("/products");
-  return res;
+  return res.data.data;
 }
 
 export async function getProduct(id: number) {
