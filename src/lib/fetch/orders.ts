@@ -1,7 +1,7 @@
 import { OrderI } from "@/types";
 import { BASE_URL } from "./base-url";
 
-export async function getOrder(id: string): Promise<OrderI> {
+export async function getOrder(id: string | number): Promise<OrderI> {
   const res = await fetch(`${BASE_URL}/orders/${id}`);
   const json = await res.json();
   return json.data;

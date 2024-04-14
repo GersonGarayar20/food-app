@@ -7,13 +7,13 @@ export async function getCategories(): Promise<CategoryI[]> {
   return json.data;
 }
 
-export async function getCategory(id: string): Promise<CategoryI> {
+export async function getCategory(id: string | number): Promise<CategoryI> {
   const res = await fetch(`${BASE_URL}/categories/${id}`);
   const json = await res.json();
   return json.data;
 }
 
-export async function deleteCategory(id: string): Promise<CategoryI> {
+export async function deleteCategory(id: string | number): Promise<CategoryI> {
   const res = await fetch(`${BASE_URL}/categories/${id}`, {
     method: "DELETE",
   });
@@ -22,7 +22,7 @@ export async function deleteCategory(id: string): Promise<CategoryI> {
 }
 
 export async function updateCategory(
-  id: string,
+  id: string | number,
   data: any
 ): Promise<CategoryI> {
   const res = await fetch(`${BASE_URL}/categories/${id}`, {

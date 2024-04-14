@@ -1,7 +1,7 @@
 import { RolI } from "@/types";
 import { BASE_URL } from "./base-url";
 
-export async function getRol(id: string): Promise<RolI> {
+export async function getRol(id: string | number): Promise<RolI> {
   const res = await fetch(`${BASE_URL}/roles/${id}`);
   const json = await res.json();
   return json.data;
@@ -13,7 +13,7 @@ export async function getRoles(): Promise<RolI[]> {
   return json.data;
 }
 
-export async function deleteRol(id: string): Promise<RolI> {
+export async function deleteRol(id: string | number): Promise<RolI> {
   const res = await fetch(`${BASE_URL}/roles/${id}`, {
     method: "DELETE",
   });
@@ -21,7 +21,7 @@ export async function deleteRol(id: string): Promise<RolI> {
   return json.data;
 }
 
-export async function updateRol(id: string, data: any): Promise<RolI> {
+export async function updateRol(id: string | number, data: any): Promise<RolI> {
   const res = await fetch(`${BASE_URL}/roles/${id}`, {
     method: "PUT",
     headers: {

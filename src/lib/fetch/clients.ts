@@ -1,7 +1,7 @@
 import { ClientI } from "@/types";
 import { BASE_URL } from "./base-url";
 
-export async function getClient(id: string): Promise<ClientI> {
+export async function getClient(id: string | number): Promise<ClientI> {
   const res = await fetch(`${BASE_URL}/clients/${id}`);
   const json = await res.json();
   return json.data;
@@ -13,7 +13,7 @@ export async function getClients(): Promise<ClientI[]> {
   return json.data;
 }
 
-export async function deleteClient(id: string): Promise<ClientI> {
+export async function deleteClient(id: string | number): Promise<ClientI> {
   const res = await fetch(`${BASE_URL}/clients/${id}`, {
     method: "DELETE",
   });
@@ -21,7 +21,10 @@ export async function deleteClient(id: string): Promise<ClientI> {
   return json.data;
 }
 
-export async function updateClient(id: string, data: any): Promise<ClientI> {
+export async function updateClient(
+  id: string | number,
+  data: any
+): Promise<ClientI> {
   const res = await fetch(`${BASE_URL}/clients/${id}`, {
     method: "PUT",
     headers: {

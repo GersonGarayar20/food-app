@@ -9,7 +9,10 @@ export default async function page() {
 
   return (
     <div>
-      <ProductCreateForm categories={categories.data} />
+      <header>
+        <h1>Crear un Producto</h1>
+      </header>
+      <ProductCreateForm categories={categories} />
     </div>
   );
 }

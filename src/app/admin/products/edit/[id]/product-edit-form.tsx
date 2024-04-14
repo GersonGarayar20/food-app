@@ -21,28 +21,33 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { createProduct } from "@/lib/fetch/products";
-import { CategoryI } from "@/types";
+import { updateProduct } from "@/lib/fetch/products";
+import { CategoryI, ProductI } from "@/types";
 
 const formSchema = z.object({
+  id: z.number(),
   name: z.string(),
   image: z.string(),
   price: z.coerce.number().positive(),
   category_id: z.coerce.number().positive(),
 });
 
-export default function ProductCreateForm({
+export default function ProductEditForm({
+  product,
   categories,
 }: {
+  product: ProductI;
   categories: CategoryI[];
 }) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    defaultValues: product,
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    createProduct(values);
+    console.log("->", values);
+    const { id, ...rest } = values;
+    updateProduct(id, rest);
   }
 
   return (

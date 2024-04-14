@@ -7,14 +7,14 @@ export async function getProducts(): Promise<ProductI[]> {
   return json.data;
 }
 
-export async function getProduct(id: string): Promise<ProductI> {
+export async function getProduct(id: string | number): Promise<ProductI> {
   const res = await fetch(`${BASE_URL}/products/${id}`);
   const json = await res.json();
   return json.data;
 }
 
 export async function updateProduct(
-  id: string,
+  id: string | number,
   data: { name?: string; image?: string; price?: number }
 ): Promise<ProductI> {
   const res = await fetch(`${BASE_URL}/products/${id}`, {

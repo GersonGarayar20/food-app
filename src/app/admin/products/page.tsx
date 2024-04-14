@@ -9,13 +9,13 @@ import {
 } from "@/components/ui/table";
 import { getProducts } from "@/lib/fetch/products";
 import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export default async function AdminProductsPage() {
   const products = await getProducts();
 
-  console.log(products.data);
+  console.log(products);
 
   return (
     <div>
@@ -34,16 +34,23 @@ export default async function AdminProductsPage() {
             <TableHead>Imagen</TableHead>
             <TableHead className="text-right">Precio</TableHead>
             <TableHead className="text-right">Categoria</TableHead>
+            <TableHead className="text-right">Acciones</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {products.data.map(({ id, name, price, image, category_id }: any) => (
+          {products.map(({ id, name, price, image, category_id }) => (
             <TableRow key={id}>
               <TableCell>{id}</TableCell>
               <TableCell>{name}</TableCell>
-              <TableCell>{image}</TableCell>
+              <TableCell>
+                <img className="aspect-video w-32" src={image} alt={name} />
+              </TableCell>
               <TableCell>${price}</TableCell>
               <TableCell className="text-right">{category_id}</TableCell>
+              <TableCell className="flex gap-2">
+                <Button variant={"secondary"}>Editar</Button>
+                <Button variant={"destructive"}>Eliminar</Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

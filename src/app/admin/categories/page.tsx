@@ -36,7 +36,7 @@ export default async function AdminCategoriesPage() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {categories?.data.map(({ id, name, image }: any) => (
+          {categories?.map(({ id, name, image }: any) => (
             <TableRow key={id}>
               <TableCell className="font-medium">{id}</TableCell>
               <TableCell>{name}</TableCell>

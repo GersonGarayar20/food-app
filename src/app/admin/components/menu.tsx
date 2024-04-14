@@ -15,8 +15,8 @@ const links = [
 export default function Menu() {
   return (
     <div className="border p-4">
-      <Link href={"/admin"}>Dashboard</Link>
       <nav className="flex flex-col gap-4">
+        <Link href={"/admin"}>Dashboard</Link>
         {links.map(({ title, link }) => (
           <Link key={link} href={link}>
             {title}
