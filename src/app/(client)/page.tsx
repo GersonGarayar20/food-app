@@ -1,17 +1,18 @@
+'use client'
 import ProductCard from "@/components/product-card";
 import { Input } from "@/components/ui/input";
-import { products } from "@/data/products";
 import React from "react";
 import { FilterProducts } from "./components/FilterProducts";
 import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "react-query";
-import { getProducts } from "@/lib/products";
+import { getProducts } from "@/lib/api/products";
+import ProductList from "./components/ProductList";
 
 export default function HomePage() {
 
 
-const products = useQuery('products', getProducts)
+
 
   return (
     <main className=" min-h-screen px-4">
@@ -33,15 +34,7 @@ const products = useQuery('products', getProducts)
       <section>
         <h2 className="mb-4">Productos</h2>
         <div className="grid md:grid-cols-4 grid-cols-2 gap-4">
-          {products.map(({ category_id, name, image, price }) => (
-            <ProductCard
-              key={category_id}
-              category_id={category_id}
-              name={name}
-              image={image}
-              price={price}
-            />
-          ))}
+          <ProductList/>
         </div>
       </section>
       <Navbar/>
