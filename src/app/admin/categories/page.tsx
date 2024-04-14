@@ -10,12 +10,11 @@ import {
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { getCategories } from "@/lib/api/categories";
+import { getCategories } from "@/lib/fetch/categories";
 
 export default async function AdminCategoriesPage() {
   const categories = await getCategories();
 
-  console.log("->", categories.data);
   return (
     <div>
       <header className="flex justify-between items-center">

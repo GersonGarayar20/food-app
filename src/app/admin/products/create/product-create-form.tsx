@@ -25,7 +25,7 @@ import {
 const formSchema = z.object({
   name: z.string(),
   image: z.string(),
-  price: z.number(),
+  price: z.coerce.number().positive(),
   category_id: z.string(),
 });
 
@@ -94,7 +94,7 @@ export default function ProductCreateForm({ categories }: any) {
                 </FormControl>
                 <SelectContent>
                   {categories?.map(({ id, name }: any) => (
-                    <SelectItem key={id} value={id}>
+                    <SelectItem key={id} value={id.toString()}>
                       {name}
                     </SelectItem>
                   ))}

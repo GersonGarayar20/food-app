@@ -1,11 +1,11 @@
 import React from "react";
 import ProductCreateForm from "./product-create-form";
-import { getCategories } from "@/lib/api/categories";
+import { getCategories } from "@/lib/fetch/categories";
 
 export default async function page() {
   const categories = await getCategories();
 
-  console.log(categories);
+  console.log("->", categories);
 
   return (
     <div>
