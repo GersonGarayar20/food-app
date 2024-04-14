@@ -1,16 +1,19 @@
+import { UserI } from "@/types";
 import { BASE_URL } from "./base-url";
 
-export async function getUser(id: string) {
+export async function getUser(id: string): Promise<UserI> {
   const res = await fetch(`${BASE_URL}/users/${id}`);
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
-export async function getUsers() {
+export async function getUsers(): Promise<UserI[]> {
   const res = await fetch(`${BASE_URL}/users`);
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
-export async function deleteUser(id: string) {
+export async function deleteUser(id: string): Promise<UserI> {
   const res = await fetch(`${BASE_URL}/users/${id}`, {
     method: "DELETE",
     headers: {
@@ -18,10 +21,11 @@ export async function deleteUser(id: string) {
     },
     body: JSON.stringify({ id: id }),
   });
-  return res;
+  const json = await res.json();
+  return json.data;
 }
 
-export async function updateUser(id: string, data: any) {
+export async function updateUser(id: string, data: any): Promise<UserI> {
   const res = await fetch(`${BASE_URL}/users/${id}`, {
     method: "PUT",
     headers: {
@@ -29,10 +33,11 @@ export async function updateUser(id: string, data: any) {
     },
     body: JSON.stringify(data),
   });
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
-export async function createUser(data: any) {
+export async function createUser(data: any): Promise<UserI> {
   const res = await fetch(`${BASE_URL}/users/create`, {
     method: "POST",
     headers: {
@@ -40,5 +45,6 @@ export async function createUser(data: any) {
     },
     body: JSON.stringify(data),
   });
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }

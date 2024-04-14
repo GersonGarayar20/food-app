@@ -1,40 +1,43 @@
-import { BASE_URL } from "./base-url";
+import { api } from "./axios";
 
-export async function getClient(id) {
-  const res = await fetch(`${BASE_URL}/clients/${id}`);
-  return res.json();
-}
-
-export async function getClients() {
-  const res = await fetch(`${BASE_URL}/clients`);
-  return res.json();
-}
-
-export async function deleteClient(id) {
-  const res = await fetch(`${BASE_URL}/clients/${id}`, {
-    method: "DELETE",
-  });
+export async function getClient(id: number) {
+  const res = await api.get(`/clients/${id}`);
   return res;
 }
 
-export async function updateClient(id, data) {
-  const res = await fetch(`${BASE_URL}/clients/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  return res.json();
+export async function getClients() {
+  const res = await api.get(`/clients`);
+  return res;
 }
 
-export async function createClient(data) {
-  const res = await fetch(`${BASE_URL}/clients/create`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  return res.json();
+export async function deleteClient(id: number) {
+  const res = await api.delete(`/clients/${id}`);
+  return res;
+}
+
+export async function updateClient(
+  id: number,
+  data: {
+    name: string;
+    id: number;
+    address: string;
+    email: string;
+    password: string;
+    image: string;
+  }
+) {
+  const res = await api.put(`/clients/${id}`, data);
+  return res;
+}
+
+export async function createClient(data: {
+  name: string;
+  address: string;
+  email: string;
+  password: string;
+  image: string;
+  phone: string;
+}) {
+  const res = await api.post(`/clients/create`, data);
+  return res;
 }

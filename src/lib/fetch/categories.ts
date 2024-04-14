@@ -1,23 +1,30 @@
 import { BASE_URL } from "./base-url";
+import { CategoryI } from "@/types/index";
 
-export async function getCategories() {
+export async function getCategories(): Promise<CategoryI[]> {
   const res = await fetch(`${BASE_URL}/categories/`);
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
-export async function getCategory(id: string) {
+export async function getCategory(id: string): Promise<CategoryI> {
   const res = await fetch(`${BASE_URL}/categories/${id}`);
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
-export async function deleteCategory(id: string) {
+export async function deleteCategory(id: string): Promise<CategoryI> {
   const res = await fetch(`${BASE_URL}/categories/${id}`, {
     method: "DELETE",
   });
-  return res;
+  const json = await res.json();
+  return json.data;
 }
 
-export async function updateCategory(id: string, data: any) {
+export async function updateCategory(
+  id: string,
+  data: any
+): Promise<CategoryI> {
   const res = await fetch(`${BASE_URL}/categories/${id}`, {
     method: "PUT",
     headers: {
@@ -25,10 +32,11 @@ export async function updateCategory(id: string, data: any) {
     },
     body: JSON.stringify(data),
   });
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
-export async function createCategory(data: any) {
+export async function createCategory(data: any): Promise<CategoryI> {
   const res = await fetch(`${BASE_URL}/categories/create`, {
     method: "POST",
     headers: {
@@ -36,5 +44,6 @@ export async function createCategory(data: any) {
     },
     body: JSON.stringify(data),
   });
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }

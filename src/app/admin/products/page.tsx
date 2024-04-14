@@ -7,7 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { getProducts } from "@/lib/api/products";
+import { getProducts } from "@/lib/fetch/products";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 export default async function AdminProductsPage() {
   const products = await getProducts();
 
-  console.log(products);
+  console.log(products.data);
 
   return (
     <div>
@@ -29,19 +29,23 @@ export default async function AdminProductsPage() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Invoice</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
+            <TableHead className="w-[100px]">Id</TableHead>
+            <TableHead>Nombre</TableHead>
+            <TableHead>Imagen</TableHead>
+            <TableHead className="text-right">Precio</TableHead>
+            <TableHead className="text-right">Categoria</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableRow>
-            <TableCell className="font-medium">INV001</TableCell>
-            <TableCell>Paid</TableCell>
-            <TableCell>Credit Card</TableCell>
-            <TableCell className="text-right">$250.00</TableCell>
-          </TableRow>
+          {products.data.map(({ id, name, price, image, category_id }: any) => (
+            <TableRow key={id}>
+              <TableCell>{id}</TableCell>
+              <TableCell>{name}</TableCell>
+              <TableCell>{image}</TableCell>
+              <TableCell>${price}</TableCell>
+              <TableCell className="text-right">{category_id}</TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </div>

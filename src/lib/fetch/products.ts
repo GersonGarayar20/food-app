@@ -1,16 +1,22 @@
 import { BASE_URL } from "./base-url";
+import { ProductI } from "@/types";
 
-export async function getProducts() {
+export async function getProducts(): Promise<ProductI[]> {
   const res = await fetch(`${BASE_URL}/products`);
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
-export async function getProduct(id: string) {
+export async function getProduct(id: string): Promise<ProductI> {
   const res = await fetch(`${BASE_URL}/products/${id}`);
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
-export async function updateProduct(id: string, data: any) {
+export async function updateProduct(
+  id: string,
+  data: { name?: string; image?: string; price?: number }
+): Promise<ProductI> {
   const res = await fetch(`${BASE_URL}/products/${id}`, {
     method: "PUT",
     headers: {
@@ -18,10 +24,11 @@ export async function updateProduct(id: string, data: any) {
     },
     body: JSON.stringify(data),
   });
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
-export async function createProduct(data: any) {
+export async function createProduct(data: any): Promise<ProductI> {
   const res = await fetch(`${BASE_URL}/products/create`, {
     method: "POST",
     headers: {
@@ -29,5 +36,6 @@ export async function createProduct(data: any) {
     },
     body: JSON.stringify(data),
   });
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }

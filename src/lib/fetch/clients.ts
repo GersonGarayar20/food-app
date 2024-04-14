@@ -1,23 +1,27 @@
+import { ClientI } from "@/types";
 import { BASE_URL } from "./base-url";
 
-export async function getClient(id: string) {
+export async function getClient(id: string): Promise<ClientI> {
   const res = await fetch(`${BASE_URL}/clients/${id}`);
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
-export async function getClients() {
+export async function getClients(): Promise<ClientI[]> {
   const res = await fetch(`${BASE_URL}/clients`);
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
-export async function deleteClient(id: string) {
+export async function deleteClient(id: string): Promise<ClientI> {
   const res = await fetch(`${BASE_URL}/clients/${id}`, {
     method: "DELETE",
   });
-  return res;
+  const json = await res.json();
+  return json.data;
 }
 
-export async function updateClient(id: string, data: any) {
+export async function updateClient(id: string, data: any): Promise<ClientI> {
   const res = await fetch(`${BASE_URL}/clients/${id}`, {
     method: "PUT",
     headers: {
@@ -25,10 +29,11 @@ export async function updateClient(id: string, data: any) {
     },
     body: JSON.stringify(data),
   });
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
-export async function createClient(data: any) {
+export async function createClient(data: any): Promise<ClientI> {
   const res = await fetch(`${BASE_URL}/clients/create`, {
     method: "POST",
     headers: {
@@ -36,5 +41,6 @@ export async function createClient(data: any) {
     },
     body: JSON.stringify(data),
   });
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
