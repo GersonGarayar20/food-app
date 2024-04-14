@@ -15,7 +15,7 @@ export default function ProductCard({
   price,
 }: Props) {
   return (
-    <article key={category_id}>
+    <article className="aspect-video">
       <img
         className="aspect-[3/2] object-cover rounded-3xl"
         src={image}
