@@ -4,6 +4,8 @@
 import { getProducts } from "@/lib/api/products";
 import { useQuery } from "react-query";
 import ProductCard from "./ProductCard";
+import { ProductListSkeleton } from "./ProductListSkeleton";
+
 
 function ProductList() {
 
@@ -13,13 +15,13 @@ function ProductList() {
     })
 
     if (isError) return <div>Ocurrio un problema al obtener los datos</div>
-    if (isLoading) return <div>Cargando los datos</div>
+    if (isLoading) return <ProductListSkeleton/>
     if(products?.lenght ==0) return  <div>No hay datos para mostrar</div>
-    console.log(products);
+    
     
     return (
-      <div>
-          {
+      <div className="grid grid-cols-2 gap-4 ">
+        {
             products.map(({ category_id, name, image, price }) => (
                 <ProductCard
                     key={category_id}

@@ -18,12 +18,12 @@ export default function HomePage() {
     <main className=" min-h-screen px-4">
       <h1 className="text-2xl font-bold my-2">Bravazo</h1>
       <h2 className="mb-8">Lo mejor en un solo lugar!!</h2>
-      <div  className="flex gap-4 h-12 mb-6">
+      <div className="flex gap-4 h-12 mb-6">
         <Input placeholder="buscador" className="h-full rounded-lg" />
-        <FilterProducts/>
+        <FilterProducts />
       </div>
       <div>
-        
+
       </div>
       <h2 className="mb-4">Categorias</h2>
       <div className="flex gap-2 mb-4">
@@ -33,11 +33,9 @@ export default function HomePage() {
       </div>
       <section>
         <h2 className="mb-4">Productos</h2>
-        <div className="grid md:grid-cols-4 grid-cols-2 gap-4">
-          <ProductList/>
-        </div>
+        <ProductList />
       </section>
-      <Navbar/>
+      <Navbar />
     </main>
   );
 }
