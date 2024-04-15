@@ -45,7 +45,6 @@ export default function ProductEditForm({
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log("->", values);
     const { id, ...rest } = values;
     updateProduct(id, rest);
   }

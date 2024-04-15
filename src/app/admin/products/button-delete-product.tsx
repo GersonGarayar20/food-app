@@ -2,16 +2,16 @@
 
 import { Button } from "@/components/ui/button";
 import { deleteProduct } from "@/lib/fetch/products";
-import React from "react";
+import { toast } from "sonner";
 
 export default function ButtonDeleteProduct({ id }: { id: number }) {
+  const handleClick = () => {
+    toast("Producto eliminado.");
+    deleteProduct(id);
+  };
+
   return (
-    <Button
-      variant={"destructive"}
-      onClick={() => {
-        deleteProduct(id);
-      }}
-    >
+    <Button variant={"destructive"} onClick={handleClick}>
       Eliminar
     </Button>
   );

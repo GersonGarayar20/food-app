@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/select";
 import { createProduct } from "@/lib/fetch/products";
 import { CategoryI } from "@/types";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   name: z.string(),
@@ -43,6 +44,7 @@ export default function ProductCreateForm({
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     createProduct(values);
+    toast("Producto creado.");
   }
 
   return (

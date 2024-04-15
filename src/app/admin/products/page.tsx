@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Table,
   TableBody,
@@ -7,9 +6,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { deleteProduct, getProducts } from "@/lib/fetch/products";
+import { getProducts } from "@/lib/fetch/products";
 import Link from "next/link";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import ButtonDeleteProduct from "./button-delete-product";
 
