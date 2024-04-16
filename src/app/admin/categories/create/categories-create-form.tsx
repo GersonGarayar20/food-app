@@ -27,8 +27,8 @@ export default function CategoriesCreateForm() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // console.log("---> ", values);
-    createCategory({ name: values.name });
+    // console.log("-> ", values);
+    createCategory(values);
   }
 
   return (

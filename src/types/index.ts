@@ -17,11 +17,19 @@ export interface CategoryI {
 export interface UserI {
   id: number;
   name: string;
+  image: string
+  email: string
+  password: string
+  address: string
 }
 
 export interface ClientI {
   id: number;
   name: string;
+  image: string
+  address: string
+  phone: string
+  email: string
 }
 
 export interface RolI {
@@ -31,5 +39,7 @@ export interface RolI {
 
 export interface OrderI {
   id: number;
-  name: string;
+  client_id: string;
+  date: string
+  total: number
 }
