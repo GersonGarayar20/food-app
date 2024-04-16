@@ -3,29 +3,38 @@ import { Button } from "@/components/ui/button"
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import useStore from "@/store/useStore";
 import { useCartStore } from "@/store/cart";
+import { Heart,MoveLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 
 
 export default function OrderPage() {
 
+  const router=useRouter()
+
+  const handleBack=()=>{
+    router.back()
+  }
+
+
     const stateCart=useStore(useCartStore,useCartStore.getState)
-    
+    const total=stateCart?.totalPrice()
+
     return (
       <main className="flex flex-col justify-between h-screen">
-        <div className="bg-[#f1f1f1] dark:bg-black/50 w-full flex flex-col px-4 py-4 flex-grow">
+        <div className="bg-[#f1f1f1] dark:bg-[#050505] w-full flex flex-col px-4 py-4 flex-grow">
           {/* navegacion */}
           <header className="flex justify-between mb-4">
             <nav className="flex gap-x-2 items-center">
-              <Button>--</Button>
+              <Button onClick={()=>handleBack()}><MoveLeft /></Button>
               <h1>Order Details</h1>
             </nav>
             <div className="flex items-center gap-x-4">
-              <Button>:3</Button>
+              <Button><Heart color="red"/></Button>
               <ThemeSwitcher />
             </div>
           </header>
-
-
           <section className="flex flex-col gap-y-4">
             
               {/* mapear products of car */}
@@ -49,33 +58,21 @@ export default function OrderPage() {
                   </article>
                 )
               })}
-
-
-            
-            
           </section>
         </div>
-
-        <div className="bg-[#fbfbfb] dark:bg-black py-2 flex flex-col ga-y-4 min-h-40 px-4">
-          <div className="border-b-[1px] w-full mx-auto border-black dark:border-white flex flex-col gap-y-1 pb-2">
-            <div className="w-full flex justify-between">
-              <p>subtotal</p>
-              <span>${stateCart?.totalPrice()}</span>
-            </div>
-            <div className="w-full flex justify-between">
-              <p>Delivery</p>
-              <span>20</span>
-            </div>
-          </div>
-          <div className="w-full flex justify-between py-4">
-            <p>Total</p>
-            <span>${stateCart?.totalPrice()}</span>
+              {/* foot */}
+        <div className="bg-[#fbfbfb] dark:bg-black py-2 flex flex-col gap-y-4 min-h-28 px-8">
+          <div className="w-full flex justify-between font-bold text-lg">
+            <p className="font-bold">Total</p>
+            <span>${total}</span> 
           </div>
           <div className="flex justify-between w-full mx-auto">
-             <Button className="rounded-xl" variant="outline" size="icon">:3</Button>
+             <Button className="rounded-xl" variant="outline" size="icon"><Heart/></Button>
+             <Link href={"/orders"}>
              <Button className="rounded-3xl px-12">Proceed to Pay</Button>
+             </Link>
           </div>
-        </div>
+      </div>
       </main>
     );
   }

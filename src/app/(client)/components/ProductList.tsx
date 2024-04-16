@@ -2,7 +2,7 @@
 "use client"
 
 
-import { getProducts } from "@/lib/api/products";
+import { getProducts } from "@/lib/fetch/products";
 import { useQuery } from "react-query";
 import ProductCard from "./ProductCard";
 import { ProductListSkeleton } from "./ProductListSkeleton";

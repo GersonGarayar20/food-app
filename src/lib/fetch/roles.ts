@@ -1,23 +1,27 @@
+import { RolI } from "@/types";
 import { BASE_URL } from "./base-url";
 
-export async function getRol(id: string) {
+export async function getRol(id: string | number): Promise<RolI> {
   const res = await fetch(`${BASE_URL}/roles/${id}`);
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
-export async function getRoles() {
+export async function getRoles(): Promise<RolI[]> {
   const res = await fetch(`${BASE_URL}/roles`);
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
-export async function deleteRol(id: string) {
+export async function deleteRol(id: string | number): Promise<RolI> {
   const res = await fetch(`${BASE_URL}/roles/${id}`, {
     method: "DELETE",
   });
-  return res;
+  const json = await res.json();
+  return json.data;
 }
 
-export async function updateRol(id: string, data: any) {
+export async function updateRol(id: string | number, data: any): Promise<RolI> {
   const res = await fetch(`${BASE_URL}/roles/${id}`, {
     method: "PUT",
     headers: {
@@ -25,10 +29,11 @@ export async function updateRol(id: string, data: any) {
     },
     body: JSON.stringify(data),
   });
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
-export async function createRol(data: any) {
+export async function createRol(data: any): Promise<RolI> {
   const res = await fetch(`${BASE_URL}/roles/create`, {
     method: "POST",
     headers: {
@@ -36,5 +41,6 @@ export async function createRol(data: any) {
     },
     body: JSON.stringify(data),
   });
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }

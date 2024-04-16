@@ -1,16 +1,19 @@
+import { OrderI } from "@/types";
 import { BASE_URL } from "./base-url";
 
-export async function getOrder(id: string) {
+export async function getOrder(id: string | number): Promise<OrderI> {
   const res = await fetch(`${BASE_URL}/orders/${id}`);
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
-export async function getOrders() {
+export async function getOrders(): Promise<OrderI[]> {
   const res = await fetch(`${BASE_URL}/orders`);
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
-export async function createOrder(data: any) {
+export async function createOrder(data: any): Promise<OrderI> {
   const res = await fetch(`${BASE_URL}/orders/create`, {
     method: "POST",
     headers: {
@@ -18,5 +21,6 @@ export async function createOrder(data: any) {
     },
     body: JSON.stringify(data),
   });
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }

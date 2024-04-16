@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Table,
   TableBody,
@@ -7,20 +6,19 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { getProducts } from "@/lib/api/products";
+import { getProducts } from "@/lib/fetch/products";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import ButtonDeleteProduct from "./button-delete-product";
 
 export default async function AdminProductsPage() {
   const products = await getProducts();
 
-  console.log(products);
-
   return (
     <div>
       <header className="flex justify-between items-center">
-        <h1>products</h1>
+        <h1>Productos</h1>
         <Link className={cn(buttonVariants())} href={"/admin/products/create"}>
           Crear
         </Link>
@@ -29,19 +27,35 @@ export default async function AdminProductsPage() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Invoice</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
+            <TableHead className="w-[100px]">Id</TableHead>
+            <TableHead>Nombre</TableHead>
+            <TableHead>Imagen</TableHead>
+            <TableHead>Precio</TableHead>
+            <TableHead>Categoria</TableHead>
+            <TableHead>Acciones</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableRow>
-            <TableCell className="font-medium">INV001</TableCell>
-            <TableCell>Paid</TableCell>
-            <TableCell>Credit Card</TableCell>
-            <TableCell className="text-right">$250.00</TableCell>
-          </TableRow>
+          {products.map(({ id, name, price, image, category_id }) => (
+            <TableRow key={id}>
+              <TableCell>{id}</TableCell>
+              <TableCell>{name}</TableCell>
+              <TableCell>
+                <img className="aspect-video w-32" src={image} alt={name} />
+              </TableCell>
+              <TableCell>${price}</TableCell>
+              <TableCell>{category_id}</TableCell>
+              <TableCell className="flex gap-2">
+                <Link
+                  href={`/admin/products/edit/${id}`}
+                  className={buttonVariants({ variant: "secondary" })}
+                >
+                  Editar
+                </Link>
+                <ButtonDeleteProduct id={id} />
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </div>

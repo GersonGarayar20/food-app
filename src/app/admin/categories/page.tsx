@@ -11,6 +11,7 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getCategories } from "@/lib/fetch/categories";
+import ButtonDeleteCategory from "./button-delete-category";
 
 export default async function AdminCategoriesPage() {
   const categories = await getCategories();
@@ -33,14 +34,26 @@ export default async function AdminCategoriesPage() {
             <TableHead className="w-[100px]">Id</TableHead>
             <TableHead>Nombre</TableHead>
             <TableHead>Imagen</TableHead>
+            <TableHead>Acciones</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {categories?.data.map(({ id, name, image }: any) => (
+          {categories?.map(({ id, name, image }: any) => (
             <TableRow key={id}>
-              <TableCell className="font-medium">{id}</TableCell>
+              <TableCell>{id}</TableCell>
               <TableCell>{name}</TableCell>
-              <TableCell>{image}</TableCell>
+              <TableCell>
+              <img className="aspect-square w-16" src={image} alt={name} />
+              </TableCell>
+              <TableCell className="flex gap-2">
+              <Link
+                  href={`/admin/categories/edit/${id}`}
+                  className={buttonVariants({ variant: "secondary" })}
+                >
+                  Editar
+                </Link>
+                <ButtonDeleteCategory id={id} />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

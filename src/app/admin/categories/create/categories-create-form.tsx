@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { createCategory } from "@/lib/api/categories";
+import { createCategory } from "@/lib/fetch/categories";
 
 const formSchema = z.object({
   name: z.string(),
@@ -27,8 +27,8 @@ export default function CategoriesCreateForm() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log("---> ", values);
-    createCategory({ name: values.name });
+    // console.log("-> ", values);
+    createCategory(values);
   }
 
   return (
