@@ -4,14 +4,18 @@ import React, { useEffect, useState } from "react";
 import { getProduct } from "@/lib/fetch/products";
 import { ProductI } from "@/types";
 import { AddtoCart } from "./button";
-import { useParams } from "next/navigation";
-
+import { useParams, useRouter } from "next/navigation";
+import { MoveLeft, ShoppingCart } from "lucide-react";
+import { useNotifications } from "./notifications";
 
 export  default function ProductPage() {
+
   const param=useParams()
+  const router=useRouter()
   const slug =param.slug as string
 
   const [count,setCount]=useState(1)
+  const {setTrigger,notifications}=useNotifications()
   const [product,setProduct]=useState<ProductI|null>(null)
   
     useEffect(()=>{
@@ -20,11 +24,22 @@ export  default function ProductPage() {
 
     },[])
 
-  
+    const handleBack=()=>{
+      router.back()
+    }
+    
+
   if (product?.id==undefined) return <>Not found</>
 
   return (
     <div className="flex flex-col justify-between h-screen">
+      <div className="fixed top-3 left-3">
+      <Button onClick={()=>handleBack()}><MoveLeft /></Button>
+      </div>
+      <div className="fixed top-3 right-3">
+        <div className="rounded-full bg-white text-black absolute w-6 -top-3 -right-3 -z-10 text-center"><p>{notifications}</p></div>
+        <ShoppingCart color="black"/>
+        </div>
       <img src={product.image} alt="" className="aspect-square h-72 lg:h-auto lg:aspect-auto overflow-x-hidden relative -z-10" />
         
         <section className="flex flex-col justify-between gap-y-4 flex-grow p-4 bg-[#f1f1f1] dark:bg-[#050505] rounded-tl-3xl rounded-tr-3xl -mt-5 ">
@@ -48,7 +63,7 @@ export  default function ProductPage() {
             <p className="font-bold">Total</p>
             <span>${product.price*count}</span> 
           </div>
-          <AddtoCart product={product} count={count}/>
+          <AddtoCart product={product} count={count} setState={setTrigger}/>
       </div>
     </div>
   );
