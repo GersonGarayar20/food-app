@@ -2,9 +2,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
+
 import { AxiosInterceptor } from "@/lib/api/Interceptor/interceptor";
-import { Provider } from "@/util/Providers";
+import { Providers } from "@/util/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,14 +25,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <main className="max-w-7xl mx-auto ">
-              <Provider>
-              {children}
-              </Provider>
-            </main>
-          </ThemeProvider>
-
+        <Providers>
+          <main className="max-w-7xl mx-auto ">
+            {children}
+          </main>
+        </Providers>
       </body>
     </html>
   );
