@@ -1,4 +1,3 @@
-import React from "react";
 import CategoriesCreateForm from "./categories-create-form";
 
 export default async function page() {
