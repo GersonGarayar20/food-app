@@ -13,7 +13,7 @@ import { useFilterStore } from "@/app/global/filter";
 import { ProductI } from "@/types";
 
 function ProductList() {
-    const { category_id, word, maxPrice } = useFilterStore()
+    const { category_id, word, maxPrice,minPrice } = useFilterStore()
     const { data: products, isLoading, isError } = useQuery<ProductI[]>(
         "users",
         ()=>getProducts(),
@@ -35,7 +35,7 @@ function ProductList() {
 
         if (category_id) filtered = products.filter(product => product.category_id === category_id)
         
-        if (maxPrice !== 1000) filtered = filtered.filter(product => product.price <= maxPrice);
+        if (maxPrice !== 1000 || minPrice!==0) filtered = filtered.filter(product => product.price>=minPrice && product.price <= maxPrice );
         
 
         return filtered;
@@ -44,12 +44,13 @@ function ProductList() {
     const productsFiltered = filterProducts(products!)
 
     return (
-        <div className="grid grid-cols-2 gap-4  ">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 ">
             
             {
                 productsFiltered?.map(({ id, category_id, name, image, price }) => (
                     <ProductCard
                         key={id}
+                        id={id}
                         category_id={category_id}
                         name={name}
                         image={image}

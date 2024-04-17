@@ -6,6 +6,7 @@ import { useCartStore } from "@/store/cart";
 import { Heart,MoveLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import ArrowBack from "@/components/icons/ArrowBack";
 
 
 
@@ -27,7 +28,7 @@ export default function OrderPage() {
           {/* navegacion */}
           <header className="flex justify-between mb-4">
             <nav className="flex gap-x-2 items-center">
-              <Button onClick={()=>handleBack()}><MoveLeft /></Button>
+              <ArrowBack/>
               <h1>Order Details</h1>
             </nav>
             <div className="flex items-center gap-x-4">
