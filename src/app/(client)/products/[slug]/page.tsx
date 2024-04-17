@@ -7,6 +7,7 @@ import { AddtoCart } from "./button";
 import { useParams, useRouter } from "next/navigation";
 import { MoveLeft, ShoppingCart } from "lucide-react";
 import { useNotifications } from "./notifications";
+import Loader from "@/components/Loader";
 
 export  default function ProductPage() {
 
@@ -29,7 +30,7 @@ export  default function ProductPage() {
     }
     
 
-  if (product?.id==undefined) return <>Not found</>
+  if (product?.id==undefined) return <Loader/>
 
   return (
     <div className="flex flex-col justify-between h-screen">
