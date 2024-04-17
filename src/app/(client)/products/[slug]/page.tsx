@@ -27,7 +27,9 @@ export  default function ProductPage() {
     const handleBack=()=>{
       router.back()
     }
-    
+    const handleNavigation=()=>[
+      router.push("/orders")
+    ]
 
   if (product?.id==undefined) return <>Not found</>
 
@@ -36,10 +38,10 @@ export  default function ProductPage() {
       <div className="fixed top-3 left-3">
       <Button onClick={()=>handleBack()}><MoveLeft /></Button>
       </div>
-      <div className="fixed top-3 right-3">
-        <div className="rounded-full bg-white text-black absolute w-6 -top-3 -right-3 -z-10 text-center"><p>{notifications}</p></div>
+      <div className="fixed top-3 right-3 " onClick={handleNavigation}>
+        <div className="rounded-full bg-white text-black absolute w-6 -top-3 -right-3 -z-10 text-center" ><p>{notifications}</p></div>
         <ShoppingCart color="black"/>
-        </div>
+      </div>
       <img src={product.image} alt="" className="aspect-square h-72 lg:h-auto lg:aspect-auto overflow-x-hidden relative -z-10" />
         
         <section className="flex flex-col justify-between gap-y-4 flex-grow p-4 bg-[#f1f1f1] dark:bg-[#050505] rounded-tl-3xl rounded-tr-3xl -mt-5 ">

@@ -1,8 +1,8 @@
-import { productI } from "@/types/product";
+import { ProductI } from "@/types/index";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface CartItem extends productI {
+interface CartItem extends ProductI {
   count: number;
 }
 
