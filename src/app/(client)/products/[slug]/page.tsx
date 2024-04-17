@@ -36,10 +36,10 @@ export  default function ProductPage() {
   return (
     <div className="flex flex-col justify-between h-screen">
       <div className="fixed top-3 left-3">
-      <Button onClick={()=>handleBack()}><MoveLeft /></Button>
+        <Button className="bg-black/70 text-white" onClick={()=>handleBack()}><MoveLeft /></Button>
       </div>
-      <div className="fixed top-3 right-3 " onClick={handleNavigation}>
-        <div className="rounded-full bg-white text-black absolute w-6 -top-3 -right-3 -z-10 text-center" ><p>{notifications}</p></div>
+      <div className="fixed top-5 right-5 bg-white rounded-3xl p-1 " onClick={handleNavigation}>
+        <div className="rounded-full bg-gray-500 text-white absolute w-6 -top-3 -right-3 -z-10 text-center" ><p>{notifications}</p></div>
         <ShoppingCart color="black"/>
       </div>
       <img src={product.image} alt="" className="aspect-square h-72 lg:h-auto lg:aspect-auto overflow-x-hidden relative -z-10" />
