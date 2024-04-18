@@ -31,7 +31,11 @@ export const useCartStore = create<CartStore>()(
       },
       add: (product) => {
         const { cart } = get();
-        
+        const p=document.getElementById('count')
+          p?.classList.add('count')
+          setTimeout(() => {
+            p?.classList.remove('count')
+          }, 300);
         const updatedCart = addToCart(cart, product);
         
         set({ cart: updatedCart });

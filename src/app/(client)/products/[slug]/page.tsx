@@ -1,6 +1,6 @@
 'use client'
 import { Button } from "@/components/ui/button";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { getProduct } from "@/lib/fetch/products";
 import { ProductI } from "@/types";
 import { AddtoCart } from "./button";
@@ -17,11 +17,11 @@ export  default function ProductPage() {
   const slug =param.slug as string
 
   const stateCart=useStore(useCartStore,useCartStore.getState)
-  
+
   const [count,setCount]=useState(()=>stateCart.cart.find(e=>e.id==+slug)?.count || 1)
 
   const [product,setProduct]=useState<ProductI|null>(null)
-  
+
     useEffect(()=>{
       getProduct(slug)
       .then((res)=>setProduct(res))
@@ -35,6 +35,7 @@ export  default function ProductPage() {
       router.push("/orders")
     ]
 
+
   if (product?.id==undefined) return <Loader/>
 
   return (
@@ -43,7 +44,7 @@ export  default function ProductPage() {
         <Button className="bg-black/70 text-white" onClick={()=>handleBack()}><MoveLeft /></Button>
       </div>
       <div className="fixed top-5 right-5 bg-white rounded-3xl p-1 " onClick={handleNavigation}>
-        <div className="rounded-full bg-gray-500 text-white absolute w-6 -top-3 -right-3 -z-10 text-center" ><p>{stateCart.count()}</p></div>
+        <div className="rounded-full bg-gray-500 text-white absolute w-6 -top-3 -right-3 -z-10 text-center" ><p className="" id="count">{stateCart.count()}</p></div>
         <ShoppingCart color="black"/>
       </div>
       <img src={product.image} alt="" className="aspect-square h-72 lg:h-auto lg:aspect-auto overflow-x-hidden relative -z-10" />

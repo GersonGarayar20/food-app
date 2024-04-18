@@ -74,3 +74,20 @@
       @apply bg-background text-foreground;
     }
   }
+
+  .count{
+    animation: .5s cart normal ease-in-out;
+  }
+  @keyframes cart{
+    0%{
+      opacity: 100%;
+    }
+    50%{
+      transform:scale(1.5);
+      opacity: 50%;
+    }
+    100%{
+      opacity: 100%;
+      transform: scale(1);
+    }
+  }
