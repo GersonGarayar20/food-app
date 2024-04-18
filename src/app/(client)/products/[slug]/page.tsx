@@ -6,8 +6,9 @@ import { ProductI } from "@/types";
 import { AddtoCart } from "./button";
 import { useParams, useRouter } from "next/navigation";
 import { MoveLeft, ShoppingCart } from "lucide-react";
-import { useNotifications } from "./notifications";
 import Loader from "@/components/Loader";
+import { useStore } from "zustand";
+import { useCartStore } from "@/store/cart";
 
 export  default function ProductPage() {
 
@@ -15,8 +16,10 @@ export  default function ProductPage() {
   const router=useRouter()
   const slug =param.slug as string
 
-  const [count,setCount]=useState(1)
-  const {setTrigger,notifications}=useNotifications()
+  const stateCart=useStore(useCartStore,useCartStore.getState)
+  
+  const [count,setCount]=useState(()=>stateCart.cart.find(e=>e.id==+slug)?.count || 1)
+
   const [product,setProduct]=useState<ProductI|null>(null)
   
     useEffect(()=>{
@@ -40,7 +43,7 @@ export  default function ProductPage() {
         <Button className="bg-black/70 text-white" onClick={()=>handleBack()}><MoveLeft /></Button>
       </div>
       <div className="fixed top-5 right-5 bg-white rounded-3xl p-1 " onClick={handleNavigation}>
-        <div className="rounded-full bg-gray-500 text-white absolute w-6 -top-3 -right-3 -z-10 text-center" ><p>{notifications}</p></div>
+        <div className="rounded-full bg-gray-500 text-white absolute w-6 -top-3 -right-3 -z-10 text-center" ><p>{stateCart.count()}</p></div>
         <ShoppingCart color="black"/>
       </div>
       <img src={product.image} alt="" className="aspect-square h-72 lg:h-auto lg:aspect-auto overflow-x-hidden relative -z-10" />
@@ -66,7 +69,7 @@ export  default function ProductPage() {
             <p className="font-bold">Total</p>
             <span>${product.price*count}</span> 
           </div>
-          <AddtoCart product={product} count={count} setState={setTrigger}/>
+          <AddtoCart product={product} count={count}  fn={stateCart.add}/>
       </div>
     </div>
   );
