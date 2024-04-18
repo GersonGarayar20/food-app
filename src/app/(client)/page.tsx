@@ -10,11 +10,14 @@ export default function HomePage() {
   return (
 
     <main className=" min-h-screen p-4">
-      <div className="mb-4 flex justify-between">
-        <img src="https://randomuser.me/api/portraits/men/62.jpg" className="rounded-full w-10 h-10 border-[1px] border-slate-300" alt="" />
+      <div className="mb-4 flex justify-between items-center">
+        <div>
+          <h2 className="text-3xl">Bravazo</h2>
+        </div>
         <div className="flex gap-4 ">
           <Bell />
-          <Config />
+          {/* <Config /> */}
+          <img src="https://randomuser.me/api/portraits/men/62.jpg" className="rounded-full w-10 h-10 border-[1px] border-slate-300" alt="" />
         </div>
 
       </div>
