@@ -6,7 +6,7 @@ import { ProductI } from "@/types";
 import { redirect } from "next/navigation";
 
 export async function getProducts(): Promise<ProductI[]> {
-  const res = await fetch(`${BASE_URL}/products`);
+  const res = await fetch(`${BASE_URL}/products`, { cache: "no-store" });
   const json = await res.json();
   return json.data;
 }
