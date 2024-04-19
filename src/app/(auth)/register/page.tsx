@@ -4,12 +4,14 @@ import { RegisterForm } from "./register-form";
 
 export default function RegisterPage() {
   return (
-    <div>
-      <h1>Registrarte</h1>
+    <div className="md:w-[400px] mx-auto p-8 flex flex-col gap-8">
+      <h1 className="text-2xl">Registrarte</h1>
       <RegisterForm />
       <p>
-        ya tienes una cuenta
-        <Link href={"/login"}>iniciar sesion</Link>
+        ¿Tienes una cuenta?{" "}
+        <Link className="text-blue-500" href={"/login"}>
+          Inicia sesion
+        </Link>
       </p>
     </div>
   );

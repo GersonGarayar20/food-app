@@ -18,8 +18,10 @@ import { Input } from "@/components/ui/input";
 import { signIn } from "next-auth/react";
 
 const formSchema = z.object({
-  email: z.string().email(),
-  password: z.string(),
+  email: z.string().email("Formato de correo electrónico no válido."),
+  password: z
+    .string()
+    .min(8, "La contraseña debe tener al menos 8 caracteres."),
 });
 
 export function LoginForm() {
@@ -28,8 +30,6 @@ export function LoginForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-
     const res = await signIn("credentials", {
       email: values.email,
       password: values.password,
@@ -41,15 +41,19 @@ export function LoginForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Correo</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="email@email.com" {...field} />
+                <Input
+                  type="email"
+                  placeholder="tucorreo@email.com"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -60,7 +64,7 @@ export function LoginForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>Contraseña</FormLabel>
               <FormControl>
                 <Input type="password" placeholder="********" {...field} />
               </FormControl>
@@ -69,7 +73,7 @@ export function LoginForm() {
           )}
         />
         <Button className="w-full" type="submit">
-          Submit
+          Iniciar Sesion
         </Button>
       </form>
     </Form>

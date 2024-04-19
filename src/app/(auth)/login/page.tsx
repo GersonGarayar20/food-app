@@ -8,8 +8,10 @@ export default function LoginPage() {
       <h1 className="text-2xl">Iniciar Sesion</h1>
       <LoginForm />
       <p>
-        si no tienes cuenta
-        <Link href={"/register"}>Registrarte</Link>
+        ¿No tienes cuenta?{" "}
+        <Link className="text-blue-500" href={"/register"}>
+          Crear una cuenta
+        </Link>
       </p>
     </div>
   );
