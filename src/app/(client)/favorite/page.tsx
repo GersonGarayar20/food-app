@@ -3,16 +3,20 @@ import { getFavorites } from "@/lib/fetch/favorite";
 
 async function Page() {
 
-    const favorites= await getFavorites({userid:3})
-
+    const favorites= await getFavorites({userid:6})
+    
+    if (favorites.error || !favorites.data) return <h1 className="text-center">{favorites.message}</h1>
+    
     return (
         <div className="p-4">
             <ArrowBack />
             <div className="flex justify-center  mt-8">
                 <h2 className="text-3xl font-bold mb-8 ">Favoritos</h2>
             </div>
-            <div className="flex flex-col gap-x-10 gap-y-5 w-full">
-                {favorites?.map(favorite=>{
+            <div className="flex flex-col gap-x-10 gap-y-5">
+                {favorites?.data.length==0?
+                <h1 className="text-center">There arent favorites yet</h1>
+                :favorites?.data?.map(favorite=>{
                     return(
                         <article key={favorite.id} className="flex items-start gap-5 shadow-xl rounded-2xl relative h-32" >
                             <img src={favorite.image} alt="" className="rounded-2xl w-36 h-32 object-cover"/>
@@ -34,21 +38,3 @@ async function Page() {
 }
 
 export default Page
-
-
-
-/* {
-    "error": false,
-    "data": {
-        "id": 4,
-        "createdAt": "2024-04-19T15:52:07.785Z",
-        "updatedAt": "2024-04-19T15:52:07.785Z",
-        "name": "keury",
-        "image": "keury.png",
-        "address": "San Luis",
-        "phone": "927859435",
-        "email": "keury@gmail.com",
-        "password": "12345"
-    },
-    "message": "created client"
-} */
