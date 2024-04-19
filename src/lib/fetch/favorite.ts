@@ -16,7 +16,7 @@ export async function getFavorites({userid}:{userid:number}): Promise<{error:boo
 }
 
 export async function createFavorite({token,productid}:{token:string,productid:number}): Promise<ProductI> {
-  const res = await fetch(`${BASE_URL}/favorites/create/${productid}`, {
+  const res = await fetch(`${BASE_URL}/favorites/${1}/create/${productid}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -27,8 +27,8 @@ export async function createFavorite({token,productid}:{token:string,productid:n
   return json.data;
 }
 
-export async function deleteCategory({token,productid}:{token:string,productid:number}): Promise<ProductI> {
-  const res = await fetch(`${BASE_URL}/favorites/delete/${productid}`, {
+export async function deleteFavorite({token,productid}:{token:string,productid:number}): Promise<ProductI> {
+  const res = await fetch(`${BASE_URL}/favorites/${1}/delete/${productid}`, {
     method: "DELETE",
     headers:{
       "Content-Type": "application/json",

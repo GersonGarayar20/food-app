@@ -1,5 +1,13 @@
 import ArrowBack from "@/components/icons/ArrowBack"
-import { getFavorites } from "@/lib/fetch/favorite";
+import { createFavorite, deleteFavorite, getFavorites } from "@/lib/fetch/favorite";
+
+const handleFavorite=async({token,productid}:{token:string,productid:number})=>{
+    const result = await createFavorite({token,productid})
+}
+const handleUnFavorite=async({token,productid}:{token:string,productid:number})=>{
+    const result = await deleteFavorite({token,productid})
+}
+
 
 async function Page() {
 
