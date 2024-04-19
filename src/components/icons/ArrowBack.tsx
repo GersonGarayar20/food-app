@@ -9,7 +9,7 @@ function ArrowBack() {
     }
 
     return (
-        <Button onClick={() => handleBack()}><MoveLeft /></Button>
+        <Button onClick={() => handleBack()} className="bg-transparent text-black dark:text-white"><MoveLeft /></Button>
     );
 }
 
