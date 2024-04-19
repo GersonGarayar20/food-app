@@ -1,7 +1,7 @@
 import ArrowBack from "@/components/icons/ArrowBack";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 
-function Config() {
+function AvatarConfig() {
     return ( 
         <div className="p-4 pt-8">
              <div>
@@ -17,4 +17,4 @@ function Config() {
      );
 }
 
-export default Config;
+export default AvatarConfig;

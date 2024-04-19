@@ -6,6 +6,8 @@ export interface ProductI {
   image: string;
   price: number;
   category_id: number;
+  ingredients: string;
+  description: string
 }
 
 export interface CategoryI {

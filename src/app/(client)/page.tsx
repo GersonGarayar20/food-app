@@ -3,7 +3,8 @@ import { FilterProducts } from "./components/FilterProducts";
 import ProductList from "./components/ProductList";
 import CategoryList from "./components/CategoryList";
 import Bell from "@/components/icons/Bell";
-import Config from "@/components/icons/Config";
+import AvatarConfig from "./config/page";
+import Link from "next/link";
 
 export default function HomePage() {
 
@@ -16,8 +17,9 @@ export default function HomePage() {
         </div>
         <div className="flex gap-4 ">
           <Bell />
-          {/* <Config /> */}
-          <img src="https://randomuser.me/api/portraits/men/62.jpg" className="rounded-full w-10 h-10 border-[1px] border-slate-300" alt="" />
+          <Link href={"/config"}>
+            <img src="https://randomuser.me/api/portraits/men/62.jpg" className="rounded-full w-10 h-10 border-[1px] border-slate-300" alt="" />
+          </Link>
         </div>
 
       </div>
