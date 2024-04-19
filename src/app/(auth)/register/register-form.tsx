@@ -15,13 +15,18 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
+import { createUser } from "@/lib/fetch/users";
+
 const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-  email: z.string().email(),
-  password: z.string(),
-  confirmPassword: z.string(),
+  name: z
+    .string()
+    .min(2, "El nombre de usuario debe tener al menos 2 caracteres."),
+  email: z.string().email("Formato de correo electrónico no válido."),
+  password: z
+    .string()
+    .min(8, "La contraseña debe tener al menos 8 caracteres."),
+  phone: z.string(),
+  address: z.string(),
 });
 
 export function RegisterForm() {
@@ -29,21 +34,22 @@ export function RegisterForm() {
     resolver: zodResolver(formSchema),
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const res = await createUser(values);
+    console.log(res);
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
-          name="username"
+          name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>Nombre</FormLabel>
               <FormControl>
-                <Input placeholder="username" {...field} />
+                <Input placeholder="Escribe tu nombre" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -54,9 +60,13 @@ export function RegisterForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Correo</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="email@email.com" {...field} />
+                <Input
+                  type="email"
+                  placeholder="tucorreo@email.com"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -67,7 +77,7 @@ export function RegisterForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>Constraseña</FormLabel>
               <FormControl>
                 <Input type="password" placeholder="********" {...field} />
               </FormControl>
@@ -77,18 +87,36 @@ export function RegisterForm() {
         />
         <FormField
           control={form.control}
-          name="confirmPassword"
+          name="address"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>confirmPassword</FormLabel>
+              <FormLabel>Dirección</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="********" {...field} />
+                <Input
+                  placeholder="Jirón de la Unión 1032, Cercado de Lima, Lima, Perú"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <FormField
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Teléfono</FormLabel>
+              <FormControl>
+                <Input placeholder="987654321" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button className="w-full" type="submit">
+          Registrarse
+        </Button>
       </form>
     </Form>
   );
