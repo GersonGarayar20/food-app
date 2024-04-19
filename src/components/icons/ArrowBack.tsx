@@ -9,12 +9,7 @@ function ArrowBack() {
   };
 
   return (
-    <Button
-      className="rounded-full"
-      variant={"ghost"}
-      size={"icon"}
-      onClick={() => handleBack()}
-    >
+    <Button onClick={() => handleBack()}>
       <MoveLeft />
     </Button>
   );
