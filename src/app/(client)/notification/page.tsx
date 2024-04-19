@@ -7,7 +7,7 @@ function Notification() {
     return (
        <div className="flex flex-col gap-4 p-4">
         <div>
-        <ArrowBack/>
+        <ArrowBack />
         </div>
         <div className="flex flex-col gap-4 ">
         <Bell className="w-16 h-16 stroke-red-500 mt-8"/> 
