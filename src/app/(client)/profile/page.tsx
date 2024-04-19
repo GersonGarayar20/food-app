@@ -1,8 +1,11 @@
 import ArrowBack from "@/components/icons/ArrowBack";
 import { ThemeSwitcher } from "@/components/theme-switcher";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { getServerSession } from "next-auth";
 import ButtonCerrarSesion from "./button-cerrar-sesion";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { LogIn } from "lucide-react";
 
 export default async function ProfilePage() {
   const sesion = await getServerSession();
@@ -22,20 +25,35 @@ export default async function ProfilePage() {
           className="rounded-full w-30 h-30 m-auto border-[1px] border-slate-300 mb-4"
           alt="foto de perfil"
         />
-        <h2 className="font-bold mb-2">Lucas</h2>
+        <h2 className="font-bold mb-2">{sesion?.user?.name}</h2>
         <p className="text-neutral-600 dark:text-neutral-400">
-          lucas@gmail.com
+          {sesion?.user?.email}
         </p>
       </div>
 
       <div className="text-center my-6">
-        <Button className="rounded-full  px-12 py-4 ">Editar Perfil</Button>
+        <Link className={cn(buttonVariants())} href={"/profile/edit"}>
+          Editar Perfil
+        </Link>
       </div>
 
       {/* acciones */}
       <section className="py-4 flex flex-col gap-2">
         <ThemeSwitcher />
-        <ButtonCerrarSesion />
+        {sesion !== null ? (
+          <ButtonCerrarSesion />
+        ) : (
+          <Link
+            className={cn(
+              buttonVariants({ variant: "ghost" }),
+              "py-6 flex justify-between items-center rounded-full"
+            )}
+            href={"/login"}
+          >
+            Iniciar Sesion
+            <LogIn />
+          </Link>
+        )}
       </section>
     </div>
   );

@@ -48,3 +48,19 @@ export async function createUser(data: any): Promise<UserI> {
   const json = await res.json();
   return json.data;
 }
+
+export async function changeUserPassword(data: {
+  token: string;
+  oldPassword: string;
+  newPassword: string;
+}): Promise<UserI> {
+  const res = await fetch(`${BASE_URL}/users/create`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  const json = await res.json();
+  return json.data;
+}

@@ -14,58 +14,43 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { updateUser } from "@/lib/fetch/users";
 
 const formSchema = z.object({
-  email: z.string().email("Formato de correo electrónico no válido."),
-  password: z
-    .string()
-    .min(8, "La contraseña debe tener al menos 8 caracteres."),
+  name: z.string(),
+  password: z.string(),
+  image: z.string(),
 });
 
-export function LoginForm() {
-  const [error, setError] = useState<string | null | undefined>();
-  const router = useRouter();
-
+export function EditUserForm({ user }: { user: any }) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: user.name,
+      image: user.image,
+    },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const res = await signIn("credentials", {
-      email: values.email,
-      password: values.password,
-      redirect: false,
-    });
-    if (res?.ok) {
-      router.push("/");
-      router.refresh();
-    } else {
-      setError(res?.error);
-    }
+    const res = await updateUser(user.id, values);
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        {error && (
-          <div className="bg-red-500 text-white rounded px-4 py-2">{error}</div>
-        )}
+        <img
+          className="size-32 rounded-full border"
+          src={form.getValues("image")}
+          alt={form.getValues("name")}
+        />
         <FormField
           control={form.control}
-          name="email"
+          name="image"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Correo</FormLabel>
+              <FormLabel>Imagen</FormLabel>
               <FormControl>
-                <Input
-                  type="email"
-                  placeholder="tucorreo@email.com"
-                  {...field}
-                />
+                <Input type="file" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -73,19 +58,19 @@ export function LoginForm() {
         />
         <FormField
           control={form.control}
-          name="password"
+          name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Contraseña</FormLabel>
+              <FormLabel>Nombre</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="********" {...field} />
+                <Input {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button className="w-full" type="submit">
-          Iniciar Sesion
+          Guardar Cambios
         </Button>
       </form>
     </Form>

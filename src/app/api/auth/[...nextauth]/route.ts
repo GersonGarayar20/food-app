@@ -1,5 +1,4 @@
 import { signin } from "@/lib/fetch/auth";
-import { getUser } from "@/lib/fetch/users";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -12,25 +11,19 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req): Promise<any> {
-        console.log(credentials);
+        console.log("🚀 ~ authorize ~ credentials:", credentials);
 
-        // Verifica que el correo electrónico esté presente antes de hacer la consulta
-        if (!credentials?.email) {
-          return null;
-        }
+        if (!credentials?.email) return null;
 
         const res = await signin({
           email: credentials.email,
           password: credentials.password,
         });
 
-        console.log("login fetch", res);
-
         if (!res) return null;
 
-        const user = await getUser(res.data.id);
-
-        if (!user) return null;
+        const user = res.user;
+        const token = res.token;
 
         return {
           id: user.id,
