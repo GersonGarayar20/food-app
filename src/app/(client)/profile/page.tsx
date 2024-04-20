@@ -1,15 +1,15 @@
 import ArrowBack from "@/components/icons/ArrowBack";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { buttonVariants } from "@/components/ui/button";
-import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth/next";
 import ButtonCerrarSesion from "./button-cerrar-sesion";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { LogIn } from "lucide-react";
+import {  authOptions} from "../../api/auth/[...nextauth]/route";
 
 export default async function ProfilePage() {
-  const sesion = await getServerSession();
-  console.log("🚀 ~ ProfilePage ~ sesion:", sesion);
+  const sesion = await getServerSession(authOptions);
 
   return (
     <div className="px-4">

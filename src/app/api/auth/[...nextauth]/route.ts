@@ -3,15 +3,16 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions = {
+  
   providers: [
     CredentialsProvider({
       name: "Credentials",
+      
       credentials: {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req): Promise<any> {
-        console.log("🚀 ~ authorize ~ credentials:", credentials);
 
         if (!credentials?.email) return null;
 
@@ -33,6 +34,7 @@ export const authOptions = {
       },
     }),
   ],
+  secret:"NYjnC+ITQ5ZUXHMlFfzS6vJQq1oqU3XLO1KmQpefB6w=",
   pages: {
     signIn: "/login",
   },

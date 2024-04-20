@@ -11,7 +11,7 @@ const handleUnFavorite=async({token,productid}:{token:string,productid:number})=
 
 async function Page() {
 
-    const favorites= await getFavorites({userid:6})
+    const favorites= await getFavorites({userid:5})
     
     if (favorites.error || !favorites.data) return <h1 className="text-center">{favorites.message}</h1>
     
