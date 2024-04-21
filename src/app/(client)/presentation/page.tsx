@@ -11,11 +11,11 @@ function Presentation() {
             </div>
             <div className="m-auto flex flex-col justify-center items-center gap-4 ">
                 <Link href={"login"}>
-                    <Button className="w-64 px-12 py-7 bg-[#f3953e] rounded-full ">Inicio Sesión
+                    <Button className="w-64 px-12 py-7  rounded-full ">Inicio Sesión
                     </Button>
                 </Link>
                 <Link href={"register"}>
-                    <Button className="w-64 px-12 py-7 bg-transparent text-white  border-[#f3953e] border-2 rounded-full  mb-4">Registrate
+                    <Button variant={"ghost"} className="w-64 px-12 py-7   border-[#f3953e] border-2 rounded-full  mb-4">Registrate
                     </Button>
                 </Link>
                 <div className="flex justify-end">

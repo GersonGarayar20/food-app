@@ -2,6 +2,7 @@
 
 import { useFilterStore } from "@/app/global/filter";
 import { Button } from "@/components/ui/button";
+import { ToggleGroupItem } from "@/components/ui/toggle-group";
 
 interface PropCategory {
     id: number
@@ -12,36 +13,24 @@ interface PropCategory {
 
 function CategoryCard({ id, image, name }: PropCategory) {
 
-    const { setFilters } = useFilterStore()
 
-
-    function handleClick(evt:any) {
-        setFilters({ category_id: id })
-    }
 
     return (
-        <Button className="flex gap-4 rounded-2xl px-4 py-2" onClick={handleClick}>
-            <span className="text-[12px]">{name}</span>
-            <img src={image} alt={name} className="w-5" />
-        </Button>
+        <ToggleGroupItem variant={"outline"} value={id} aria-label="Toggle underline" className="flex gap-2" >
+            {name}
+            <img src={image} alt="" className="w-4" />
+        </ToggleGroupItem>
     );
 }
 
 export default CategoryCard;
 
-export function AllCategoryCard({name}:{name:string}) {
-
-    const { setFilters } = useFilterStore()
-
-
-    function handleClick(evt:any) {
-        setFilters({ category_id: 0,maxPrice:1000,word:""})
-    }
+export function AllCategoryCard({ name, id }: { name: string, id: number }) {
 
     return (
-        <Button className="flex gap-4 rounded-2xl px-4 py-2" onClick={handleClick}>
-            <span className="text-[12px]">{name}</span>
-        </Button>
+        <ToggleGroupItem variant={"outline"} value={id} aria-label="Toggle " className="flex gap-2" >
+            {name}
+        </ToggleGroupItem>
     );
 }
 
