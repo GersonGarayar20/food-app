@@ -6,7 +6,7 @@ import ButtonCerrarSesion from "./button-cerrar-sesion";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { LogIn } from "lucide-react";
-import {  authOptions} from "../../api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 
 export default async function ProfilePage() {
   const sesion = await getServerSession(authOptions);
