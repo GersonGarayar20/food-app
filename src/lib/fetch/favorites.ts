@@ -2,10 +2,8 @@ import { BASE_URL } from "./base-url";
 import { ProductI } from "@/types/index";
 
 export async function getFavorites({
-  userId,
   token,
 }: {
-  userId: string;
   token: string;
 }): Promise<ProductI[] | null> {
   const res = await fetch(`${BASE_URL}/favorites/`, {
@@ -16,17 +14,17 @@ export async function getFavorites({
   });
 
   const json = await res.json();
-  return json.data;
+  
+  const favoirte=json.data[0].product
+  return [favoirte];
 }
 
 export async function createFavorite({
   token,
   productId,
-  userId,
 }: {
   token: string;
   productId: string;
-  userId: string;
 }): Promise<ProductI | null> {
   const res = await fetch(
     `${BASE_URL}/favorites/create/${productId}`,
@@ -45,11 +43,9 @@ export async function createFavorite({
 export async function deleteFavorite({
   token,
   productId,
-  userId,
 }: {
   token: string;
   productId: string;
-  userId: string;
 }): Promise<ProductI | null> {
   const res = await fetch(
     `${BASE_URL}/favorites/delete/${productId}`,

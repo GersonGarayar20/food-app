@@ -1,19 +1,18 @@
-'use client'
 import ArrowBack from "@/components/icons/ArrowBack";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { authOptions } from "@/lib/auth";
 import { getNotifications } from "@/lib/fetch/notification";
 import { NotificationI } from "@/types";
 import { Bell, Laugh, Sparkles, Terminal } from "lucide-react";
+import { getServerSession } from "next-auth";
 import { useEffect, useState } from "react";
 
-function Notification() {
+async function Notification() {
+    const session=await getServerSession(authOptions)
 
-    const [notifications,setNotifications]=useState<NotificationI[]>([])
-
-    useEffect(()=>{
-        getNotifications(1)
-        .then((data)=>setNotifications(data))
-    },[])
+     const notifications:NotificationI[]= await getNotifications({token:session.user.accessToken})
+        
+  
 
     return (
        <div className="flex flex-col gap-4 p-4">

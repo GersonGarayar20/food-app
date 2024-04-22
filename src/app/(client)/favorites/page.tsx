@@ -5,12 +5,13 @@ import {
   deleteFavorite,
   getFavorites,
 } from "@/lib/fetch/favorites";
+import { Heart } from "lucide-react";
 import { getServerSession } from "next-auth";
 
 export default async function FavoritesPage() {
-  const favorites = await getFavorites({ userId: "", token: "" });
-  // de la sesion obtengo el userId y el token
   const sesion = await getServerSession(authOptions);
+  
+  const favorites = await getFavorites({token: sesion.user.accessToken});
 
   if (!favorites)
     return <h1 className="text-center">Error al traer los favoritos</h1>;
@@ -48,7 +49,7 @@ export default async function FavoritesPage() {
                   </div>
                 </div>
                 {/* Cambiar logo */}
-                <span className="absolute top-2 right-2">logo</span>
+                <button className="absolute top-2 right-2"><Heart color="red"/></button>
               </article>
             );
           })

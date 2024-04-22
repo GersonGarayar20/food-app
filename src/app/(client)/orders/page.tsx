@@ -32,8 +32,9 @@ export default function OrderPage() {
               <h1>Order Details</h1>
             </nav>
             <div className="flex items-center gap-x-4">
+              <Link href={"/favorites"}>
               <Button><Heart color="red"/></Button>
-              <ThemeSwitcher />
+              </Link>
             </div>
           </header>
           <section className="flex flex-col gap-y-4">
