@@ -1,9 +1,19 @@
 'use client'
 import ArrowBack from "@/components/icons/ArrowBack";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { getNotifications } from "@/lib/fetch/notification";
 import { Bell, Laugh, Sparkles, Terminal } from "lucide-react";
+import { useEffect, useState } from "react";
 
 function Notification() {
+
+    const [notifications,setNotifications]=useState([])
+
+    useEffect(()=>{
+        getNotifications(1)
+        .then((data)=>setNotifications(data))
+    },[])
+
     return (
        <div className="flex flex-col gap-4 p-4">
         <div>
@@ -21,6 +31,14 @@ function Notification() {
             <AlertDescription>
                 Estamos felices de que pueda experimentar la mejor a de pedidos.
             </AlertDescription>
+            {notifications.map(notification=>{
+                return(
+                    <article key={notification?.id}>
+                            <h1>{notification?.title}</h1>
+                            <h2>{notification?.description}</h2>
+                    </article>
+                )
+            })}
         </Alert>
 
        </div>

@@ -47,13 +47,17 @@ export  default function ProductPage() {
         <div className="rounded-full bg-gray-500 text-white absolute w-6 -top-3 -right-3 -z-10 text-center" ><p className="" id="count">{stateCart.count()}</p></div>
         <ShoppingCart color="black"/>
       </div>
-      <img src={product.image} alt="" className="aspect-square h-72 lg:h-auto lg:aspect-auto overflow-x-hidden relative -z-10" />
+      <img src={product.image} alt="" className="h-96 object-cover lg:h-auto lg:aspect-auto overflow-x-hidden relative -z-10" />
         
-        <section className="flex flex-col justify-between gap-y-4 flex-grow p-4 bg-[#f1f1f1] dark:bg-[#050505] rounded-tl-3xl rounded-tr-3xl -mt-5 ">
-            <h2 className="font-bold ">{product.name}</h2>
-            <div className="grid w-full items-center gap-4 bg-white dark:bg-black rounded-xl px-4 py-4">
+        <section className="flex flex-col  gap-y-5 justify-end flex-grow p-4 bg-[#f1f1f1] dark:bg-[#050505] rounded-tl-3xl rounded-tr-3xl -mt-5 ">
+            <h2 className="font-bold mb-5">{product.name.toUpperCase()}</h2>
+            <div className="grid w-full items-center gap-4 bg-white dark:bg-black rounded-xl px-4 py-6">
               <h2>Ingredientes</h2>
-              <p>Lorem ipsum dolor sit, </p>
+              <p>{product.ingredients}</p>
+            </div>
+            <div className="grid w-full items-center gap-4 bg-white dark:bg-black rounded-xl px-4 py-6">
+              <h2>Ingredientes</h2>
+              <p>{product.description}</p>
             </div>
             <div className="flex gap-x-4 justify-between items-center rounded-3xl bg-white dark:bg-black  px-4 py-4">
               <p className="text-sm font-bold">Quantity</p>
