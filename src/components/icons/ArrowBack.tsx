@@ -1,5 +1,5 @@
 "use client";
-import { MoveLeft } from "lucide-react";
+import { MoveLeft, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 function ArrowBack() {
@@ -21,3 +21,24 @@ function ArrowBack() {
 }
 
 export default ArrowBack;
+
+export function CartNavigate() {
+  const router = useRouter();
+  const handleNavigation=()=>[
+    router.push("/orders")
+  ]
+
+
+  return(
+    <Button
+      className="rounded-full"
+      variant={"ghost"}
+      size={"icon"}
+      onClick={() => handleNavigation()}
+    >
+      <ShoppingCart color="black" />
+    </Button>
+  )
+}
+
+

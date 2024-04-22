@@ -5,7 +5,7 @@ export async function getFavorites({
   token,
 }: {
   token: string;
-}): Promise<dataProductI[] | null> {
+}): Promise<ProductI[] | null> {
   const res = await fetch(`${BASE_URL}/favorites/`, {
     headers: {
       "Content-Type": "application/json",
@@ -23,7 +23,7 @@ export async function createFavorite({
   productId,
 }: {
   token: string;
-  productId: string;
+  productId: number;
 }): Promise<ProductI | null> {
   const res = await fetch(
     `${BASE_URL}/favorites/create/${productId}`,
@@ -45,7 +45,7 @@ export async function deleteFavorite({
   productId,
 }: {
   token: string;
-  productId: string;
+  productId: number;
 }) {
   const res = await fetch(
     `${BASE_URL}/favorites/delete/${productId}`,

@@ -51,8 +51,3 @@ export interface NotificationI{
   description:string
   id:number
 }
-
-export interface dataProductI {
-  id:number,
-  product:ProductI
-}

@@ -1,27 +1,24 @@
 'use client'
 import ArrowBack from "@/components/icons/ArrowBack";
 import {
-  createFavorite,
-  deleteFavorite,
   getFavorites,
 } from "@/lib/fetch/favorites";
-import {  dataProductI } from "@/types";
-import { useEffect, useState } from "react";
+import {  useEffect } from "react";
 import { FavoriteCard } from "../components/FavoriteCard";
+import { useFavorite } from "../hook/useFavorite";
 
 export default function FavoritesPage({token}:{token:string}) {
 
+  const {favorites,setFavorites}=useFavorite()
   
-  const [favorites,setFavorites] = useState<dataProductI[] | null>([])
-
   useEffect(()=>{
     getFavorites({token})
     .then((res)=>setFavorites(res))
   },[])
-
+  
   if (!favorites)
     return <h1 className="text-center">Error al traer los favoritos</h1>;
-
+  
   return (
     <div className="p-4">
       <ArrowBack />
@@ -34,7 +31,7 @@ export default function FavoritesPage({token}:{token:string}) {
         ) : (
           favorites?.map((favorite) => {
             return (
-             <FavoriteCard product={favorite.product} token={token}/>
+             <FavoriteCard product={favorite} token={token}/>
             );
           })
         )}

@@ -1,13 +1,13 @@
 'use client'
 import { Button } from "@/components/ui/button"
-import { ThemeSwitcher } from "@/components/theme-switcher";
 import useStore from "@/store/useStore";
 import { useCartStore } from "@/store/cart";
-import { Heart,MoveLeft } from "lucide-react";
+import { Heart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import ArrowBack from "@/components/icons/ArrowBack";
 import { Trash2 } from "lucide-react";
+import { HeartFilled } from "@/app/ui/icons/heartFilled";
 
 
 export default function OrderPage() {
@@ -33,7 +33,7 @@ export default function OrderPage() {
             </nav>
             <div className="flex items-center gap-x-4">
               <Link href={"/favorites"}>
-              <Button><Heart color="red"/></Button>
+              <Button className="bg-transparent border-y-[1px] dark:border-white border-black"><HeartFilled/></Button>
               </Link>
             </div>
           </header>

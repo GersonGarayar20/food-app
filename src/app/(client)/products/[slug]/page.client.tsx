@@ -2,36 +2,25 @@
 import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
 import { ProductI } from "@/types";
-import {  useRouter } from "next/navigation";
-import { Heart, MoveLeft, ShoppingCart } from "lucide-react";
+import { Heart } from "lucide-react";
 import Loader from "@/components/Loader";
 import { useStore } from "zustand";
 import { useCartStore } from "@/store/cart";
-import { createFavorite, deleteFavorite } from "@/lib/fetch/favorites";
+import { useFavorite } from "../../hook/useFavorite";
+import { HeartFilled } from "@/app/ui/icons/heartFilled";
+import ArrowBack, { CartNavigate } from "@/components/icons/ArrowBack";
 
- export const handleFavorite=async({id,token}:{id:any,token:string})=>{
-  const res= await createFavorite({token,productId:id})
-  
-}
 
- export const handleUnFavorite=async({id,token}:{id:any,token:string})=>{
-  const res= await deleteFavorite({token,productId:id})
-}
 
 
 export  default function ProductPage({product,token,id}:{token:string,product:ProductI,id:number}) {
   
-  const router=useRouter()
   const stateCart=useStore(useCartStore,useCartStore.getState)
+  const {favorites,handleFavorite,handleUnFavorite}=useFavorite()
+  
+  const isFavorite=favorites?.some(favorite=>favorite?.id==product?.id)
 
   const [count,setCount]=useState(()=>stateCart.cart.find(e=>e.id==id)?.count || 1)
-
-    const handleBack=()=>{
-      router.back()
-    }
-    const handleNavigation=()=>[
-      router.push("/orders")
-    ]
 
 
   if (product?.id==undefined) return <Loader/>
@@ -39,11 +28,11 @@ export  default function ProductPage({product,token,id}:{token:string,product:Pr
   return (
     <div className="flex flex-col justify-between h-screen">
       <div className="fixed top-3 left-3">
-        <Button className="bg-black/70 text-white" onClick={()=>handleBack()}><MoveLeft /></Button>
+        <ArrowBack/>
       </div>
-      <div className="fixed top-5 right-5 bg-white rounded-3xl p-1 " onClick={handleNavigation}>
+      <div className="fixed top-5 right-5 bg-white rounded-3xl p-1 " >
         <div className="rounded-full bg-gray-500 text-white absolute w-6 -top-3 -right-3 -z-10 text-center" ><p className="" id="count">{stateCart.count()}</p></div>
-        <ShoppingCart color="black"/>
+        <CartNavigate/>
       </div>
       <img src={product.image} alt="" className="h-96 object-cover lg:h-auto lg:aspect-auto overflow-x-hidden relative -z-10" />
         
@@ -73,7 +62,7 @@ export  default function ProductPage({product,token,id}:{token:string,product:Pr
             <span>${product.price*count}</span> 
           </div>
           <div className="flex justify-between w-full mx-auto">
-          <Button className="rounded-xl" variant="outline" size="icon" onClick={()=>{handleFavorite({id:product.id,token})}}><Heart /></Button>
+          <Button className="rounded-xl" variant="outline" size="icon" onClick={()=>{isFavorite?handleUnFavorite({product,token}):handleFavorite({product,token})}}>{isFavorite?<HeartFilled/>:<Heart />}</Button>
           <Button className="rounded-3xl px-12" onClick={()=>{stateCart.add({...product,count})}}>add to cart</Button>
           </div>
       </div>
