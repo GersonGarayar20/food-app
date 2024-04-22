@@ -20,8 +20,8 @@ export default async function page() {
 
       <EditUserForm
         user={sesion.user}
-        userId={sesion.userId}
-        token={sesion.accessToken}
+        userId={sesion.user.id}
+        token={sesion.user.accessToken}
       />
     </section>
   );

@@ -2,7 +2,7 @@ import { UserI } from "@/types";
 import { BASE_URL } from "./base-url";
 
 export async function getUser(id: string): Promise<UserI> {
-  const res = await fetch(`${BASE_URL}/users/${id}`);
+  const res = await fetch(`${BASE_URL}/users/user`);
   const json = await res.json();
   return json.data;
 }
@@ -14,7 +14,7 @@ export async function getUsers(): Promise<UserI[]> {
 }
 
 export async function deleteUser(id: string): Promise<UserI> {
-  const res = await fetch(`${BASE_URL}/users/${id}`, {
+  const res = await fetch(`${BASE_URL}/users/delete`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export async function updateUser(
 ): Promise<UserI> {
   console.log("datos ----->", id, token, formData);
 
-  const res = await fetch(`${BASE_URL}/users/${id}`, {
+  const res = await fetch(`${BASE_URL}/users/update`, {
     method: "PUT",
     body: formData,
     headers: {
@@ -61,7 +61,7 @@ export async function changeUserPassword(data: {
   oldPassword: string;
   newPassword: string;
 }): Promise<UserI> {
-  const res = await fetch(`${BASE_URL}/users/create`, {
+  const res = await fetch(`${BASE_URL}/users/update/password`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

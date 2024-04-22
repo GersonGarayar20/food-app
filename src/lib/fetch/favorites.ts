@@ -8,7 +8,7 @@ export async function getFavorites({
   userId: string;
   token: string;
 }): Promise<ProductI[] | null> {
-  const res = await fetch(`${BASE_URL}/favorites/${userId}`, {
+  const res = await fetch(`${BASE_URL}/favorites/`, {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
@@ -29,7 +29,7 @@ export async function createFavorite({
   userId: string;
 }): Promise<ProductI | null> {
   const res = await fetch(
-    `${BASE_URL}/favorites/${userId}/create/${productId}`,
+    `${BASE_URL}/favorites/create/${productId}`,
     {
       method: "POST",
       headers: {
@@ -52,7 +52,7 @@ export async function deleteFavorite({
   userId: string;
 }): Promise<ProductI | null> {
   const res = await fetch(
-    `${BASE_URL}/favorites/${userId}/delete/${productId}`,
+    `${BASE_URL}/favorites/delete/${productId}`,
     {
       method: "DELETE",
       headers: {

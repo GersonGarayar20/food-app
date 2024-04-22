@@ -11,6 +11,7 @@ import { authOptions } from "@/lib/auth";
 export default async function ProfilePage() {
   const sesion = await getServerSession(authOptions);
   
+  
   return (
     <div className="px-4">
       <header className="py-8 flex justify-between">
