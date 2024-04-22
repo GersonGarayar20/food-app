@@ -25,9 +25,10 @@ export const authOptions = {
           );
 
         const user = res.user;
-        console.log("🚀 ~ authorize ~ user:", user);
-        const token = res.token;
 
+        const token = res.token;
+          
+          
         return {
           id: user.id,
           name: user.name,
@@ -40,15 +41,17 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }: any) {
-      if (user) {
-        token.id = user.userId;
-        token.accessToken = user.accessToken; // Pasamos el accessToken al token JWT
+    async jwt({ token }: any) {
+      
+      if (token) {
+        token.id = token.id;
+        token.accessToken = token.accessToken; // Pasamos el accessToken al token JWT
       }
       return token;
     },
     async session({ session, token }: any) {
       // Pasamos el accessToken a la sesión para usarlo en el cliente
+      
       session.accessToken = token.accessToken;
       session.userId = token.id;
       return session;

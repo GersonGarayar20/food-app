@@ -6,7 +6,6 @@ import { authOptions } from "@/lib/auth";
 
 export default async function page() {
   const sesion = await getServerSession(authOptions);
-  console.log("🚀 ~ page ~ sesion:", sesion);
 
   if (!sesion) return <div>no has iniciado sesion</div>;
 
