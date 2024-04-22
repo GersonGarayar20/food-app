@@ -7,11 +7,15 @@ import { Heart, MoveLeft, ShoppingCart } from "lucide-react";
 import Loader from "@/components/Loader";
 import { useStore } from "zustand";
 import { useCartStore } from "@/store/cart";
-import { createFavorite } from "@/lib/fetch/favorites";
+import { createFavorite, deleteFavorite } from "@/lib/fetch/favorites";
 
-const handleFavorite=async({id,token}:{id:any,token:string})=>{
+ export const handleFavorite=async({id,token}:{id:any,token:string})=>{
   const res= await createFavorite({token,productId:id})
   
+}
+
+ export const handleUnFavorite=async({id,token}:{id:any,token:string})=>{
+  const res= await deleteFavorite({token,productId:id})
 }
 
 
@@ -58,7 +62,7 @@ export  default function ProductPage({product,token,id}:{token:string,product:Pr
               <div className="flex gap-2 items-center">
                   <Button className="rounded-full size-8" onClick={()=>{if(count==1)return; setCount(count-1)}}>-</Button>
                   <span>{count}</span>
-                  <Button className="rounded-full size-8" onClick={()=>setCount(count+1)}>+</Button>
+                  <Button className="rounded-full size-8" onClick={()=>{if(count==10) return;setCount(count+1)}}>+</Button>
               </div>
             </div>
       </section>

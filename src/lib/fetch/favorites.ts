@@ -46,7 +46,7 @@ export async function deleteFavorite({
 }: {
   token: string;
   productId: string;
-}): Promise<ProductI | null> {
+}) {
   const res = await fetch(
     `${BASE_URL}/favorites/delete/${productId}`,
     {
@@ -57,6 +57,4 @@ export async function deleteFavorite({
       },
     }
   );
-  const json = await res.json();
-  return json.data;
 }

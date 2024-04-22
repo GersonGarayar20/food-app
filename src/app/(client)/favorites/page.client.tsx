@@ -6,8 +6,8 @@ import {
   getFavorites,
 } from "@/lib/fetch/favorites";
 import {  dataProductI } from "@/types";
-import { Heart } from "lucide-react";
 import { useEffect, useState } from "react";
+import { FavoriteCard } from "../components/FavoriteCard";
 
 export default function FavoritesPage({token}:{token:string}) {
 
@@ -34,29 +34,7 @@ export default function FavoritesPage({token}:{token:string}) {
         ) : (
           favorites?.map((favorite) => {
             return (
-              <article
-                key={favorite.product.id}
-                className="flex items-start gap-5 dark:bg-[#000000] bg-[#f7f0ee]  rounded-2xl relative h-32"
-              >
-                <img
-                  src={favorite.product.image}
-                  alt=""
-                  className="rounded-2xl w-36 h-32 object-cover"
-                />
-                <div className="flex flex-col justify-evenly gap-y-7 h-full pr-8">
-                  <h1 className="font-bold text-lg">{favorite.product.name}</h1>
-                  <div className="">
-                    <p className="overflow-x-hidden lg:w-full opacity-70 text-xs w-[95%] text-ellipsis">
-                      {favorite.product.description}
-                    </p>
-                    <p className="overflow-x-hidden lg:w-full opacity-70 text-xs w-[95%] text-ellipsis">
-                      {favorite.product.ingredients}
-                    </p>
-                  </div>
-                </div>
-                {/* Cambiar logo */}
-                <button className="absolute top-2 right-2"><Heart className="text-orange-600"/></button>
-              </article>
+             <FavoriteCard product={favorite.product} token={token}/>
             );
           })
         )}
