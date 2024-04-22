@@ -21,11 +21,13 @@ export default async function ProfilePage() {
       </header>
 
       <div className="text-center">
-        <img
+        <div className="aspect-square size-30">
+          <img
           src={sesion?.user?.image?sesion.user.image:"https://randomuser.me/api/portraits/men/62.jpg"}
-          className="rounded-full w-30 h-30 m-auto border-[1px] border-slate-300 mb-4"
+          className="rounded-full w-full h-full object-contain m-auto border-[1px] border-slate-300 mb-4"
           alt="foto de perfil"
-        />
+          />
+        </div>
         <h2 className="font-bold mb-2">{sesion?.user?.name}</h2>
         <p className="text-neutral-600 dark:text-neutral-400">
           {sesion?.user?.email}

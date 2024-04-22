@@ -1,16 +1,16 @@
 import { BASE_URL } from "./base-url";
-import { ProductI } from "@/types/index";
+import { ProductI, dataProductI } from "@/types/index";
 
 export async function getFavorites({
   token,
 }: {
   token: string;
-}): Promise<ProductI[] | null> {
+}): Promise<dataProductI[] | null> {
   const res = await fetch(`${BASE_URL}/favorites/`, {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
-    },
+    }
   });
 
   const json = await res.json();
