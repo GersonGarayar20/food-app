@@ -5,8 +5,12 @@ import Bell from "@/components/icons/Bell";
 import AvatarConfig from "./profile/page";
 import Link from "next/link";
 import { Heart } from "lucide-react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const sesion = await getServerSession(authOptions);
+
   return (
     <main className=" min-h-screen p-4">
       <div className="mb-4 flex justify-between items-center">
@@ -20,7 +24,7 @@ export default function HomePage() {
           <Bell />
           <Link href={"/profile"}>
             <img
-              src="https://randomuser.me/api/portraits/men/62.jpg"
+              src={sesion?.user?.image?sesion.user.image:"https://randomuser.me/api/portraits/men/62.jpg"}
               className="rounded-full w-10 h-10 border-[1px] border-slate-300"
               alt=""
             />

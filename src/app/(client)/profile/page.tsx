@@ -10,7 +10,7 @@ import { authOptions } from "@/lib/auth";
 
 export default async function ProfilePage() {
   const sesion = await getServerSession(authOptions);
-
+  
   return (
     <div className="px-4">
       <header className="py-8 flex justify-between">
@@ -21,7 +21,7 @@ export default async function ProfilePage() {
 
       <div className="text-center">
         <img
-          src="https://randomuser.me/api/portraits/men/62.jpg"
+          src={sesion?.user?.image?sesion.user.image:"https://randomuser.me/api/portraits/men/62.jpg"}
           className="rounded-full w-30 h-30 m-auto border-[1px] border-slate-300 mb-4"
           alt="foto de perfil"
         />

@@ -25,35 +25,20 @@ export const authOptions = {
           );
 
         const user = res.user;
-
-        const token = res.token;
+        user.accessToken=res.token
           
-          
-        return {
-          id: user.id,
-          name: user.name,
-          image: user.image,
-          email: user.email,
-          accessToken: token,
-          userId: user.id,
-        };
+        return user
       },
     }),
   ],
   callbacks: {
-    async jwt({ token }: any) {
+    async jwt({ token,user }: any) {
       
-      if (token) {
-        token.id = token.id;
-        token.accessToken = token.accessToken; // Pasamos el accessToken al token JWT
-      }
-      return token;
+      return {...token,...user};
     },
     async session({ session, token }: any) {
-      // Pasamos el accessToken a la sesión para usarlo en el cliente
       
-      session.accessToken = token.accessToken;
-      session.userId = token.id;
+      session.user=token
       return session;
     },
   },
