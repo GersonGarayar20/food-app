@@ -1,4 +1,5 @@
 import { login } from "@/lib/fetch/auth";
+import { getServerSession } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions = {
@@ -24,13 +25,16 @@ export const authOptions = {
           );
 
         const user = res.user;
+        console.log("🚀 ~ authorize ~ user:", user);
         const token = res.token;
 
         return {
           id: user.id,
           name: user.name,
+          image: user.image,
           email: user.email,
           accessToken: token,
+          userId: user.id,
         };
       },
     }),
@@ -38,6 +42,7 @@ export const authOptions = {
   callbacks: {
     async jwt({ token, user }: any) {
       if (user) {
+        token.id = user.userId;
         token.accessToken = user.accessToken; // Pasamos el accessToken al token JWT
       }
       return token;
@@ -45,6 +50,7 @@ export const authOptions = {
     async session({ session, token }: any) {
       // Pasamos el accessToken a la sesión para usarlo en el cliente
       session.accessToken = token.accessToken;
+      session.userId = token.id;
       return session;
     },
   },
@@ -52,3 +58,5 @@ export const authOptions = {
     signIn: "/login",
   },
 };
+
+export const getAuthSession = () => getServerSession(authOptions);

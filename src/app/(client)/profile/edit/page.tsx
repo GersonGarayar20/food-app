@@ -6,6 +6,7 @@ import { authOptions } from "@/lib/auth";
 
 export default async function page() {
   const sesion = await getServerSession(authOptions);
+  console.log("🚀 ~ page ~ sesion:", sesion);
 
   if (!sesion) return <div>no has iniciado sesion</div>;
 
@@ -17,7 +18,11 @@ export default async function page() {
         <div className="w-10"></div>
       </header>
 
-      <EditUserForm user={sesion.user} />
+      <EditUserForm
+        user={sesion.user}
+        userId={sesion.userId}
+        token={sesion.accessToken}
+      />
     </section>
   );
 }

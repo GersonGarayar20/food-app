@@ -25,15 +25,22 @@ export async function deleteUser(id: string): Promise<UserI> {
   return json.data;
 }
 
-export async function updateUser(id: string, data: any): Promise<UserI> {
+export async function updateUser(
+  id: string,
+  token: string,
+  formData: FormData
+): Promise<UserI> {
+  console.log("datos ----->", id, token, formData);
+
   const res = await fetch(`${BASE_URL}/users/${id}`, {
     method: "PUT",
+    body: formData,
     headers: {
-      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(data),
   });
   const json = await res.json();
+  console.log("respuesta->", json);
   return json.data;
 }
 
