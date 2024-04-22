@@ -7,7 +7,7 @@ import { Heart,MoveLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import ArrowBack from "@/components/icons/ArrowBack";
-
+import { Trash2 } from "lucide-react";
 
 
 export default function OrderPage() {
@@ -21,7 +21,7 @@ export default function OrderPage() {
 
     const stateCart=useStore(useCartStore,useCartStore.getState)
     const total=stateCart?.totalPrice()
-
+  
     return (
       <main className="flex flex-col justify-between h-screen">
         <div className="bg-[#f1f1f1] dark:bg-[#050505] w-full flex flex-col px-4 py-4 flex-grow">
@@ -41,12 +41,14 @@ export default function OrderPage() {
               {/* mapear products of car */}
               {stateCart?.cart.map(product=>{
                 return(
-                  <article key={product.id} className="flex gap-x-4 rounded-3xl bg-white dark:bg-black  px-3 py-4">
-                    <div className="w-28">
+                  <article key={product.id} className="flex gap-x-4 rounded-3xl bg-white dark:bg-black  px-3 py-4 relative">
+                    <div className="w-80">
                       <img src={product.image} alt="" className="rounded-2xl" />
                     </div>
                     <div className="w-full flex flex-col justify-between">
-                      <h1 >{product.name}</h1>
+                      <div className="flex justify-between">
+                        <h1>{product.name}</h1>
+                      </div>
                       <div className="flex justify-between items-center">
                         <h2>${product.price}</h2>
                         <div className="flex gap-2 items-center">
@@ -56,6 +58,7 @@ export default function OrderPage() {
                         </div>
                       </div>
                     </div>
+                        <button className="absolute top-2 right-4 group" onClick={()=>stateCart.removeItem(product.id)}><Trash2 size={24} className="hover:text-red-600"/></button>
                   </article>
                 )
               })}

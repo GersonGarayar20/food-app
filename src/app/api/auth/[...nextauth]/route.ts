@@ -34,7 +34,6 @@ export const authOptions = {
       },
     }),
   ],
-  secret:"NYjnC+ITQ5ZUXHMlFfzS6vJQq1oqU3XLO1KmQpefB6w=",
   pages: {
     signIn: "/login",
   },
