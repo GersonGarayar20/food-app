@@ -45,3 +45,9 @@ export interface OrderI {
   date: string
   total: number
 }
+
+export interface NotificationI{
+  title:string
+  description:string
+  id:number
+}

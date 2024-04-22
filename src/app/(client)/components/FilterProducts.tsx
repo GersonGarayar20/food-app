@@ -31,18 +31,18 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 
-const InitialPriceState ={
-minPrice:0,
-maxPrice:100
+const InitialPriceState = {
+  minPrice: 0,
+  maxPrice: 100
 }
 
 
 export function FilterProducts() {
-
+  const [wordLocal, setWordLocal] = useState<string>("")
   const [minPrice, setMinPrice] = useState<number>(InitialPriceState.minPrice);
   const [maxPrice, setMaxPrice] = useState<number>(InitialPriceState.maxPrice);
   const [open, setOpen] = useState(false);
-  const { category_id, setFilters } = useFilterStore()
+  const { category_id, word, setFilters } = useFilterStore()
 
   const closeRef = useRef(null)
 
@@ -80,12 +80,19 @@ export function FilterProducts() {
   const handleCloseClick = () => {
     closeRef!.current!.classList.add("hidden")
     setMaxPrice(InitialPriceState.maxPrice)
-    setFilters({ minPrice, maxPrice:InitialPriceState.maxPrice });
+    setFilters({ minPrice, maxPrice: InitialPriceState.maxPrice });
   }
 
   const handleShowClick = () => closeRef!.current!.classList.remove("hidden")
 
 
+  const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    let value = evt.target.value
+    setWordLocal(value)
+    setFilters({ word: value })
+
+
+  }
 
   return (
 
@@ -99,13 +106,16 @@ export function FilterProducts() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="buscar.." {...field} className="" />
+                   {
+                     <Input placeholder="buscar.." {...field} className="" value={wordLocal} onChange={handleInputChange} />
+                   }
                   </FormControl>
                 </FormItem>
               )}
             />
           </form>
         </Form>
+        {/*  <Input placeholder="buscar.."  className=""  onChange={handleInputChange} /> */}
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button>
@@ -154,10 +164,10 @@ export function FilterProducts() {
         </Dialog>
       </div>
 
-      <div className="text-center" ref={closeRef}>
-        <Badge variant="outline" className="my-2 ">
+      <div className="text-center hidden" ref={closeRef}>
+        <Badge variant="default" className="my-2 ">
           <span className="mr-4">{minPrice + " - " + maxPrice}</span>
-          <CircleX className="w-4 text-red-500" onClick={handleCloseClick} />
+          <CircleX className="w-4 " onClick={handleCloseClick} />
         </Badge>
       </div>
     </div>

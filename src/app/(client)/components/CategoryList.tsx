@@ -5,6 +5,7 @@ import CategoryCard, { AllCategoryCard } from "./CategoryCard";
 import { Category } from "@/types/types";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { useFilterStore } from "@/app/global/filter";
+import { CategoryListSkeleton } from "./CategoryListSkeleton";
 
 
 function CategoryList() {
@@ -23,8 +24,8 @@ function CategoryList() {
     }
 
 
-    if (isLoading) return <div>cargando...</div>;
-    if (isError) return <div>Ocurrió un error</div>;
+    if (isLoading) return <CategoryListSkeleton/>;
+    if (isError) return <div>Ocurrió un error al obtener las categorias</div>;
 
     return (
         <div className="flex flex-wrap gap-2 mb-4">

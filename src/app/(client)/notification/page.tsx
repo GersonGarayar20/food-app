@@ -2,12 +2,13 @@
 import ArrowBack from "@/components/icons/ArrowBack";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { getNotifications } from "@/lib/fetch/notification";
+import { NotificationI } from "@/types";
 import { Bell, Laugh, Sparkles, Terminal } from "lucide-react";
 import { useEffect, useState } from "react";
 
 function Notification() {
 
-    const [notifications,setNotifications]=useState([])
+    const [notifications,setNotifications]=useState<NotificationI[]>([])
 
     useEffect(()=>{
         getNotifications(1)

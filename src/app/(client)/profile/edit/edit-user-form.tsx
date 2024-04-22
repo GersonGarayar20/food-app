@@ -1,78 +1,57 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { updateUser } from "@/lib/fetch/users";
 
-const formSchema = z.object({
-  name: z.string(),
-  password: z.string(),
-  image: z.string(),
-});
+export function EditUserForm({
+  user,
+  userId,
+  token,
+}: {
+  user: any;
+  userId: string;
+  token: string;
+}) {
+  async function handleSubmit(e: any) {
+    e.preventDefault();
 
-export function EditUserForm({ user }: { user: any }) {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: user.name,
-      image: user.image,
-    },
-  });
+    const fileInput = e.target.elements.file; // Acceder al input de tipo file
+    const file = fileInput.files[0];
+    const name = e.target.name.value;
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    const res = await updateUser(user.id, values);
+    const formData = new FormData();
+
+    if (file) {
+      formData.append("file", file);
+    } else {
+      formData.append("file", user.image);
+    }
+    formData.append("name", name);
+
+    const res = await updateUser(userId, token, formData);
+    console.log(res);
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+    <>
+      <form onSubmit={handleSubmit} className="space-y-4">
         <img
           className="size-32 rounded-full border"
-          src={form.getValues("image")}
-          alt={form.getValues("name")}
+          src={user.image}
+          alt={user.name}
         />
-        <FormField
-          control={form.control}
-          name="image"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Imagen</FormLabel>
-              <FormControl>
-                <Input type="file" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nombre</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <Label htmlFor="file">Imagen</Label>
+        <Input type="file" id="file" name="file" />
+
+        <Label htmlFor="name">Nombre</Label>
+        <Input id="name" name="name" defaultValue={user.name} />
+
         <Button className="w-full" type="submit">
           Guardar Cambios
         </Button>
       </form>
-    </Form>
+    </>
   );
 }
