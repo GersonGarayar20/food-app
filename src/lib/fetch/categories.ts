@@ -1,20 +1,21 @@
-import { Category } from "@/types/types";
 import { BASE_URL } from "./base-url";
 import { CategoryI } from "@/types/index";
 
-export async function getCategories(): Promise<CategoryI[]> {
+export async function getCategories(): Promise<CategoryI[] | null> {
   const res = await fetch(`${BASE_URL}/categories/`);
   const json = await res.json();
   return json.data;
 }
 
-export async function getCategory(id: string | number): Promise<CategoryI> {
+export async function getCategory(
+  id: string | number
+): Promise<CategoryI | null> {
   const res = await fetch(`${BASE_URL}/categories/${id}`);
   const json = await res.json();
   return json.data;
 }
 
-export async function createCategory(data: any): Promise<CategoryI> {
+export async function createCategory(data: any): Promise<CategoryI | null> {
   const res = await fetch(`${BASE_URL}/categories/create`, {
     method: "POST",
     headers: {
@@ -29,7 +30,7 @@ export async function createCategory(data: any): Promise<CategoryI> {
 export async function updateCategory(
   id: string | number,
   data: any
-): Promise<CategoryI> {
+): Promise<CategoryI | null> {
   const res = await fetch(`${BASE_URL}/categories/${id}`, {
     method: "PUT",
     headers: {
@@ -41,7 +42,9 @@ export async function updateCategory(
   return json.data;
 }
 
-export async function deleteCategory(id: string | number): Promise<CategoryI> {
+export async function deleteCategory(
+  id: string | number
+): Promise<CategoryI | null> {
   const res = await fetch(`${BASE_URL}/categories/delete/${id}`, {
     method: "DELETE",
   });

@@ -1,4 +1,4 @@
-import { signin } from "@/lib/fetch/auth";
+import { login } from "@/lib/fetch/auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions = {
@@ -13,7 +13,7 @@ export const authOptions = {
         if (!credentials?.email || !credentials?.password)
           throw new Error("Correo o contraseña faltantes.");
 
-        const res = await signin({
+        const res = await login({
           email: credentials.email,
           password: credentials.password,
         });

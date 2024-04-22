@@ -99,6 +99,9 @@ export async function deleteProduct(
     const res = await fetch(`${BASE_URL}/products/delete/${id}`, {
       method: "DELETE",
     });
+    if (!res.ok) {
+      throw new Error("La solicitud al servidor falló.");
+    }
     const json = await res.json();
     revalidatePath("/admin/products");
     return json.data;
