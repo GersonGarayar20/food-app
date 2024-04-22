@@ -14,9 +14,8 @@ export async function getFavorites({
   });
 
   const json = await res.json();
-  
-  const favoirte=json.data[0].product
-  return [favoirte];
+
+  return json.data;
 }
 
 export async function createFavorite({
@@ -37,6 +36,7 @@ export async function createFavorite({
     }
   );
   const json = await res.json();
+  
   return json.data;
 }
 

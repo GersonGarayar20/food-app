@@ -29,22 +29,22 @@ export default async function FavoritesPage() {
           favorites?.map((favorite) => {
             return (
               <article
-                key={favorite.id}
+                key={favorite.product.id}
                 className="flex items-start gap-5 shadow-xl rounded-2xl relative h-32"
               >
                 <img
-                  src={favorite.image}
+                  src={favorite.product.image}
                   alt=""
                   className="rounded-2xl w-36 h-32 object-cover"
                 />
                 <div className="flex flex-col justify-evenly h-full">
-                  <h1 className="font-bold text-xl">{favorite.name}</h1>
+                  <h1 className="font-bold text-xl">{favorite.product.name}</h1>
                   <div className="-mt-5">
                     <p className="overflow-x-hidden w-4/12 lg:w-full opacity-70 text-xs text-ellipsis">
-                      {favorite.description}
+                      {favorite.product.description}
                     </p>
                     <p className="overflow-x-hidden w-4/12 lg:w-full opacity-70 text-xs text-ellipsis">
-                      {favorite.ingredients}
+                      {favorite.product.ingredients}
                     </p>
                   </div>
                 </div>
