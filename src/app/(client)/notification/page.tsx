@@ -3,13 +3,13 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { authOptions } from "@/lib/auth";
 import { getNotifications } from "@/lib/fetch/notification";
 import { NotificationI } from "@/types";
-import { Bell, Laugh, Sparkles, Terminal } from "lucide-react";
+import { Bell, Sparkles } from "lucide-react";
 import { getServerSession } from "next-auth";
-import { useEffect, useState } from "react";
+import { redirect } from "next/navigation";
 
 async function Notification() {
     const session=await getServerSession(authOptions)
-
+    if (!session?.user?.accessToken) return redirect('/login')
      const notifications:NotificationI[]= await getNotifications({token:session.user.accessToken})
         
   

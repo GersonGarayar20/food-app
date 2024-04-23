@@ -1,5 +1,5 @@
 import { BASE_URL } from "./base-url";
-import { ProductI, dataProductI } from "@/types/index";
+import { ProductI } from "@/types/index";
 
 export async function getFavorites({
   token,
@@ -35,6 +35,7 @@ export async function createFavorite({
       },
     }
   );
+  if (!res.ok) throw new Error() 
   const json = await res.json();
   
   return json.data;
@@ -57,4 +58,5 @@ export async function deleteFavorite({
       },
     }
   );
+  if (!res.ok) throw new Error() 
 }

@@ -63,15 +63,12 @@
     animation: .5s cart normal ease-in-out;
   }
   @keyframes cart{
-    0%{
-      opacity: 100%;
-    }
     50%{
       transform:scale(1.5);
-      opacity: 50%;
+      color: rgb(255, 94, 0);
+      font-weight: 900;
     }
     100%{
-      opacity: 100%;
       transform: scale(1);
     }
   }

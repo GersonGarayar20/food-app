@@ -22,7 +22,8 @@ export  default function ProductPage({product,token,id}:{token:string,product:Pr
 
   const [count,setCount]=useState(()=>stateCart.cart.find(e=>e.id==id)?.count || 1)
 
-
+  
+  
   if (product?.id==undefined) return <Loader/>
 
   return (
@@ -30,9 +31,9 @@ export  default function ProductPage({product,token,id}:{token:string,product:Pr
       <div className="fixed top-3 left-3">
         <ArrowBack/>
       </div>
-      <div className="fixed top-5 right-5 bg-white rounded-3xl p-1 " >
-        <div className="rounded-full bg-gray-500 text-white absolute w-6 -top-3 -right-3 -z-10 text-center" ><p className="" id="count">{stateCart.count()}</p></div>
-        <CartNavigate/>
+      <div className="fixed top-5 right-5 bg-white dark:bg-black rounded-3xl p-1 " >
+        <div className="rounded-full bg-orange-600 text-white absolute w-6 -top-2 -right-2 -z-10 text-center" ><p className="" id="count">{stateCart.count()}</p></div>
+        <CartNavigate className='text-dark dark:text-white'/>
       </div>
       <img src={product.image} alt="" className="h-96 object-cover lg:h-auto lg:aspect-auto overflow-x-hidden relative -z-10" />
         

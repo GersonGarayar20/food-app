@@ -22,7 +22,7 @@ function ArrowBack() {
 
 export default ArrowBack;
 
-export function CartNavigate() {
+export function CartNavigate(props:any) {
   const router = useRouter();
   const handleNavigation=()=>[
     router.push("/orders")
@@ -36,7 +36,7 @@ export function CartNavigate() {
       size={"icon"}
       onClick={() => handleNavigation()}
     >
-      <ShoppingCart color="black" />
+      <ShoppingCart {...props}/>
     </Button>
   )
 }
