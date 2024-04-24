@@ -1,43 +1,19 @@
-import { FilterProducts } from "./components/FilterProducts";
-import ProductList from "./components/ProductList";
-import CategoryList from "./components/CategoryList";
-import Bell from "@/components/icons/Bell";
-import AvatarConfig from "./profile/page";
-import Link from "next/link";
-import { Heart } from "lucide-react";
 import { getServerSession } from "next-auth";
+import HomePage from "./page.client";
 import { authOptions } from "@/lib/auth";
+import { getNotifications } from "@/lib/fetch/notification";
+import {  dataNotificationI } from "@/types";
 
-export default async function HomePage() {
-  const sesion = await getServerSession(authOptions);
+export default async function HomeServer() {
+  const session = await getServerSession(authOptions);
+  
+  if (!session?.user?.accessToken) return <HomePage user={session?.user} isNotification={0}/> 
+  
+  const notifications:dataNotificationI[]= await getNotifications({token:session.user.accessToken})
 
-  return (
-    <main className=" min-h-screen p-4">
-      <div className="mb-4 flex justify-between items-center">
-        <div>
-          <h2 className="text-3xl">Bravazo</h2>
-        </div>
-        <div className="flex gap-4 ">
-          <Link href={"/favorites"}>
-            <Heart className="w-8 h-8" />
-          </Link>
-          <Bell />
-          <Link href={"/profile"}>
-            <img
-              src={sesion?.user?.image?sesion.user.image:"https://randomuser.me/api/portraits/men/62.jpg"}
-              className="rounded-full w-10 h-10 border-[1px] border-slate-300"
-              alt=""
-            />
-          </Link>
-        </div>
-      </div>
-      <div className="mb-4">
-        <FilterProducts />
-      </div>
-      <CategoryList />
-      <section>
-        <ProductList />
-      </section>
-    </main>
-  );
+  const verifyNotifications=notifications.reduce(({isSeen:prev},{isSeen:current})=>prev+current,0)
+  
+  return(
+    <HomePage user={session?.user} isNotification={verifyNotifications}/> 
+  )
 }

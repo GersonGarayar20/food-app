@@ -50,4 +50,13 @@ export interface NotificationI{
   title:string
   description:string
   id:number
+  isSeen:boolean
+}
+
+export interface dataNotificationI{
+  id:number,
+  cleint_id:number,
+  notificaiton_id:number,
+  isSeen:boolean,
+  notification:NotificationI
 }

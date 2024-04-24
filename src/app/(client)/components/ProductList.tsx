@@ -7,8 +7,6 @@ import { useQuery } from "react-query";
 import ProductCard from "./ProductCard";
 import { ProductListSkeleton } from "./ProductListSkeleton";
 import { Product } from "@/types/types";
-import { useFilter } from "../hook/useFilter"
-import { useState } from "react";
 import { useFilterStore } from "@/app/global/filter";
 import { ProductI } from "@/types";
 import { ServerOff } from "lucide-react";
