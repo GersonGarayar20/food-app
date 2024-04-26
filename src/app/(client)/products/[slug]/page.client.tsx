@@ -39,7 +39,8 @@ export  default function ProductPage({product,token,id}:{token:string,product:Pr
       </div>
     <div className="grid lg:grid-cols-[3fr,2fr] w-full lg:flex-grow lg:dark:bg-black/70 rounded-tl-[60px] lg:bg-[#fafafa]">
       <div className="flex flex-col justify-between lg:justify-start h-screen lg:h-full lg:relative ">
-        <img src={product.image} alt="" className="h-96 object-cover overflow-x-hidden relative -z-10  lg:h-auto lg:aspect-square lg:z-50 lg:absolute lg:-right-[33%] lg:size-[500px] lg:rounded-full lg:top-[20%] lg:object-contain"  />
+
+        <img src={product.image} alt="" className="h-96 p-10 object-cover overflow-x-hidden relative -z-10  lg:h-auto lg:z-50 lg:-right-[33%] lg:size-[500px] lg:rounded-full lg:top-[25%] shadow-2xl lg:p-0 lg:absolute"  />
           
           <section className="flex flex-col gap-y-5 justify-end flex-grow lg:flex-grow-0 p-4 bg-[#f1f1f1] dark:bg-[#050505] rounded-tl-3xl rounded-tr-3xl -mt-5 lg:bg-transparent lg:dark:bg-transparent lg:ml-10 lg:mt-40">
               <h2 className="font-bold mb-5 lg:text-4xl">{product.name.toUpperCase()}</h2>

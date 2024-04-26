@@ -6,7 +6,7 @@ import {Bell,BellIcons} from "@/components/icons/Bell";
 import Link from "next/link";
 import {  Heart } from "lucide-react";
 
-export default function HomePage({user,isNotification}:{user:any,isNotification:number}) {
+export default function HomePage({user}:{user:any}) {
 
   
   return (
@@ -19,7 +19,7 @@ export default function HomePage({user,isNotification}:{user:any,isNotification:
           <Link href={"/favorites"}>
             <Heart className="w-8 h-8" />
           </Link>
-          {isNotification?<Bell num={isNotification} />:<BellIcons/>}
+
           <Link href={"/profile"}>
             <img
               src={user?.image?user.image:"https://randomuser.me/api/portraits/men/62.jpg"}
