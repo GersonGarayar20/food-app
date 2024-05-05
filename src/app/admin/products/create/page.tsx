@@ -8,11 +8,11 @@ export default async function page() {
   console.log("->", categories);
 
   return (
-    <div>
+    <>
       <header>
-        <h1>Crear un Producto</h1>
+        <h1 className="text-2xl">Crear un Producto</h1>
       </header>
       <ProductCreateForm categories={categories} />
-    </div>
+    </>
   );
 }

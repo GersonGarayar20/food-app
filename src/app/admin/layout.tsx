@@ -7,7 +7,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
       <div className="w-60">
         <Menu />
       </div>
-      <main className="flex-1 p-4 overflow-y-scroll">{children}</main>
+      <main className="flex-1 p-4 flex flex-col gap-4">{children}</main>
     </div>
   );
 }
