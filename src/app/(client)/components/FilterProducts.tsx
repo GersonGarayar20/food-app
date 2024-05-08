@@ -97,7 +97,7 @@ export function FilterProducts() {
   return (
 
     <div className="w-full h-auto">
-      <div className="flex  gap-4 w-full">
+      <div className="flex  gap-4 w-full lg:w-4/12">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className=" w-full">
             <FormField
