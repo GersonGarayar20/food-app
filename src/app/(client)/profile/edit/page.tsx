@@ -9,7 +9,7 @@ export default async function page() {
   const sesion = await getServerSession(authOptions);
   console.log(sesion);
 
-  if (!sesion) return <div>no has iniciado sesion</div>;
+  if (!sesion) return redirect("/login");
 
   return (
     <section className="md:max-w-96 mx-auto px-4 flex flex-col gap-8">
