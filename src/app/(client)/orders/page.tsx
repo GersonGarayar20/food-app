@@ -1,12 +1,12 @@
-'use client'
-import { Button } from "@/components/ui/button"
+"use client";
+import { Button } from "@/components/ui/button";
 import useStore from "@/store/useStore";
 import { useCartStore } from "@/store/cart";
 import { Heart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import ArrowBack from "@/components/icons/ArrowBack";
-import { Trash2 } from "lucide-react";
+import { XIcon, PlusIcon, MinusIcon } from "lucide-react";
 import { HeartFilled } from "@/app/ui/icons/heartFilled";
 import { useEffect, useState } from "react";
 import { getPagePayment } from "@/lib/fetch/payment";
@@ -14,39 +14,15 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { Skeleton } from "@/components/ui/skeleton";
 
-
 export default function OrderPage() {
-  const [url, setUrl] = useState("")
-  const router = useRouter()
-  const stateCart = useStore(useCartStore, useCartStore.getState)
-  const total = stateCart?.totalPrice()
-  
-
-  useEffect(() => {
-    if (!stateCart) return
-    const a = stateCart.cart
-    
-    if(a.length === 0) return
-    if (stateCart.cart.length > 0) {
-      const data = async () => {
-        /* const sesion = await getServerSession(authOptions); */
-        const body = stateCart.cart
-        const res = await getPagePayment(body)
-        setUrl(res.url)
-
-      }
-      data()
-    }
-  }, [stateCart])
+  const router = useRouter();
 
   const handleBack = () => {
-    router.back()
-  }
+    router.back();
+  };
 
-
-
-
-
+  const stateCart = useStore(useCartStore, useCartStore.getState);
+  const total = stateCart?.totalPrice();
 
   return (
     <main className="flex flex-col justify-between h-screen">
@@ -59,35 +35,63 @@ export default function OrderPage() {
           </nav>
           <div className="flex items-center gap-x-4">
             <Link href={"/favorites"}>
-              <Button className="bg-transparent border-y-[1px] dark:border-white border-black"><HeartFilled /></Button>
+              <Button className="bg-transparent border-y-[1px] dark:border-white border-black">
+                <HeartFilled />
+              </Button>
             </Link>
           </div>
         </header>
         <section className="flex flex-col gap-y-4">
-
           {/* mapear products of car */}
-          {stateCart?.cart.map(product => {
+          {stateCart?.cart.map((product) => {
             return (
-              <article key={product.id} className="flex gap-x-4 rounded-3xl bg-white dark:bg-black  px-3 py-4 relative">
-                <div className="w-80">
-                  <img src={product.image} alt="" className="rounded-2xl" />
+              <article
+                key={product.id}
+                className="bg-neutral-200 dark:bg-neutral-800 p-4 flex gap-4 rounded-[2em] md:h-40 h-32"
+              >
+                <div className="aspect-square">
+                  <img
+                    src={product.image}
+                    alt=""
+                    className="h-full w-full object-cover rounded-[2em]"
+                  />
                 </div>
-                <div className="w-full flex flex-col justify-between">
-                  <div className="flex justify-between">
-                    <h1>{product.name}</h1>
+                <div className="flex-1 flex items-center gap-4">
+                  <div className="flex-1">
+                    <h1 className="md:text-xl capitalize">{product.name}</h1>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <h2>${product.price}</h2>
-                    <div className="flex gap-2 items-center">
-                      <Button className="rounded-full size-8" onClick={() => stateCart.decrementItem(product.id)}>-</Button>
-                      <span>{product.count}</span>
-                      <Button className="rounded-full size-8" onClick={() => stateCart.incrementItem(product.id)}>+</Button>
+                  <div className="flex items-center">
+                    <Button
+                      size="icon"
+                      className="bg-neutral-300 dark:bg-neutral-700 text-neutral-800 dark:text-neutral-200 rounded-full"
+                      onClick={() => stateCart.decrementItem(product.id)}
+                    >
+                      <MinusIcon />
+                    </Button>
+                    <div className="size-10 flex justify-center items-center">
+                      {product.count}
                     </div>
+                    <Button
+                      size="icon"
+                      className="bg-neutral-300 dark:bg-neutral-700 text-neutral-800 dark:text-neutral-200 rounded-full"
+                      onClick={() => stateCart.incrementItem(product.id)}
+                    >
+                      <PlusIcon />
+                    </Button>
                   </div>
+                  <div>
+                    <h2 className="md:text-2xl font-bold">${product.price}</h2>
+                  </div>
+                  <Button
+                    size="icon"
+                    className="bg-red-500 rounded-full flex-none"
+                    onClick={() => stateCart.removeItem(product.id)}
+                  >
+                    <XIcon />
+                  </Button>
                 </div>
-                <button className="absolute top-2 right-4 group" onClick={() => stateCart.removeItem(product.id)}><Trash2 size={24} className="hover:text-red-600" /></button>
               </article>
-            )
+            );
           })}
         </section>
       </div>
@@ -98,12 +102,12 @@ export default function OrderPage() {
           <span>${total}</span>
         </div>
         <div className="flex justify-between w-full mx-auto">
-          <Button className="rounded-xl" variant="outline" size="icon"><Heart /></Button>
-          {
-            !url ?<Skeleton className=" h-8 w-48  rounded-full"></Skeleton>
-            :(<Link href={url ? url : ""} className={url ?"":"pointer-events-none opacity-10"}>
+          <Button className="rounded-xl" variant="outline" size="icon">
+            <Heart />
+          </Button>
+          <Link href={"/orders"}>
             <Button className="rounded-3xl px-12">Proceed to Pay</Button>
-          </Link>)}
+          </Link>
         </div>
       </div>
     </main>

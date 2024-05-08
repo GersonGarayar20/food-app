@@ -50,6 +50,8 @@
   }
 }
 
+
+
   @layer base {
     * {
       @apply border-border;
@@ -59,6 +61,9 @@
     }
   }
 
+  #products-rigth{
+    background-image: url('https://cdn.kibrispdr.org/data/151/food-background-images-54.jpg');
+  }
   .count{
     animation: .5s cart normal ease-in-out;
   }
