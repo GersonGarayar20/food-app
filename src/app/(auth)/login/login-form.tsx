@@ -50,7 +50,7 @@ export function LoginForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="lg:text-3xl space-y-4 ">
         {error && (
           <div className="bg-red-500 text-white rounded px-4 py-2">{error}</div>
         )}
@@ -59,9 +59,10 @@ export function LoginForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Correo</FormLabel>
+              <FormLabel className="lg:text-xl">Correo</FormLabel>
               <FormControl>
                 <Input
+                  className="lg:text-lg lg:py-8"
                   type="email"
                   placeholder="tucorreo@email.com"
                   {...field}
@@ -76,15 +77,15 @@ export function LoginForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Contraseña</FormLabel>
+              <FormLabel className="lg:text-xl">Contraseña</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="********" {...field} />
+                <Input  className="lg:text-lg lg:py-8" type="password" placeholder="********" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button className="w-full" type="submit">
+        <Button className="w-full lg:text-xl lg:py-7" type="submit">
           Iniciar Sesion
         </Button>
       </form>
