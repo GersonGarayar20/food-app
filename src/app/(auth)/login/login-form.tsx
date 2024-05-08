@@ -23,7 +23,7 @@ const formSchema = z.object({
   email: z.string().email("Formato de correo electrónico no válido."),
   password: z
     .string()
-    .min(8, "La contraseña debe tener al menos 8 caracteres."),
+    .min(6, "La contraseña debe tener al menos 8 caracteres."),
 });
 
 export function LoginForm() {
