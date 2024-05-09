@@ -26,25 +26,32 @@ export default function ProductPage({ product, token, id }: { token: string, pro
   if (product?.id == undefined) return <Loader />
 
   return (
-    <div className="h-screen w-full  py-8 lg:flex lg:flex-col">
-      <div className="lg:flex lg:justify-between lg:my-5">
-        <div className="absolute top-3 left-3 lg:relative lg:top-0 lg:left-0">
+    <div className="min-h-screen w-full   lg:flex lg:flex-col p-6">
+
+      {/* navbar */}
+      <div className="flex justify-between w-full  lg:my-5 ">
+        <div className="">
+          {/* <div className="absolute top-3 left-3 lg:relative lg:top-0 lg:left-0"> */}
           <ArrowBack />
         </div>
-        <div className="absolute top-5 right-5 bg-white dark:bg-black rounded-3xl p-1 lg:relative lg:top-0 lg:right-0" >
+        <div className="relative bg-white dark:bg-black rounded-3xl p-1 lg:relative lg:top-0 lg:right-0" >
           <div className="rounded-full bg-orange-600 text-white absolute w-6 -top-2 -right-2 z-20 text-center" ><p className="" id="count">{stateCart.count()}</p></div>
           <CartNavigate className='text-dark dark:text-white' />
         </div>
       </div>
-      <div className="lg:flex lg:flex-col  lg:w-full lg:h-full  pb-20">
-        <div className="grid lg:grid-cols-[3fr,2fr] w-full lg:flex-grow lg:dark:bg-black/70 rounded-[60px] lg:bg-[#fafafa] overflow-hidden ">
-          <div className="flex flex-col items-start  justify-center pr-40 pl-8">
-            {/* <div className="flex flex-col justify-between lg:justify-start h-screen lg:h-full lg:relative "> */}
+      {/* imagen mobile */}
+      <figure className="w-full flex justify-center items-center pb-8 px-4 lg:hidden">
+        <img src={product.image} alt="" className="max-h-80  object-cover  relative -z-10  lg:h-auto lg:z-50 lg:-right-[33%] lg:size-[500px]  lg:top-[25%]  lg:p-0 lg:absolute" />
 
+      </figure>
 
+      {/* order */}
+      <div className="lg:flex lg:flex-col  lg:w-full lg:min-h-full  pb-20">
+        <div className="grid lg:grid-cols-[3fr,2fr]  lg:flex-grow lg:dark:bg-black/70 rounded-[30px] lg:bg-[#fafafa] overflow-hidden ">
+          <div className="flex flex-col w-full  lg:items-start  lg:justify-center  lg:py-20 lg:ml-8">
 
-            <section className="flex flex-col gap-y-5  flex-grow lg:flex-grow-0 p-4 bg-[#f1f1f1] dark:bg-[#050505] rounded-tl-3xl rounded-tr-3xl -mt-5 lg:bg-transparent lg:dark:bg-transparent ">
-              <h2 className="font-bold mb-5 lg:text-4xl">{product.name.toUpperCase()}</h2>
+            <section className="flex flex-col gap-y-5  flex-grow lg:flex-grow-0 p-4 bg-[#f1f1f1] dark:bg-[#050505] rounded-tl-3xl rounded-tr-3xl  lg:bg-transparent lg:dark:bg-transparent ">
+              <h2 className="font-bold  text-center lg:text-5xl">{product.name.toUpperCase()}</h2>
               <div className="grid w-full items-center gap-4 bg-white dark:bg-black rounded-xl px-4 lg:px-0 py-6 lg:bg-transparent lg:dark:bg-transparent">
                 <h2 className="lg:text-xl">Descripcion</h2>
                 <p className="text-base font-extralight max-w-sm ">{product.ingredients}</p>
@@ -72,12 +79,9 @@ export default function ProductPage({ product, token, id }: { token: string, pro
                 <Button className="rounded-3xl px-12" onClick={() => { stateCart.add({ ...product, count }) }}>add to cart</Button>
               </div>
             </div>
-
-
-            {/*   <img src={product.image} alt="" className="h-96 p-10 object-cover overflow-x-hidden relative -z-10  lg:h-auto lg:z-50 lg:-right-[33%] lg:size-[500px]  lg:top-[25%]  lg:p-0 lg:absolute" /> */}
           </div>
           <div className="hidden relative lg:flex justify-start items-center h-full " id="products-rigth">
-            <img src={product.image} alt="" className={`${styles.image_opacity} relative  z-50 lg:right-[33%] h-[400]  object-cover animate-opacity ` } />
+            <img src={product.image} alt="" className={`${styles.image_opacity} relative  z-50 lg:right-[33%] h-[400]  object-cover animate-opacity `} />
             <div className="absolute bg-orange-600 w-full h-full dark:opacity-85 opacity-20">
             </div>
           </div>

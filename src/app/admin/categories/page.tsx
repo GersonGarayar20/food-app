@@ -17,9 +17,9 @@ export default async function AdminCategoriesPage() {
   const categories = await getCategories();
 
   return (
-    <div>
+    <>
       <header className="flex justify-between items-center">
-        <h1>products</h1>
+        <h1 className="text-2xl">Categorias</h1>
         <Link
           className={cn(buttonVariants())}
           href={"/admin/categories/create"}
@@ -29,9 +29,9 @@ export default async function AdminCategoriesPage() {
       </header>
 
       <Table>
-        <TableHeader>
+        <TableHeader className="sticky top-0 bg-white dark:bg-black">
           <TableRow>
-            <TableHead className="w-[100px]">Id</TableHead>
+            <TableHead className="w-[40px]">Id</TableHead>
             <TableHead>Nombre</TableHead>
             <TableHead>Imagen</TableHead>
             <TableHead>Acciones</TableHead>
@@ -43,10 +43,10 @@ export default async function AdminCategoriesPage() {
               <TableCell>{id}</TableCell>
               <TableCell>{name}</TableCell>
               <TableCell>
-              <img className="aspect-square w-16" src={image} alt={name} />
+                <img className="aspect-square w-16" src={image} alt={name} />
               </TableCell>
               <TableCell className="flex gap-2">
-              <Link
+                <Link
                   href={`/admin/categories/edit/${id}`}
                   className={buttonVariants({ variant: "secondary" })}
                 >
@@ -58,6 +58,6 @@ export default async function AdminCategoriesPage() {
           ))}
         </TableBody>
       </Table>
-    </div>
+    </>
   );
 }

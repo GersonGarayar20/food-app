@@ -1,7 +1,7 @@
 import { BASE_URL } from "./base-url";
 import { CategoryI } from "@/types/index";
 
-export async function getCategories(): Promise<CategoryI[] | null> {
+export async function getCategories(): Promise<CategoryI[]> {
   const res = await fetch(`${BASE_URL}/categories/`);
   const json = await res.json();
   return json.data;

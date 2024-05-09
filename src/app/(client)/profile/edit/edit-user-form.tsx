@@ -36,17 +36,28 @@ export function EditUserForm({
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <img
-          className="size-32 rounded-full border"
-          src={user.image}
-          alt={user.name}
-        />
-        <Label htmlFor="file">Imagen</Label>
-        <Input type="file" id="file" name="file" />
+      <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+        <div className="aspect-square size-32 mx-auto">
+          <img
+            src={
+              user?.image
+                ? user.image
+                : "https://randomuser.me/api/portraits/men/62.jpg"
+            }
+            className="rounded-full w-full h-full object-contain m-auto border-[1px] border-slate-300 mb-4"
+            alt="foto de perfil"
+          />
+        </div>
 
-        <Label htmlFor="name">Nombre</Label>
-        <Input id="name" name="name" defaultValue={user.name} />
+        <div>
+          <Label htmlFor="file">Imagen</Label>
+          <Input type="file" id="file" name="file" />
+        </div>
+
+        <div>
+          <Label htmlFor="name">Nombre</Label>
+          <Input id="name" name="name" defaultValue={user.name} />
+        </div>
 
         <Button className="w-full" type="submit">
           Guardar Cambios
