@@ -4,7 +4,7 @@ import { useTheme } from "next-themes";
 import { Sun, Moon } from "lucide-react";
 import { Button } from "./ui/button";
 
-export const ThemeSwitcher = () => {
+export const ThemeSwitcher = ({text=true}:{text:boolean}) => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -22,7 +22,7 @@ export const ThemeSwitcher = () => {
       variant={"ghost"}
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
-      Cambiar de modo
+      {text&&"Cambiar de modo"}
       {theme === "light" ? <Moon /> : <Sun />}
     </Button>
   );

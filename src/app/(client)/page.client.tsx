@@ -7,6 +7,7 @@ import {  Heart } from "lucide-react";
 import { CartNavigate } from "@/components/icons/ArrowBack";
 import { useStore } from "zustand";
 import { useCartStore } from "@/store/cart";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 
 
 export default function HomePage({user}:{user:any}) {
@@ -23,6 +24,7 @@ export default function HomePage({user}:{user:any}) {
           <Link href={"/favorites"}>
             <Heart className="w-8 h-8" />
           </Link>
+          <ThemeSwitcher text={false}/>
           <div className="relative bg-white dark:bg-transparent rounded-3xl p-1 lg:top-0 lg:right-0" >
             <div className="rounded-full bg-orange-600 text-white absolute w-6 -top-1 -right-1 z-20 text-center" ><p className="" id="count">{stateCart.count()}</p></div>
             <CartNavigate className='text-dark dark:text-white'/>

@@ -22,7 +22,7 @@ export default function ProductCard({
 }: Props) {
   return (
     <Link href={`/products/${id}`} className="h-full mt-20" >
-      <Card className="p-2 h-full flex flex-col justify-evenly items-center bg-[#121116] border-none ">
+      <Card className="p-2 h-full flex flex-col justify-evenly items-center dark:bg-[#121116] bg-black/10 border-none ">
           <img
               className={`aspect-[3/2] object-contain rounded-md lg:-mt-24 -mt-16 `}
               src={image}
@@ -33,7 +33,7 @@ export default function ProductCard({
           <div className="flex flex-col justify-between gap-2">
             <h4 className="lg:text-lg">{name}</h4>
             <p className="text-gray-500">{description}</p>
-            <p className="lg:text-xl text-white">${price}</p>
+            <p className="lg:text-xl dark:text-white text-black">${price}</p>
           </div>
         </article>
       </Card>

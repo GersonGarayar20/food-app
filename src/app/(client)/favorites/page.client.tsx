@@ -25,6 +25,7 @@ export default function FavoritesPage({token}:{token:string}) {
       <div className="flex justify-center  mt-8">
         <h2 className="text-3xl font-bold mb-8 ">Favoritos</h2>
       </div>
+      
       <div className="flex flex-col gap-x-10 gap-y-5">
         {favorites?.length == 0 ? (
           <h1 className="text-center">No hay favoritos</h1>

@@ -84,13 +84,13 @@
 
   @keyframes products {
     0%{
-      transform: rotateZ(15deg)
+      transform: rotateZ(10deg)
     }
     50%{
-        transform: rotateZ(-15deg);
+        transform: rotateZ(-10deg);
     }
     100%{
-        transform: rotateZ(15deg);
+        transform: rotateZ(10deg);
     }
   }
   

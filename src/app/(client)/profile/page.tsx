@@ -48,7 +48,7 @@ export default async function ProfilePage() {
 
       {/* acciones */}
       <section className="flex flex-col gap-4">
-        <ThemeSwitcher />
+        <ThemeSwitcher text={true} />
         {sesion !== null ? (
           <ButtonCerrarSesion />
         ) : (
