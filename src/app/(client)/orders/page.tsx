@@ -82,14 +82,14 @@ export default function OrderPage() {
                 return (
                   <article
                     key={product.id}
-                    className="relative max-w-3xl lg:w-full w-full bg-neutral-200 dark:bg-[#121116] p-4 flex gap-4 rounded-[2em] md:h-40 h-32"
+                    className="relative max-w-3xl lg:w-full w-full bg-neutral-200 dark:bg-[#121116] p-4 flex gap-4 rounded-[2em] md:h-40 h-32 "
                   >
                     {/* image */}
-                    <div className="flex justify-center items-center">
+                    <div className="flex justify-center items-center ">
                       <img
                         src={product.image}
                         alt=""
-                        className=" w-full max-w-[100px] object-cover rounded-[2em]"
+                        className=" w-full max-w-[100px] object-cover rounded-[2em] hover:scale-125 ease-in duration-300"
                       />
                     </div>
                     {/* botones */}

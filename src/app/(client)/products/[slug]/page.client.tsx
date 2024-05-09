@@ -81,7 +81,7 @@ export default function ProductPage({ product, token, id }: { token: string, pro
             </div>
           </div>
           <div className="hidden relative lg:flex justify-start items-center h-full " id="products-rigth">
-            <img src={product.image} alt="" className={`${styles.image_opacity} relative  z-50 lg:right-[33%] h-[400]  object-cover animate-opacity `} />
+            <img src={product.image} alt="" className={`${styles.image_opacity} ${styles.rotacion}  relative z-50 lg:right-[33%] h-[400]  object-cover animate-opacity `} />
             <div className="absolute bg-orange-600 w-full h-full dark:opacity-85 opacity-20">
             </div>
           </div>
