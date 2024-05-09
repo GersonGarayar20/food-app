@@ -15,8 +15,7 @@ function ProductList() {
     const { category_id, word, maxPrice, minPrice } = useFilterStore()
     const { data: products, isLoading, isError } = useQuery<ProductI[]>(
         "users",
-        () => getProducts(),
-        { cacheTime: 3600 })
+        () => getProducts())
 
     if (isError) return (<div className="flex flex-col justify-center items-center  min-h-[500px]">
         <h2>Ocurrio un problema al obtener los datos</h2>
