@@ -76,7 +76,7 @@ export default function OrderPage() {
           <div className=" w-full flex flex-col px-4 py-4  ">
             {/* navegacion */}
 
-            <section className="flex flex-col gap-y-4   ">
+            <section className="flex flex-col gap-y-4 items-center  ">
               {/* mapear products of car */}
               {stateCart?.cart.map((product) => {
                 return (
@@ -159,6 +159,9 @@ export default function OrderPage() {
             <Button className="rounded-3xl block h-12 w-full">Proceed to Pay</Button>
           </Link> 
         </div>
+       {/*  <div className="hidden lg:block">
+          <img src="offer_girl.png" alt="" className="rounded-lg mt-8" />
+        </div> */}
       </div>
 
     </main>

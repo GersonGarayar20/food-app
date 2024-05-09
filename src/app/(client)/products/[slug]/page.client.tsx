@@ -46,12 +46,12 @@ export default function ProductPage({ product, token, id }: { token: string, pro
       </figure>
 
       {/* order */}
-      <div className="lg:flex lg:flex-col  lg:w-full lg:min-h-full  pb-20">
-        <div className="grid lg:grid-cols-[3fr,2fr]  lg:flex-grow lg:dark:bg-black/70 rounded-[30px] lg:bg-[#fafafa] overflow-hidden ">
-          <div className="flex flex-col w-full  lg:items-start  lg:justify-center  lg:py-20 lg:ml-8">
+      <div className="lg:flex lg:flex-col lg:grow justify-center  items-end h-full lg:w-full lg:min-h-full  pb-20 lg:pb-0">
+        <div className="grid lg:grid-cols-[3fr,2fr] 2xl:aspect-video   lg:dark:bg-black/70 rounded-[30px] lg:bg-[#fafafa] overflow-hidden ">
+          <div className="flex flex-col w-full h-full  lg:items-start  lg:justify-center  lg:py-10 lg:ml-8">
 
-            <section className="flex flex-col gap-y-5  flex-grow lg:flex-grow-0 p-4 bg-[#f1f1f1] dark:bg-[#050505] rounded-tl-3xl rounded-tr-3xl  lg:bg-transparent lg:dark:bg-transparent ">
-              <h2 className="font-bold  text-center lg:text-5xl">{product.name.toUpperCase()}</h2>
+            <section className="flex flex-col 2xl:gap-y-5  flex-grow lg:flex-grow-0 p-4 bg-[#f1f1f1] dark:bg-[#050505] rounded-tl-3xl rounded-tr-3xl  lg:bg-transparent lg:dark:bg-transparent ">
+              <h2 className="font-bold  text-center md:text-3xl 2xl:text-5xl">{product.name.toUpperCase()}</h2>
               <div className="grid w-full items-center gap-4 bg-white dark:bg-black rounded-xl px-4 lg:px-0 py-6 lg:bg-transparent lg:dark:bg-transparent">
                 <h2 className="lg:text-xl">Descripcion</h2>
                 <p className="text-base font-extralight max-w-sm ">{product.ingredients}</p>
