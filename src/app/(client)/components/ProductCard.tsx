@@ -23,7 +23,7 @@ export default function ProductCard({
       <Card className="p-2 h-full flex flex-col gap-1 justify-between">
         <div>
           <img
-            className="aspect-[3/2] object-cover rounded-md pb-1"
+            className="aspect-[3/2] object-contain rounded-md pb-1 "
             src={image}
             alt={name}
           />
