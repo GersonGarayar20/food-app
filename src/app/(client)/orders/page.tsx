@@ -7,7 +7,7 @@ import Link from "next/link";
 import ArrowBack from "@/components/icons/ArrowBack";
 import { XIcon, PlusIcon, MinusIcon } from "lucide-react";
 import styles from './order.module.css'
-
+import NavbarClient from "../components/NavbarClient";
 export default function OrderPage() {
   const stateCart = useStore<CartStore, CartStore>(useCartStore, (state: any) => state);
   if (!stateCart) return <div></div>;
@@ -17,37 +17,11 @@ export default function OrderPage() {
   return (
     <main className=" grid grid-cols-1 lg:grid-cols-[25%_50%_25%]  justify-between h-screen overflow-hidden w-full">
       {/* navbar */}
-      <div className="hidden lg:block  grow  h-full min-h-screen min-w-[250px] max-w-[300px] ">
-        <figure className="mb-16 flex flex-col justify-center items-center mt-12">
-          <img src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/f5/f5dc208cabba29fa25fdceb3d438db71ec70560e_full.jpg" className="aspect-square w-20 bg-black rounded-full" alt="" />
-          <figcaption>Kimberly Rivz</figcaption>
-        </figure >
-        <nav className="pl-8">
-          <div className="flex justify-star  items-center gap-4 mb-6">
-            <div className="rounded-full bg-slate-700/50 p-4 ">
-              <Home />
-            </div>
-            <span>Home</span>
-          </div>
-          <div className="flex justify-star  items-center gap-4 mb-6">
-            <div className="rounded-full bg-slate-700/50 p-4 ">
-            <Heart />
-            </div>
-            <span>Favoritos</span>
-          </div>
-          <div className="flex justify-star  items-center gap-4 mb-6">
-            <div className="rounded-full bg-slate-700/50 p-4 ">
-            <Settings />
-            </div>
-            <span>Configuración</span>
-          </div>
-
-        </nav>
-      </div>
+      <NavbarClient/>
       {/*  orders*/} 
       <div className={`w-full grow  flex flex-col overflow-hidden `}>
 
-        <header className="relative grow w-full h-32  m-auto  mb-4 flex justify-center items-center p-4 ">
+        <header className="relative  w-full h-32  m-auto  mb-4 flex justify-center items-center p-4 ">
           <div className="absolute h-full w-full flex items-center px-4 m-auto ">
           <ArrowBack />
           </div>
@@ -72,7 +46,7 @@ export default function OrderPage() {
                 return (
                   <article
                     key={product.id}
-                    className="relative max-w-3xl lg:w-full w-full bg-neutral-200 dark:bg-[#121116] p-4 flex gap-4 rounded-[2em] md:h-40 h-32 "
+                    className="relative max-w-3xl lg:w-full w-full bg-neutral-200 dark:bg-[#121116] p-4 flex items-center gap-4 rounded-[2em] md:h-40 h-32 "
                   >
                     {/* image */}
                     <div className="flex justify-center items-center ">
@@ -83,13 +57,13 @@ export default function OrderPage() {
                       />
                     </div>
                     {/* botones */}
-                    <div className="flex-1 flex flex-col  gap-2 lg:gap-10">
+                    <div className="flex-1 flex flex-col gap-4 justify-center   ">
                       {/* name y price */}
 
-                      <h1 className="text-lg font-light text-start capitalize pr-3">{product.name}</h1>
+                      <h1 className="text-lg flex items-end font-light grow text-start capitalize pr-3">{product.name}</h1>
 
 
-                      <div className="flex h-full  items-end justify-between gap-6 ">
+                      <div className="flex   items-end justify-between gap-6 ">
                         <h2 className="text-2xl md:text-2xl font-bold">${product.price}</h2>
 
                         {/* incrementar */}
@@ -120,7 +94,7 @@ export default function OrderPage() {
                     {/* X */}
                     <Button
                       size="icon"
-                      className="absolute right-3 bg-transparent lg:bg-red-500 w-4 h-4 rounded-full flex-none"
+                      className="absolute right-3 top-4 bg-transparent  w-4 h-4 rounded-full flex-none"
                       onClick={() => stateCart.removeItem(product.id)}
                     >
                       <XIcon />
