@@ -29,7 +29,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={roboto.className}>
         <Providers>
-          <main className=" mx-auto max-w-7xl h-screen">
+          <main className=" mx-auto  max-w-7xl">
+          
             {children}
           </main>
         </Providers>

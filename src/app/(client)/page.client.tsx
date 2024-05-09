@@ -40,9 +40,13 @@ export default function HomePage({user}:{user:any}) {
         <FilterProducts />
       </div>
       <CategoryList />
+      <Link href={"products/10"}>
+      <img src="offer.png" loading="lazy" alt="" className="my-8 rounded-lg hover:scale-[1.02] duration-300 ease-linear cursor-pointer" />
+      </Link>
       <section>
         <ProductList />
       </section>
+      
     </main>
   );
 }
