@@ -8,6 +8,7 @@ import { CartNavigate } from "@/components/icons/ArrowBack";
 import { useStore } from "zustand";
 import { useCartStore } from "@/store/cart";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import Footer from "@/components/footer";
 
 
 export default function HomePage({user}:{user:any}) {
@@ -48,6 +49,8 @@ export default function HomePage({user}:{user:any}) {
       <section>
         <ProductList />
       </section>
+
+      <Footer />
       
     </main>
   );
