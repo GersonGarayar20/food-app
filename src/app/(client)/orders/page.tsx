@@ -1,27 +1,17 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import useStore from "@/store/useStore";
-import { useCartStore } from "@/store/cart";
+import { useCartStore, CartStore } from "@/store/cart";
 import { Heart, Home, Settings } from "lucide-react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import ArrowBack from "@/components/icons/ArrowBack";
 import { XIcon, PlusIcon, MinusIcon } from "lucide-react";
-import { HeartFilled } from "@/app/ui/icons/heartFilled";
-import { useEffect, useState } from "react";
-import { getPagePayment } from "@/lib/fetch/payment";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { Skeleton } from "@/components/ui/skeleton";
 import styles from './order.module.css'
+
 export default function OrderPage() {
-  const router = useRouter();
+  const stateCart = useStore<CartStore, CartStore>(useCartStore, (state: any) => state);
+  if (!stateCart) return <div></div>;
 
-  const handleBack = () => {
-    router.back();
-  };
-
-  const stateCart = useStore(useCartStore, useCartStore.getState);
   const total = stateCart?.totalPrice();
 
   return (
