@@ -14,12 +14,12 @@ export function FavoriteCard({product,token}:{product:ProductI,token:string}){
     return(
         <article
         key={product?.id}
-        className="flex items-start gap-5 dark:bg-[#000000] bg-[#f7f0ee]  rounded-2xl relative h-32"
+        className="flex items-start gap-5 dark:bg-[#121116]  bg-[#f7f0ee]  rounded-2xl relative h-32"
       >
         <img
           src={product?.image}
           alt=""
-          className="rounded-2xl w-36 h-32 object-cover"
+          className="rounded-2xl w-36 h-32 object-contain"
         />
         <div className="flex flex-col justify-evenly gap-y-7 h-full pr-8">
           <h1 className="font-bold text-lg">{product?.name}</h1>

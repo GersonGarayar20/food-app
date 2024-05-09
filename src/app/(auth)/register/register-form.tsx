@@ -41,15 +41,15 @@ export function RegisterForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 ">
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Nombre</FormLabel>
+              <FormLabel className="lg:text-lg">Nombre</FormLabel>
               <FormControl>
-                <Input placeholder="Escribe tu nombre" {...field} />
+                <Input className="lg:text-lg lg:py-6" placeholder="Escribe tu nombre" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -60,10 +60,10 @@ export function RegisterForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Correo</FormLabel>
+              <FormLabel className="lg:text-lg">Correo</FormLabel>
               <FormControl>
                 <Input
-                  type="email"
+                  className="lg:text-lg lg:py-6" type="email"
                   placeholder="tucorreo@email.com"
                   {...field}
                 />
@@ -77,9 +77,9 @@ export function RegisterForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Constraseña</FormLabel>
+              <FormLabel className="lg:text-lg">Constraseña</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="********" {...field} />
+                <Input className="lg:text-lg lg:py-6" type="password" placeholder="********" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -90,10 +90,10 @@ export function RegisterForm() {
           name="address"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Dirección</FormLabel>
+              <FormLabel className="lg:text-lg">Dirección</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Jirón de la Unión 1032, Cercado de Lima, Lima, Perú"
+                  className="lg:text-lg lg:py-6" placeholder="Jirón de la Unión 1032, Cercado de Lima, Lima, Perú"
                   {...field}
                 />
               </FormControl>
@@ -106,15 +106,15 @@ export function RegisterForm() {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Teléfono</FormLabel>
+              <FormLabel className="lg:text-lg">Teléfono</FormLabel>
               <FormControl>
-                <Input placeholder="987654321" {...field} />
+                <Input className="lg:text-lg lg:py-6" placeholder="987654321" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button className="w-full" type="submit">
+        <Button className="w-full lg:text-xl lg:py-7" type="submit">
           Registrarse
         </Button>
       </form>

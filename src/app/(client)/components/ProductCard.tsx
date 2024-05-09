@@ -9,27 +9,33 @@ interface Props {
   name: string;
   image: string;
   price: number;
+  description:string
 }
 
 export default function ProductCard({
   category_id,
+  description,
   id,
   name,
   image,
   price,
 }: Props) {
   return (
-    <Link href={`/products/${id}`} className="h-full">
-      <Card className="p-2 h-full flex flex-col gap-1 justify-between">
-        <div>
+    <Link href={`/products/${id}`} className="h-full mt-20" >
+      <Card className="p-2 h-full flex flex-col justify-evenly items-center bg-[#121116] border-none ">
           <img
-            className="aspect-[3/2] object-contain rounded-md pb-1 "
-            src={image}
-            alt={name}
-          />
-          <h4 className="mb-3">{name}</h4>
-        </div>
-        <p className=" bottom-0">${price}</p>
+              className={`aspect-[3/2] object-contain rounded-md lg:-mt-24 -mt-16 `}
+              src={image}
+              alt={name}
+              id="products_translate"
+              />
+        <article className="w-10/12 ">
+          <div className="flex flex-col justify-between gap-2">
+            <h4 className="lg:text-lg">{name}</h4>
+            <p className="text-gray-500">{description}</p>
+            <p className="lg:text-xl text-white">${price}</p>
+          </div>
+        </article>
       </Card>
     </Link>
   );

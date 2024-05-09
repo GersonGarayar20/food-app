@@ -77,3 +77,21 @@
       transform: scale(1);
     }
   }
+
+  #products_translate:hover{
+    animation: 1s products infinite linear;
+  }
+
+  @keyframes products {
+    0%{
+      transform: rotateZ(15deg)
+    }
+    50%{
+        transform: rotateZ(-15deg);
+    }
+    100%{
+        transform: rotateZ(15deg);
+    }
+  }
+  
+  

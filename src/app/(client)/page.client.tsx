@@ -8,6 +8,7 @@ import { CartNavigate } from "@/components/icons/ArrowBack";
 import { useStore } from "zustand";
 import { useCartStore } from "@/store/cart";
 
+
 export default function HomePage({user}:{user:any}) {
 
   const stateCart=useStore(useCartStore,useCartStore.getState)

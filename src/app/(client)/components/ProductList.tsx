@@ -46,10 +46,10 @@ function ProductList() {
     const productsFiltered = filterProducts(products!)
 
     return (
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 ">
+        <div className="grid grid-cols-2 gap-x-7 gap-y-32  sm:grid-cols-3 lg:grid-cols-4 ">
 
             {
-                productsFiltered?.map(({ id, category_id, name, image, price }) => (
+                productsFiltered?.map(({ id,description, category_id, name, image, price }) => (
                     <ProductCard
                         key={id}
                         id={id}
@@ -57,6 +57,7 @@ function ProductList() {
                         name={name}
                         image={image}
                         price={price}
+                        description={description}
                     />
                 ))
             }
