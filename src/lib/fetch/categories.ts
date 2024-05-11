@@ -2,7 +2,7 @@ import { BASE_URL } from "./base-url";
 import { CategoryI } from "@/types/index";
 
 export async function getCategories(): Promise<CategoryI[]> {
-  const res = await fetch(`${BASE_URL}/categories/`);
+  const res = await fetch(`${BASE_URL}/categories`);
   const json = await res.json();
   return json.data;
 }
@@ -15,13 +15,13 @@ export async function getCategory(
   return json.data;
 }
 
-export async function createCategory(data: any): Promise<CategoryI | null> {
+export async function createCategory(formData: any, token:string): Promise<CategoryI | null> {
   const res = await fetch(`${BASE_URL}/categories/create`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Authorization":`Bearer ${token}`
     },
-    body: JSON.stringify(data),
+    body: formData,
   });
   const json = await res.json();
   return json.data;
