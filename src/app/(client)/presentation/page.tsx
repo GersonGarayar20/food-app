@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function Presentation() {
     return (
-        <div className="h-screen  w-full p-4 ">
+       /*  <div className="h-screen  w-full p-4 ">
             <h2 className="text-7xl text-center font-normal mb-4 ">Bravazo</h2>
             <p className="text-center mb-4">¡Lo buenazo <br /> no tiene precio!</p>
             <div className="mb-4">
@@ -24,6 +24,9 @@ function Presentation() {
                     </Link>
                 </div>
             </div>
+        </div> */
+        <div className="h-screen  w-full p-4 ">
+            
         </div>
     );
 }

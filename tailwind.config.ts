@@ -67,11 +67,22 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "hidden-page":{
+          from: {
+            opacity: "1",
+            
+          },
+          to:{
+            opacity: "0",
+            
+          }
+        }
 
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out"
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "hidden":"hidden-page 2s ease-out"
       },
     },
   },

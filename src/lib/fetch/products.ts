@@ -7,7 +7,7 @@ import { ProductI } from "@/types";
 
 export async function getProducts(): Promise<ProductI[] | null> {
   try {
-    const res = await fetch(`${BASE_URL}/products`, { cache: "no-store" });
+    const res = await fetch(`${BASE_URL}/products`);
     if (!res.ok) {
       throw new Error("La solicitud al servidor falló.");
     }
