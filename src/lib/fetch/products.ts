@@ -14,10 +14,6 @@ export async function getProducts(): Promise<ProductI[] | null> {
     const json = await res.json();
     return json.data;
   } catch (error) {
-    console.error(
-      "❌ ~ getProducts ~ error:",
-      error instanceof Error ? error.message : "Error desconocido"
-    );
     return null;
   }
 }
@@ -33,10 +29,6 @@ export async function getProduct(
     const json = await res.json();
     return json.data;
   } catch (error) {
-    console.error(
-      "❌ ~ getProduct ~ error:",
-      error instanceof Error ? error.message : "Error desconocido"
-    );
     return null;
   }
 }
@@ -59,24 +51,24 @@ export async function updateProduct(
     const json = await res.json();
     return json.data;
   } catch (error) {
-    console.error(
-      "❌ ~ updateProduct ~ error:",
-      error instanceof Error ? error.message : "Error desconocido"
-    );
     return null;
   }
 }
 
-export async function createProduct(data: any): Promise<ProductI | null> {
+export async function createProduct(formData: any,token:string): Promise<ProductI | null> {
   try {
-    const res = await fetch(`${BASE_URL}/products/create`, {
+    const res = await fetch(`http://localhost:5000/api/products/create`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
-      body: JSON.stringify(data),
+      body: formData,
     });
+    
     if (!res.ok) {
+      const a=await res.json()
+      console.log(a);
+      
       throw new Error("La solicitud al servidor falló.");
     }
     const json = await res.json();
@@ -84,10 +76,6 @@ export async function createProduct(data: any): Promise<ProductI | null> {
     // redirect("/admin/products");
     return json.data;
   } catch (error) {
-    console.error(
-      "❌ ~ createProduct ~ error:",
-      error instanceof Error ? error.message : "Error desconocido"
-    );
     return null;
   }
 }
@@ -106,10 +94,6 @@ export async function deleteProduct(
     revalidatePath("/admin/products");
     return json.data;
   } catch (error) {
-    console.error(
-      "❌ ~ deleteProduct ~ error:",
-      error instanceof Error ? error.message : "Error desconocido"
-    );
     return null;
   }
 }
