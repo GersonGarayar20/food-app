@@ -6,10 +6,13 @@ import { Heart, Home, Settings } from "lucide-react";
 import Link from "next/link";
 import ArrowBack from "@/components/icons/ArrowBack";
 import { XIcon, PlusIcon, MinusIcon } from "lucide-react";
-import styles from './order.module.css'
+import styles from "./order.module.css";
 import NavbarClient from "../components/NavbarClient";
 export default function OrderPage() {
-  const stateCart = useStore<CartStore, CartStore>(useCartStore, (state: any) => state);
+  const stateCart = useStore<CartStore, CartStore>(
+    useCartStore,
+    (state: any) => state
+  );
   if (!stateCart) return <div></div>;
 
   const total = stateCart?.totalPrice();
@@ -17,13 +20,12 @@ export default function OrderPage() {
   return (
     <main className=" grid grid-cols-1 lg:grid-cols-[25%_50%_25%]  justify-between h-screen overflow-hidden w-full">
       {/* navbar */}
-      <NavbarClient/>
-      {/*  orders*/} 
+      <NavbarClient />
+      {/*  orders*/}
       <div className={`w-full grow  flex flex-col overflow-hidden `}>
-
         <header className="relative  w-full h-32  m-auto  mb-4 flex justify-center items-center p-4 ">
           <div className="absolute h-full w-full flex items-center px-4 m-auto ">
-          <ArrowBack />
+            <ArrowBack />
           </div>
           <h1 className="text-3xl">Order Details</h1>
 
@@ -60,11 +62,14 @@ export default function OrderPage() {
                     <div className="flex-1 flex flex-col gap-4 justify-center   ">
                       {/* name y price */}
 
-                      <h1 className="text-lg flex items-end font-light grow text-start capitalize pr-3">{product.name}</h1>
-
+                      <h1 className="text-lg flex items-end font-light grow text-start capitalize pr-3">
+                        {product.name}
+                      </h1>
 
                       <div className="flex   items-end justify-between gap-6 ">
-                        <h2 className="text-2xl md:text-2xl font-bold">${product.price}</h2>
+                        <h2 className="text-2xl md:text-2xl font-bold">
+                          ${product.price}
+                        </h2>
 
                         {/* incrementar */}
                         <div className="flex items-center ">
@@ -86,9 +91,6 @@ export default function OrderPage() {
                             <PlusIcon />
                           </Button>
                         </div>
-
-
-
                       </div>
                     </div>
                     {/* X */}
@@ -105,29 +107,33 @@ export default function OrderPage() {
             </section>
           </div>
           {/* foot */}
-
         </div>
       </div>
       {/* payment */}
       <div className="bg-[#fbfbfb] dark:bg-transparent py-2 flex flex-col  gap-y-4 min-h-28 p-2  lg:mt-36">
         <div className="w-full flex flex-col gap-4 justify-between font-bold text-lg py-4 dark:bg-black/20 p-4 rounded-lg">
-          <p className="font-normal flex justify-between w-full "><span>subtotal</span> <span>${20}</span></p>
-          <p className="font-normal flex justify-between w-full "><span>delivery</span> <span>${20}</span></p>
+          <p className="font-normal flex justify-between w-full ">
+            <span>subtotal</span> <span>${20}</span>
+          </p>
+          <p className="font-normal flex justify-between w-full ">
+            <span>delivery</span> <span>${20}</span>
+          </p>
           <hr />
-          <p className="font-bold text-2xl flex justify-between w-full"><span>Total</span> <span>${total}</span></p>
-          
+          <p className="font-bold text-2xl flex justify-between w-full">
+            <span>Total</span> <span>${total}</span>
+          </p>
         </div>
         <div className="flex justify-between w-full mx-auto ">
-
           <Link href={"/orders"} className="w-full">
-            <Button className="rounded-3xl block h-12 w-full">Proceed to Pay</Button>
-          </Link> 
+            <Button className="rounded-3xl block h-12 w-full">
+              Proceed to Pay
+            </Button>
+          </Link>
         </div>
-       {/*  <div className="hidden lg:block">
+        {/*  <div className="hidden lg:block">
           <img src="offer_girl.png" alt="" className="rounded-lg mt-8" />
         </div> */}
       </div>
-
     </main>
   );
 }

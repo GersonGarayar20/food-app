@@ -10,7 +10,7 @@ export async function getFavorites({
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
-    }
+    },
   });
 
   const json = await res.json();
@@ -25,19 +25,16 @@ export async function createFavorite({
   token: string;
   productId: number;
 }): Promise<ProductI | null> {
-  const res = await fetch(
-    `${BASE_URL}/favorites/create/${productId}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  if (!res.ok) throw new Error() 
+  const res = await fetch(`${BASE_URL}/favorites/create/${productId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!res.ok) throw new Error();
   const json = await res.json();
-  
+
   return json.data;
 }
 
@@ -48,15 +45,12 @@ export async function deleteFavorite({
   token: string;
   productId: number;
 }) {
-  const res = await fetch(
-    `${BASE_URL}/favorites/delete/${productId}`,
-    {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  if (!res.ok) throw new Error() 
+  const res = await fetch(`${BASE_URL}/favorites/delete/${productId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!res.ok) throw new Error();
 }

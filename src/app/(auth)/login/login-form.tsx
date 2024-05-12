@@ -50,7 +50,10 @@ export function LoginForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="lg:text-3xl space-y-4 ">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="lg:text-3xl space-y-4 "
+      >
         {error && (
           <div className="bg-red-500 text-white rounded px-4 py-2">{error}</div>
         )}
@@ -79,7 +82,12 @@ export function LoginForm() {
             <FormItem>
               <FormLabel className="lg:text-xl">Contraseña</FormLabel>
               <FormControl>
-                <Input  className="lg:text-lg lg:py-8" type="password" placeholder="********" {...field} />
+                <Input
+                  className="lg:text-lg lg:py-8"
+                  type="password"
+                  placeholder="********"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

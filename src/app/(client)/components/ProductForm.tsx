@@ -1,7 +1,7 @@
-"use client"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+"use client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import {
   Form,
   FormControl,
@@ -10,10 +10,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { formFilterSchema } from "@/dto/FormFilter"
-
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { formFilterSchema } from "@/dto/FormFilter";
 
 export function SearchForm() {
   const form = useForm<z.infer<typeof formFilterSchema>>({
@@ -21,10 +20,10 @@ export function SearchForm() {
     defaultValues: {
       word: "",
     },
-  })
+  });
 
   function onSubmit(data: z.infer<typeof formFilterSchema>) {
-      console.log(data)
+    console.log(data);
   }
 
   return (
@@ -43,5 +42,5 @@ export function SearchForm() {
         />
       </form>
     </Form>
-  )
+  );
 }

@@ -55,20 +55,23 @@ export async function updateProduct(
   }
 }
 
-export async function createProduct(formData: any,token:string): Promise<ProductI | null> {
+export async function createProduct(
+  formData: any,
+  token: string
+): Promise<ProductI | null> {
   try {
     const res = await fetch(`http://localhost:5000/api/products/create`, {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
       body: formData,
     });
-    
+
     if (!res.ok) {
-      const a=await res.json()
+      const a = await res.json();
       console.log(a);
-      
+
       throw new Error("La solicitud al servidor falló.");
     }
     const json = await res.json();

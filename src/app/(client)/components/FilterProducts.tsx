@@ -3,14 +3,13 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import { CircleX, Divide, Filter } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { ChangeEvent, useRef, useState } from "react";
@@ -21,15 +20,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Badge } from "@/components/ui/badge";
 
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 
 const InitialPriceState = {
   minPrice: 0,
@@ -43,7 +34,7 @@ export function FilterProducts() {
   const [open, setOpen] = useState(false);
   const { category_id, word, setFilters } = useFilterStore();
 
-  const closeRef = useRef(null);
+  const closeRef = useRef<any>();
 
   const handleMinInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setMinPrice(Number(e.target.value));
@@ -75,7 +66,7 @@ export function FilterProducts() {
   }
 
   const handleCloseClick = () => {
-    closeRef!.current!.classList.add("hidden");
+    closeRef.current.classList.add("hidden");
     setMaxPrice(InitialPriceState.maxPrice);
     setFilters({ minPrice, maxPrice: InitialPriceState.maxPrice });
   };

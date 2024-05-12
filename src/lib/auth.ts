@@ -25,20 +25,18 @@ export const authOptions = {
           );
 
         const user = res.user;
-        user.accessToken=res.token
-          
-        return user
+        user.accessToken = res.token;
+
+        return user;
       },
     }),
   ],
   callbacks: {
-    async jwt({ token,user }: any) {
-      
-      return {...token,...user};
+    async jwt({ token, user }: any) {
+      return { ...token, ...user };
     },
     async session({ session, token }: any) {
-      
-      session.user=token
+      session.user = token;
       return session;
     },
   },

@@ -10,12 +10,10 @@ import { Button } from "./ui/button";
 export default function Footer() {
   return (
     <div>
-      desarrollador por 
+      desarrollador por
       <HoverCard>
         <HoverCardTrigger>
-        <Button variant="link">
-          @esteban
-          </Button>
+          <Button variant="link">@esteban</Button>
         </HoverCardTrigger>
         <HoverCardContent>
           <Link href={""}>Linkendin</Link>

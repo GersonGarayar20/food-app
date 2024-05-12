@@ -15,7 +15,7 @@ import ButtonDeleteCategory from "./button-delete-category";
 
 export default async function AdminCategoriesPage() {
   const categories = await getCategories();
-  
+
   return (
     <>
       <header className="flex justify-between items-center">

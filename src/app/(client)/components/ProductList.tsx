@@ -4,7 +4,6 @@ import { getProducts } from "@/lib/fetch/products";
 import { useQuery } from "react-query";
 import ProductCard from "./ProductCard";
 import { ProductListSkeleton } from "./ProductListSkeleton";
-import { Product } from "@/types/types";
 import { useFilterStore } from "@/app/global/filter";
 import { ProductI } from "@/types";
 import { ServerOff } from "lucide-react";
@@ -15,7 +14,7 @@ function ProductList() {
     data: products,
     isLoading,
     isError,
-  } = useQuery<ProductI[]>("users", () => getProducts());
+  } = useQuery<ProductI[] | null>("users", () => getProducts());
 
   if (isError)
     return (
@@ -27,7 +26,7 @@ function ProductList() {
   if (isLoading) return <ProductListSkeleton />;
   if (products?.length == 0) return <div>No hay datos para mostrar</div>;
 
-  function filterProducts(products: Product[]) {
+  function filterProducts(products: ProductI[]) {
     let filtered = products;
 
     if (word) {
@@ -50,7 +49,7 @@ function ProductList() {
     return filtered;
   }
 
-  const productsFiltered = filterProducts(products!);
+  const productsFiltered = filterProducts(products ? products : []);
 
   return (
     <section className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-x-7 gap-y-32">

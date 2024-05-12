@@ -3,7 +3,7 @@ import { getCategories } from "@/lib/fetch/categories";
 import { useQuery } from "react-query";
 import CategoryCard, { AllCategoryCard } from "./CategoryCard";
 import { Category } from "@/types/types";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { ToggleGroup } from "@/components/ui/toggle-group";
 import { useFilterStore } from "@/app/global/filter";
 import { CategoryListSkeleton } from "./CategoryListSkeleton";
 
@@ -27,8 +27,7 @@ function CategoryList() {
     <div className="flex flex-wrap gap-2">
       <ToggleGroup
         type="single"
-        defaultValue={1}
-        onValueChange={(id: number) => handleCategorySelected(id)}
+        onValueChange={(id: string) => handleCategorySelected(+id)}
       >
         <AllCategoryCard name="all" id={1} />
         {categories &&
