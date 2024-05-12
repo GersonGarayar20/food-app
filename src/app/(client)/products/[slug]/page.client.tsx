@@ -35,7 +35,7 @@ export default function ProductPage({ product, token, id }: { token: string, pro
           <ArrowBack />
         </div>
         <div className="relative bg-white dark:bg-black rounded-3xl p-1 lg:relative lg:top-0 lg:right-0" >
-          <div className="rounded-full bg-orange-600 text-white absolute w-6 -top-2 -right-2 z-20 text-center" ><p className="" id="count">{stateCart.count()}</p></div>
+          <div className="rounded-full bg-orange-600 text-white absolute w-6 -top-2 -right-2 z-20 text-center" ><p className="" id="count">{stateCart.cart?.length}</p></div>
           <CartNavigate className='text-dark dark:text-white' />
         </div>
       </div>
