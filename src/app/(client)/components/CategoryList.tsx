@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { getCategories } from "@/lib/fetch/categories";
 import { useQuery } from "react-query";
 import CategoryCard, { AllCategoryCard } from "./CategoryCard";
@@ -7,40 +7,42 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { useFilterStore } from "@/app/global/filter";
 import { CategoryListSkeleton } from "./CategoryListSkeleton";
 
-
 function CategoryList() {
-    const { data: categories, isLoading, isError } = useQuery<Category[]>(
-        'categories',
-        getCategories,
-        { cacheTime: 3600 }
-    );
+  const {
+    data: categories,
+    isLoading,
+    isError,
+  } = useQuery<Category[]>("categories", getCategories, { cacheTime: 3600 });
 
-    const { setFilters } = useFilterStore()
+  const { setFilters } = useFilterStore();
 
+  const handleCategorySelected = (id: number) => {
+    setFilters({ category_id: id });
+  };
 
-    const handleCategorySelected =(id:number)=>{
-        setFilters({ category_id: id })
-      
-    }
+  if (isLoading) return <CategoryListSkeleton />;
+  if (isError) return <div>Ocurrió un error al obtener las categorias</div>;
 
-
-    if (isLoading) return <CategoryListSkeleton/>;
-    if (isError) return <div>Ocurrió un error al obtener las categorias</div>;
-
-    return (
-        <div className="flex flex-wrap gap-2 mb-4">
-            <ToggleGroup type="single" defaultValue={1} onValueChange={(id:number)=> handleCategorySelected(id)} >
-                <AllCategoryCard name="all" id={1}/>
-                {
-                    categories && categories?.map((category, index) => (
-                        <CategoryCard key={index} id={category.id} image={category.image} name={category.name} />
-                    ))
-                }
-
-            </ToggleGroup>
-
-        </div>
-    );
+  return (
+    <div className="flex flex-wrap gap-2">
+      <ToggleGroup
+        type="single"
+        defaultValue={1}
+        onValueChange={(id: number) => handleCategorySelected(id)}
+      >
+        <AllCategoryCard name="all" id={1} />
+        {categories &&
+          categories?.map((category, index) => (
+            <CategoryCard
+              key={index}
+              id={category.id}
+              image={category.image}
+              name={category.name}
+            />
+          ))}
+      </ToggleGroup>
+    </div>
+  );
 }
 
 export default CategoryList;
