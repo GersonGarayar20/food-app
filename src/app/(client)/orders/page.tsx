@@ -8,22 +8,44 @@ import ArrowBack from "@/components/icons/ArrowBack";
 import { XIcon, PlusIcon, MinusIcon } from "lucide-react";
 import styles from './order.module.css'
 import NavbarClient from "../components/NavbarClient";
+import { useEffect, useState } from "react";
+import { useMutation } from "react-query";
+import { url } from "inspector";
+import { getPagePayment } from "@/lib/fetch/payment";
 export default function OrderPage() {
   const stateCart = useStore<CartStore, CartStore>(useCartStore, (state: any) => state);
-  if (!stateCart) return <div></div>;
+  const [urlPayment, setUrlPayment] = useState("")
+  
+  const getLinkPay = async () => {
+    if (stateCart?.cart.length! > 0) {
+      const json = await getPagePayment(stateCart?.cart)
+      setUrlPayment(json.url)
+    }
+  }
+
+  useEffect(() => {
+    getLinkPay()
+  }, [stateCart])
+
 
   const total = stateCart?.totalPrice();
+
+
+
+
+  if (!stateCart) return <div></div>;
+
 
   return (
     <main className=" grid grid-cols-1 lg:grid-cols-[25%_50%_25%]  justify-between h-screen overflow-hidden w-full">
       {/* navbar */}
-      <NavbarClient/>
-      {/*  orders*/} 
+      <NavbarClient />
+      {/*  orders*/}
       <div className={`w-full grow  flex flex-col overflow-hidden `}>
 
         <header className="relative  w-full h-32  m-auto  mb-4 flex justify-center items-center p-4 ">
           <div className="absolute h-full w-full flex items-center px-4 m-auto ">
-          <ArrowBack />
+            <ArrowBack />
           </div>
           <h1 className="text-3xl">Order Details</h1>
 
@@ -115,15 +137,19 @@ export default function OrderPage() {
           <p className="font-normal flex justify-between w-full "><span>delivery</span> <span>${20}</span></p>
           <hr />
           <p className="font-bold text-2xl flex justify-between w-full"><span>Total</span> <span>${total}</span></p>
-          
+
         </div>
         <div className="flex justify-between w-full mx-auto ">
+          {
+            urlPayment
+              ? <a href={urlPayment} className="w-full">
+                <Button className="rounded-3xl block h-12 w-full" disabled={false} >Proceed to Pay</Button>
+              </a>
+              : <Button className="rounded-3xl block h-12 w-full" disabled >Proceed to Pay</Button>
+          }
 
-          <Link href={"/orders"} className="w-full">
-            <Button className="rounded-3xl block h-12 w-full">Proceed to Pay</Button>
-          </Link> 
         </div>
-       {/*  <div className="hidden lg:block">
+        {/*  <div className="hidden lg:block">
           <img src="offer_girl.png" alt="" className="rounded-lg mt-8" />
         </div> */}
       </div>
