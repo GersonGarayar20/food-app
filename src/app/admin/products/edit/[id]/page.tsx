@@ -7,7 +7,7 @@ export default async function page({ params }: { params: { id: string } }) {
   const { id } = params;
   const product = await getProduct(id);
 
-  if (product) {
+  if (!product) {
     return <div>el producto no existe</div>;
   }
 

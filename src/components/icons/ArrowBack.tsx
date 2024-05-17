@@ -22,23 +22,18 @@ function ArrowBack() {
 
 export default ArrowBack;
 
-export function CartNavigate(props:any) {
+export function CartNavigate(props: any) {
   const router = useRouter();
-  const handleNavigation=()=>[
-    router.push("/orders")
-  ]
+  const handleNavigation = () => [router.push("/orders")];
 
-
-  return(
+  return (
     <Button
       className="rounded-full"
       variant={"ghost"}
       size={"icon"}
       onClick={() => handleNavigation()}
     >
-      <ShoppingCart {...props}/>
+      <ShoppingCart {...props} />
     </Button>
-  )
+  );
 }
-
-

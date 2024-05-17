@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { ReactNode } from "react";
 import { QueryClientProvider, QueryClient } from "react-query";
@@ -12,9 +12,7 @@ export function Providers({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <QueryClientProvider client={queryClient}>
-        <FavoriteProvider>
-        {children}
-        </FavoriteProvider>
+        <FavoriteProvider>{children}</FavoriteProvider>
       </QueryClientProvider>
     </ThemeProvider>
   );

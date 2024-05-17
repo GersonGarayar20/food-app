@@ -58,7 +58,7 @@ export default function Menu() {
         ))}
       </nav>
       <footer className="flex flex-col">
-        <ThemeSwitcher />
+        <ThemeSwitcher text />
         <Button className="justify-start items-center gap-2" variant="ghost">
           <LogOutIcon className="size-4" />
           Cerrar sesion

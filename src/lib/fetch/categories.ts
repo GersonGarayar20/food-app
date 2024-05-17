@@ -15,11 +15,14 @@ export async function getCategory(
   return json.data;
 }
 
-export async function createCategory(formData: any, token:string): Promise<CategoryI | null> {
+export async function createCategory(
+  formData: any,
+  token: string
+): Promise<CategoryI | null> {
   const res = await fetch(`${BASE_URL}/categories/create`, {
     method: "POST",
     headers: {
-      "Authorization":`Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     },
     body: formData,
   });

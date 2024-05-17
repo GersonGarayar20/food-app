@@ -31,13 +31,13 @@ export const useCartStore = create<CartStore>()(
       },
       add: (product) => {
         const { cart } = get();
-        const p=document.getElementById('count')
-          p?.classList.add('count')
-          setTimeout(() => {
-            p?.classList.remove('count')
-          }, 300);
+        const p = document.getElementById("count");
+        p?.classList.add("count");
+        setTimeout(() => {
+          p?.classList.remove("count");
+        }, 300);
         const updatedCart = addToCart(cart, product);
-        
+
         set({ cart: updatedCart });
       },
       removeItem: (id) => {
@@ -83,14 +83,13 @@ const addToCart = (cart: CartItem[], product: CartItem): CartItem[] => {
   if (item) {
     return cart.map((e) => {
       if (e.id === product.id) {
-               
         const itemCount = product.count >= 1 ? product.count : 1;
         return { ...e, count: itemCount };
       }
       return e;
     });
   }
-  
+
   return [...cart, { ...product }];
 };
 

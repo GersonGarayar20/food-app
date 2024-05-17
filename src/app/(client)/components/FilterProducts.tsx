@@ -1,50 +1,40 @@
-"use client"
-import { Button } from "@/components/ui/button"
+"use client";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { CircleX, Divide, Filter } from "lucide-react"
-import { Slider } from "@/components/ui/slider"
-import { ChangeEvent, useRef, useState } from "react"
-import { useFilterStore } from "@/app/global/filter"
-import { formFilterSchema } from "@/dto/FormFilter"
-import { z } from "zod"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Badge } from "@/components/ui/badge"
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
+import { CircleX, Divide, Filter } from "lucide-react";
+import { Slider } from "@/components/ui/slider";
+import { ChangeEvent, useRef, useState } from "react";
+import { useFilterStore } from "@/app/global/filter";
+import { formFilterSchema } from "@/dto/FormFilter";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Badge } from "@/components/ui/badge";
+
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 
 const InitialPriceState = {
   minPrice: 0,
-  maxPrice: 100
-}
-
+  maxPrice: 100,
+};
 
 export function FilterProducts() {
-  const [wordLocal, setWordLocal] = useState<string>("")
+  const [wordLocal, setWordLocal] = useState<string>("");
   const [minPrice, setMinPrice] = useState<number>(InitialPriceState.minPrice);
   const [maxPrice, setMaxPrice] = useState<number>(InitialPriceState.maxPrice);
   const [open, setOpen] = useState(false);
-  const { category_id, word, setFilters } = useFilterStore()
+  const { category_id, word, setFilters } = useFilterStore();
 
-  const closeRef = useRef(null)
+  const closeRef = useRef<any>();
 
   const handleMinInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setMinPrice(Number(e.target.value));
@@ -60,44 +50,38 @@ export function FilterProducts() {
 
   const handleFilterClick = () => {
     setFilters({ minPrice, maxPrice });
-    setOpen(false)
-    handleShowClick()
+    setOpen(false);
+    handleShowClick();
   };
-
 
   const form = useForm<z.infer<typeof formFilterSchema>>({
     resolver: zodResolver(formFilterSchema),
     defaultValues: {
       word: "",
     },
-  })
-
+  });
 
   function onSubmit(data: z.infer<typeof formFilterSchema>) {
-    setFilters({ word: data.word })
+    setFilters({ word: data.word });
   }
 
   const handleCloseClick = () => {
-    closeRef!.current!.classList.add("hidden")
-    setMaxPrice(InitialPriceState.maxPrice)
+    closeRef.current.classList.add("hidden");
+    setMaxPrice(InitialPriceState.maxPrice);
     setFilters({ minPrice, maxPrice: InitialPriceState.maxPrice });
-  }
+  };
 
-  const handleShowClick = () => closeRef!.current!.classList.remove("hidden")
-
+  const handleShowClick = () => closeRef!.current!.classList.remove("hidden");
 
   const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    let value = evt.target.value
-    setWordLocal(value)
-    setFilters({ word: value })
-
-
-  }
+    let value = evt.target.value;
+    setWordLocal(value);
+    setFilters({ word: value });
+  };
 
   return (
-
     <div className="w-full h-auto">
-      <div className="flex  gap-4 w-full lg:w-4/12">
+      <div className="flex gap-4 w-full lg:w-4/12">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className=" w-full">
             <FormField
@@ -106,9 +90,15 @@ export function FilterProducts() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                   {
-                     <Input placeholder="buscar.." {...field} className="" value={wordLocal} onChange={handleInputChange} />
-                   }
+                    {
+                      <Input
+                        placeholder="buscar.."
+                        {...field}
+                        className=""
+                        value={wordLocal}
+                        onChange={handleInputChange}
+                      />
+                    }
                   </FormControl>
                 </FormItem>
               )}
@@ -123,7 +113,6 @@ export function FilterProducts() {
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
-
             <DialogHeader>
               <DialogTitle>Precio:</DialogTitle>
             </DialogHeader>
@@ -171,5 +160,5 @@ export function FilterProducts() {
         </Badge>
       </div>
     </div>
-  )
+  );
 }

@@ -7,7 +7,7 @@ export interface ProductI {
   price: number;
   category_id: number;
   ingredients: string;
-  description: string
+  description: string;
 }
 
 export interface CategoryI {
@@ -19,19 +19,19 @@ export interface CategoryI {
 export interface UserI {
   id: number;
   name: string;
-  image: string
-  email: string
-  password: string
-  address: string
+  image: string;
+  email: string;
+  password: string;
+  address: string;
 }
 
 export interface ClientI {
   id: number;
   name: string;
-  image: string
-  address: string
-  phone: string
-  email: string
+  image: string;
+  address: string;
+  phone: string;
+  email: string;
 }
 
 export interface RolI {
@@ -42,21 +42,21 @@ export interface RolI {
 export interface OrderI {
   id: number;
   client_id: string;
-  date: string
-  total: number
+  date: string;
+  total: number;
 }
 
-export interface NotificationI{
-  title:string
-  description:string
-  id:number
-  isSeen:boolean
+export interface NotificationI {
+  title: string;
+  description: string;
+  id: number;
+  isSeen: boolean;
 }
 
-export interface dataNotificationI{
-  id:number,
-  cleint_id:number,
-  notificaiton_id:number,
-  isSeen:boolean,
-  notification:NotificationI
+export interface dataNotificationI {
+  id: number;
+  cleint_id: number;
+  notificaiton_id: number;
+  isSeen: boolean;
+  notification: NotificationI;
 }

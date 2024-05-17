@@ -49,7 +49,11 @@ export function RegisterForm() {
             <FormItem>
               <FormLabel className="lg:text-lg">Nombre</FormLabel>
               <FormControl>
-                <Input className="lg:text-lg lg:py-6" placeholder="Escribe tu nombre" {...field} />
+                <Input
+                  className="lg:text-lg lg:py-6"
+                  placeholder="Escribe tu nombre"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -63,7 +67,8 @@ export function RegisterForm() {
               <FormLabel className="lg:text-lg">Correo</FormLabel>
               <FormControl>
                 <Input
-                  className="lg:text-lg lg:py-6" type="email"
+                  className="lg:text-lg lg:py-6"
+                  type="email"
                   placeholder="tucorreo@email.com"
                   {...field}
                 />
@@ -79,7 +84,12 @@ export function RegisterForm() {
             <FormItem>
               <FormLabel className="lg:text-lg">Constraseña</FormLabel>
               <FormControl>
-                <Input className="lg:text-lg lg:py-6" type="password" placeholder="********" {...field} />
+                <Input
+                  className="lg:text-lg lg:py-6"
+                  type="password"
+                  placeholder="********"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -93,7 +103,8 @@ export function RegisterForm() {
               <FormLabel className="lg:text-lg">Dirección</FormLabel>
               <FormControl>
                 <Input
-                  className="lg:text-lg lg:py-6" placeholder="Jirón de la Unión 1032, Cercado de Lima, Lima, Perú"
+                  className="lg:text-lg lg:py-6"
+                  placeholder="Jirón de la Unión 1032, Cercado de Lima, Lima, Perú"
                   {...field}
                 />
               </FormControl>
@@ -108,7 +119,11 @@ export function RegisterForm() {
             <FormItem>
               <FormLabel className="lg:text-lg">Teléfono</FormLabel>
               <FormControl>
-                <Input className="lg:text-lg lg:py-6" placeholder="987654321" {...field} />
+                <Input
+                  className="lg:text-lg lg:py-6"
+                  placeholder="987654321"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
