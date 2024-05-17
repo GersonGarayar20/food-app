@@ -3,11 +3,13 @@ import { Heart } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import CounterCart from "./components/CounterCart";
+import { cn } from "@/lib/utils";
+import { pollerOne } from "../layout";
 
 export default function NavbarHome({ user }: { user: any }) {
   return (
     <header className="py-4 flex justify-between items-center">
-      <h2 className="text-3xl">Bravazo</h2>
+      <h2 className={cn(pollerOne.className, "text-3xl")}>Bravazo</h2>
 
       <div className="flex gap-4 items-center justify-center">
         <Link href={"/favorites"}>

@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Roboto } from "next/font/google";
+import { Roboto, Poller_One } from "next/font/google";
 import { Providers } from "@/util/Providers";
+
+export const pollerOne = Poller_One({
+  weight: ["400"],
+  style: ["normal"],
+  subsets: ["latin"],
+});
 
 const roboto = Roboto({
   weight: ["100", "300", "400", "700"],

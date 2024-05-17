@@ -1,11 +1,13 @@
 import React from "react";
 import styles from "./presentacion.module.css";
 import { cn } from "@/lib/utils";
+import { pollerOne } from "@/app/layout";
 
 export default function Presentacion() {
   return (
     <div
       className={cn(
+        pollerOne.className,
         styles.presentation,
         "fixed inset-0 z-50 bg-black flex justify-center items-center"
       )}

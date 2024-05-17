@@ -1,2 +1,1 @@
-export const BASE_URL =
-  process.env.REACT_APP_BASE_URL || "https://food.sunetya.site/api";
+export const BASE_URL = "https://food.sunetya.site/api";

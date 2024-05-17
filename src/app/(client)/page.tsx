@@ -6,6 +6,7 @@ import { FilterProducts } from "./components/FilterProducts";
 import CategoryList from "./components/CategoryList";
 import Link from "next/link";
 import ProductList from "./components/ProductList";
+import Footer from "@/components/footer";
 
 export default async function HomeServer() {
   const session = await getServerSession(authOptions);
@@ -25,6 +26,7 @@ export default async function HomeServer() {
         />
       </Link>
       <ProductList />
+      <Footer />
     </section>
   );
 }

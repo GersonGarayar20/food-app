@@ -7,7 +7,9 @@ import { ProductI } from "@/types";
 
 export async function getProducts(): Promise<ProductI[] | null> {
   try {
-    const res = await fetch(`${BASE_URL}/products`);
+    const res = await fetch(`${BASE_URL}/products`, {
+      cache: "no-store",
+    });
     if (!res.ok) {
       throw new Error("La solicitud al servidor falló.");
     }
@@ -22,11 +24,16 @@ export async function getProduct(
   id: string | number
 ): Promise<ProductI | null> {
   try {
-    const res = await fetch(`${BASE_URL}/products/${id}`);
+    const res = await fetch(`${BASE_URL}/products/${id}`, {
+      cache: "no-store",
+    });
     if (!res.ok) {
       throw new Error("La solicitud al servidor falló.");
     }
+
     const json = await res.json();
+    console.log({ json });
+
     return json.data;
   } catch (error) {
     return null;

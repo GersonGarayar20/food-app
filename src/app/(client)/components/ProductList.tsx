@@ -52,7 +52,7 @@ function ProductList() {
   const productsFiltered = filterProducts(products ? products : []);
 
   return (
-    <section className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-x-7 gap-y-32">
+    <section className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-x-7 gap-y-16">
       {productsFiltered?.map(
         ({ id, description, category_id, name, image, price }) => (
           <ProductCard

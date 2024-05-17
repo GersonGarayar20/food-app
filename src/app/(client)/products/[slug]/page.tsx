@@ -9,6 +9,8 @@ export default async function ServerPage({ params }: { params: any }) {
 
   if (!product?.id) return <>Product not found</>;
 
+  console.log({ product });
+
   return (
     <ProductPage
       token={session?.user?.accessToken}
