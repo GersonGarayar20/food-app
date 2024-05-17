@@ -17,7 +17,7 @@ export default async function AdminCategoriesPage() {
   const categories = await getCategories();
 
   return (
-    <>
+    <div>
       <header className="flex justify-between items-center">
         <h1 className="text-2xl">Categorias</h1>
         <Link
@@ -58,6 +58,6 @@ export default async function AdminCategoriesPage() {
           ))}
         </TableBody>
       </Table>
-    </>
+    </div>
   );
 }

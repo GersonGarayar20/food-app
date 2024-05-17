@@ -1,10 +1,4 @@
-import React from "react";
-
-export default function page() {
-  return <div>Success</div>;
-}
-
-/* import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -39,4 +33,4 @@ const Success: React.FC = () => {
   );
 };
 
-export default Success; */
+export default Success;

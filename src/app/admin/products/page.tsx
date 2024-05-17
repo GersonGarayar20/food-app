@@ -16,7 +16,7 @@ export default async function AdminProductsPage() {
   const products = await getProducts();
 
   return (
-    <>
+    <div>
       <header className="flex justify-between items-center">
         <h1 className="text-2xl">Productos</h1>
         <Link className={cn(buttonVariants())} href={"/admin/products/create"}>
@@ -62,6 +62,6 @@ export default async function AdminProductsPage() {
           ))}
         </TableBody>
       </Table>
-    </>
+    </div>
   );
 }
