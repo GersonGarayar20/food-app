@@ -19,10 +19,9 @@ interface WindowSize {
 
 const Success: React.FC = () => {
   const [windowSize, setWindowSize] = useState<WindowSize>({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: 0,
+    height: 0,
   });
-
   useEffect(() => {
     const handleResize = () => {
       setWindowSize({
