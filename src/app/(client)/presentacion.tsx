@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./presentacion.module.css";
 import { cn } from "@/lib/utils";
-import { pollerOne } from "@/app/layout";
+
+import { pollerOne } from "@/fonts";
 
 export default function Presentacion() {
   return (

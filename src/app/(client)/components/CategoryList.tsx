@@ -2,7 +2,7 @@
 import { getCategories } from "@/lib/fetch/categories";
 import { useQuery } from "react-query";
 import CategoryCard, { AllCategoryCard } from "./CategoryCard";
-import { Category } from "@/types/types";
+import { CategoryI } from "@/types/";
 import { ToggleGroup } from "@/components/ui/toggle-group";
 import { useFilterStore } from "@/app/global/filter";
 import { CategoryListSkeleton } from "./CategoryListSkeleton";
@@ -12,7 +12,7 @@ function CategoryList() {
     data: categories,
     isLoading,
     isError,
-  } = useQuery<Category[]>("categories", getCategories, { cacheTime: 3600 });
+  } = useQuery<CategoryI[]>("categories", getCategories, { cacheTime: 3600 });
 
   const { setFilters } = useFilterStore();
 

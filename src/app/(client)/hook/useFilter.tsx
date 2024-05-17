@@ -1,13 +1,13 @@
-import { Product } from "@/types/types";
+import { ProductI } from "@/types/";
 import { useState, useEffect } from "react";
 
 interface FilteredProducts {
-  filteredProducts: Product[];
+  filteredProducts: any;
   applyFilter: (filterOptions: Partial<PropUseFilter>) => void;
 }
 
 interface PropUseFilter {
-  products: Product[];
+  products: any;
   word?: string;
   category?: string;
   maxPrice?: number;
@@ -19,7 +19,7 @@ export function useFilter({
   category,
   maxPrice,
 }: PropUseFilter): FilteredProducts {
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
+  const [filteredProducts, setFilteredProducts] = useState<any>(products);
 
   useEffect(() => {
     applyInitialFilter();
@@ -30,17 +30,19 @@ export function useFilter({
 
     if (word) {
       const searchTerm = word.toLowerCase();
-      filtered = filtered.filter((product) =>
+      filtered = filtered.filter((product: any) =>
         product.name.toLowerCase().includes(searchTerm)
       );
     }
 
     if (category) {
-      filtered = filtered.filter((product) => product.category === category);
+      filtered = filtered.filter(
+        (product: any) => product.category === category
+      );
     }
 
     if (maxPrice) {
-      filtered = filtered.filter((product) => product.price <= maxPrice);
+      filtered = filtered.filter((product: any) => product.price <= maxPrice);
     }
 
     setFilteredProducts(filtered);
@@ -51,20 +53,20 @@ export function useFilter({
 
     if (filterOptions.word) {
       const searchTerm = filterOptions.word.toLowerCase();
-      filtered = filtered.filter((product) =>
+      filtered = filtered.filter((product: any) =>
         product.name.toLowerCase().includes(searchTerm)
       );
     }
 
     if (filterOptions.category) {
       filtered = filtered.filter(
-        (product) => product.category === filterOptions.category
+        (product: any) => product.category === filterOptions.category
       );
     }
 
     if (filterOptions.maxPrice) {
       filtered = filtered.filter(
-        (product) => product.price <= filterOptions.maxPrice!
+        (product: any) => product.price <= filterOptions.maxPrice!
       );
     }
 

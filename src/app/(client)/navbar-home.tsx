@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import CounterCart from "./components/CounterCart";
 import { cn } from "@/lib/utils";
-import { pollerOne } from "../layout";
+import { pollerOne } from "@/fonts";
 
 export default function NavbarHome({ user }: { user: any }) {
   return (
