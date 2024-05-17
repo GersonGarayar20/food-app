@@ -1,57 +1,28 @@
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+import React from "react";
+
+export default function page() {
+  return <div>Success</div>;
+}
+
+/* import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
-import Confetti from "react-confetti";
-/* 
-interface WindowSize {
-  width: number;
-  height: number;
-}
- */
-const Success: React.FC = () => {
-  /*   const [windowSize, setWindowSize] = useState<WindowSize>(() => {
-    if (IsServer()) return { width: 0, height: 0, }
-    return {
-      width:window.innerWidth,
-      height:window.innerHeight
-    }
-    
-});
-useEffect(() => {
-  const handleResize = () => {
-    setWindowSize({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
-  };
-  console.log("entro")
-  if (typeof window !== "undefined") {
-    window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }
-}, []);
- */
+const Success: React.FC = () => {
   return (
     <div className="p-8">
-      {/* <Confetti width={windowSize.width} height={windowSize.height} /> */}
       <div className="mb-16">
         <h1 className="text-center font-bold text-7xl my-8">Bravazo</h1>
       </div>
       <Card className="max-w-md m-auto text-center">
         <CardHeader>
           <CardTitle>Gracias por tu compra!!</CardTitle>
-          {/* <CardDescription>Esteban Salas</CardDescription> */}
         </CardHeader>
         <CardContent>
           <p className="font-light">
@@ -68,4 +39,4 @@ useEffect(() => {
   );
 };
 
-export default Success;
+export default Success; */
