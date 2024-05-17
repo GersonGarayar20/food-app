@@ -1,3 +1,5 @@
+import { Roboto, Poller_One } from "next/font/google";
+
 export const pollerOne = Poller_One({
   weight: ["400"],
   style: ["normal"],
