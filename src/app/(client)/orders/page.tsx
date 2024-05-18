@@ -13,6 +13,7 @@ import { useMutation } from "react-query";
 import { url } from "inspector";
 import { getPagePayment } from "@/lib/fetch/payment";
 export default function OrderPage() {
+  
   const stateCart = useStore<CartStore, CartStore>(useCartStore, (state: any) => state);
   const [urlPayment, setUrlPayment] = useState("")
   

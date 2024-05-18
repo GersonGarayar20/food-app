@@ -10,14 +10,14 @@ export default function Presentacion() {
       className={cn(
         pollerOne.className,
         styles.presentation,
-        "fixed inset-0 z-50 bg-black flex justify-center items-center"
+        "fixed inset-0 z-50  bg-white dark:bg-black flex justify-center items-center"
       )}
     >
-      <div className={styles.box}>
+      <div className={`${styles.box}`}>
         Bravazo
-        <div className={styles.co}>
-          <div className={styles.grow}></div>
-          <div className={styles.ab}></div>
+        <div className={`${styles.co} bg-transparent`}>
+          <div className={`${styles.grow} bg-green-500`}></div>
+          <div className={`${styles.ab} bg-white dark:bg-black`}></div>
         </div>
       </div>
     </div>

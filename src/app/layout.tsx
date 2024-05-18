@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "@/util/Providers";
 import { roboto } from "@/fonts";
-
 export const metadata: Metadata = {
   title: "Food App",
   description: "Pide tu comida de una manera rapida y sencilla",
 };
+
 
 export default function RootLayout({
   children,

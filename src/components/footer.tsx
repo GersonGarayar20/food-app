@@ -34,7 +34,7 @@ const programadores = [
 export default function Footer() {
   return (
     <div className="py-8">
-      <div className="flex gap-2 items-center">
+      <div className="flex flex-col sm:flex-row gap-2 items-center justify-center">
         <span>Desarrollador por:</span>
 
         {programadores.map(({ name, image, github, linkedin, kickname }) => (
