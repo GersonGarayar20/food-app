@@ -9,9 +9,9 @@ import { pollerOne } from "@/fonts";
 export default function NavbarHome({ user }: { user: any }) {
   return (
     <header className="py-4 flex justify-between items-center">
-      <h2 className={cn(pollerOne.className, "text-3xl")}>Bravazo</h2>
+      <h2 className={cn(pollerOne.className, "text-3xl tracking-tighter md:tracking-normal")}>Bravazo</h2>
 
-      <div className="flex gap-4 items-center justify-center">
+      <div className="flex gap2  md:gap-4 items-center justify-center">
         <Link href={"/favorites"}>
           <Heart className="w-8 h-8" />
         </Link>

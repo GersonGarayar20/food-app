@@ -6,7 +6,7 @@ import { CategoryI } from "@/types/";
 import { ToggleGroup } from "@/components/ui/toggle-group";
 import { useFilterStore } from "@/app/global/filter";
 import { CategoryListSkeleton } from "./CategoryListSkeleton";
-
+import styles from './CategoryList.module.css'
 function CategoryList() {
   const {
     data: categories,
@@ -24,9 +24,10 @@ function CategoryList() {
   if (isError) return <div>Ocurrió un error al obtener las categorias</div>;
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className={` flex flex-wrap gap-2 w-full `}>
       <ToggleGroup
         type="single"
+        className={`${styles.box}`}
         onValueChange={(id: string) => handleCategorySelected(+id)}
       >
         <AllCategoryCard name="all" id={1} />
