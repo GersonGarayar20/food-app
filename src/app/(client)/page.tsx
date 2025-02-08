@@ -1,5 +1,4 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+
 import Presentacion from "./presentacion";
 import NavbarHome from "./navbar-home";
 import { FilterProducts } from "./components/FilterProducts";
@@ -7,14 +6,16 @@ import CategoryList from "./components/CategoryList";
 import Link from "next/link";
 import ProductList from "./components/ProductList";
 import Footer from "@/components/footer";
+import Testeo from "../admin/components/testeo";
 
 export default async function HomeServer() {
-  const session = await getServerSession(authOptions);
+
 
   return (
     <section className="flex flex-col gap-4">
       <Presentacion />
-      <NavbarHome user={session?.user} />
+      <NavbarHome />
+      <Testeo/>
       <FilterProducts />
       <CategoryList />
       <Link href={"products/10"}>

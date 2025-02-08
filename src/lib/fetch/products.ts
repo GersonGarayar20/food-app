@@ -45,13 +45,16 @@ export async function updateProduct(
   data: { name?: string; image?: string; price?: number }
 ): Promise<ProductI | null> {
   try {
-    const res = await fetch(`${BASE_URL}/products/${id}`, {
+    const res = await fetch(`${BASE_URL}/products/update/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
+
+    console.log("56 products",{res})
+
     if (!res.ok) {
       throw new Error("La solicitud al servidor falló.");
     }

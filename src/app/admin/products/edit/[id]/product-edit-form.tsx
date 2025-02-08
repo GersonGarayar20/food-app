@@ -44,9 +44,10 @@ export default function ProductEditForm({
     defaultValues: product,
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     const { id, ...rest } = values;
-    updateProduct(id, rest);
+    const a =await updateProduct(id, rest);
+    
   }
 
   return (

@@ -7,7 +7,7 @@ import { authOptions } from "@/lib/auth";
 export default async function page() {
   const categories = await getCategories();
   const session = await getServerSession(authOptions);
-
+  console.log("10",categories)
   return (
     <>
       <header>
