@@ -28,6 +28,7 @@ export async function createCategory(
     body: formData,
   });
   const json = await res.json();
+  console.log({json,res:32})
   return json.data;
 }
 

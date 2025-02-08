@@ -4,9 +4,10 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
-import { HomeIcon, BoxIcon, SquareStack, LogOutIcon } from "lucide-react";
+import { HomeIcon, BoxIcon, SquareStack, LogOutIcon, Home, LayoutDashboard } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import { signOut } from "next-auth/react";
 
 const links = [
   {
@@ -18,7 +19,7 @@ const links = [
     title: "Categories",
     link: "/admin/categories",
     icon: <SquareStack className="size-4" />,
-  },
+  }
 ];
 
 export default function Menu() {
@@ -37,7 +38,7 @@ export default function Menu() {
           )}
           href={"/admin"}
         >
-          <HomeIcon className="size-4" />
+          <LayoutDashboard className="size-4" />
           Dashboard
         </Link>
         {links.map(({ title, link, icon }) => (
@@ -56,10 +57,25 @@ export default function Menu() {
             {title}
           </Link>
         ))}
+        <Link
+          className={cn(
+            buttonVariants({ variant: "ghost" }),
+            "justify-start items-center gap-2",
+            {
+              "bg-orange-200 dark:bg-orange-800": pathname === "/",
+            }
+          )}
+          href={"/"}
+        >
+          <HomeIcon className="size-4" />
+          Home
+        </Link>
       </nav>
       <footer className="flex flex-col">
         <ThemeSwitcher text />
-        <Button className="justify-start items-center gap-2" variant="ghost">
+        <Button className="justify-start items-center gap-2" variant="ghost" onClick={() => {
+          signOut();
+        }}>
           <LogOutIcon className="size-4" />
           Cerrar sesion
         </Button>

@@ -7,6 +7,7 @@ import { createCategory } from "@/lib/fetch/categories";
 import { Label } from "@radix-ui/react-label";
 import { toast } from "sonner";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string(),
@@ -16,7 +17,7 @@ const formSchema = z.object({
 export default function CategoriesCreateForm({ token }: { token: string }) {
   const [image, setImage] = useState<any>(null);
   const [errors, setErrors] = useState({ name: "", image: "" });
-
+  const router =useRouter()
   const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target == null) return;
     if (e.target.files == null) return;
@@ -35,6 +36,7 @@ export default function CategoriesCreateForm({ token }: { token: string }) {
 
     await createCategory(formData, token);
     e.target.reset();
+  /*   router.push("/admin/categories") */
     toast("Categoria creada");
   }
 

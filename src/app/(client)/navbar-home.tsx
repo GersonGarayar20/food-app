@@ -4,21 +4,19 @@ import Link from "next/link";
 import React from "react";
 import CounterCart from "./components/CounterCart";
 import { cn } from "@/lib/utils";
-import { pollerOne } from "@/fonts";
-/* import { pollerOne } from "../layout"; */
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import UserProfile from "./components/AvatarImage";
+import { pollerOne } from "@/fonts";
 
 export default async function NavbarHome() {
-  const user= await getServerSession(authOptions);
- 
+  const {user} = await getServerSession(authOptions);
+  console.log("secion profile", { user })
 
   return (
     <header className="py-4 flex justify-between items-center">
       <h2 className={cn(pollerOne.className, "text-3xl tracking-tighter md:tracking-normal")}>Bravazo</h2>
 
-      {/* <div className="flex gap2  md:gap-4 items-center justify-center"> */}
       <div className="flex gap-4 items-center justify-center">
         <Link href={"/admin"}>
           <FolderKey className="w-8 h-8" />
