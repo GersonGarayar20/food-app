@@ -26,11 +26,12 @@ export const authOptions = {
 
         const user = res.user;
         user.accessToken = res.token;
-
+        console.log("auth",user)
         return user;
       },
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async jwt({ token, user }: any) {
       return { ...token, ...user };

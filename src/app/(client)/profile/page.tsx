@@ -10,7 +10,7 @@ import BarraNavegacion from "../components/BarraNavegacion";
 
 export default async function ProfilePage() {
   const sesion = await getServerSession(authOptions);
-
+  console.log("secion profile",{sesion})
   return (
     <section className="md:max-w-96 mx-auto px-4 flex flex-col gap-8">
       <BarraNavegacion title="Perfil" />

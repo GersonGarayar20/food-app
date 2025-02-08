@@ -23,3 +23,4 @@ export const useFilterStore = create<BearState>()((set) => ({
   maxPrice: 1000,
   setFilters: (values) => set((state) => ({ ...values })),
 }));
+

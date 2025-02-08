@@ -30,8 +30,7 @@ export async function updateUser(
   token: string,
   formData: FormData
 ): Promise<UserI> {
-  console.log("datos ----->", id, token, formData);
-
+ 
   const res = await fetch(`${BASE_URL}/users/update`, {
     method: "PUT",
     body: formData,

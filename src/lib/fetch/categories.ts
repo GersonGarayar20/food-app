@@ -4,6 +4,7 @@ import { CategoryI } from "@/types/index";
 export async function getCategories(): Promise<CategoryI[]> {
   const res = await fetch(`${BASE_URL}/categories`);
   const json = await res.json();
+  console.log(BASE_URL,7,"entro a las getcategories",json)
   return json.data;
 }
 

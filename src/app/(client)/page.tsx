@@ -1,5 +1,4 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+
 import Presentacion from "./presentacion";
 import NavbarHome from "./navbar-home";
 import { FilterProducts } from "./components/FilterProducts";
@@ -15,14 +14,16 @@ const PermentMarker = Permanent_Marker({
   subsets: ['latin'],
   display: 'swap',
 })
+import Testeo from "../admin/components/testeo";
 
 export default async function HomeServer() {
-  const session = await getServerSession(authOptions);
+
 
   return (
     <section className="flex flex-col gap-4">
       <Presentacion />
-      <NavbarHome user={session?.user} />
+      <NavbarHome />
+      <Testeo/>
       <FilterProducts />
       <CategoryList />
       <ProductList />
