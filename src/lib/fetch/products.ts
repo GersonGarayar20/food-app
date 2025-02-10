@@ -86,7 +86,7 @@ export async function createProduct(
     }
     const json = await res.json();
     revalidatePath("/admin/products");
-    // redirect("/admin/products");
+  
     return json.data;
   } catch (error) {
     return null;
@@ -94,11 +94,14 @@ export async function createProduct(
 }
 
 export async function deleteProduct(
-  id: string | number
+  id: string | number,token: string
 ): Promise<ProductI | null> {
   try {
     const res = await fetch(`${BASE_URL}/products/delete/${id}`, {
       method: "DELETE",
+      headers:{
+        "Authorization":`Bearer ${token}`
+      }
     });
     if (!res.ok) {
       throw new Error("La solicitud al servidor falló.");

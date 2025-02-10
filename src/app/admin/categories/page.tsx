@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   Table,
@@ -12,10 +13,13 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getCategories } from "@/lib/fetch/categories";
 import ButtonDeleteCategory from "./button-delete-category";
+import { useQuery } from "react-query";
+import { useSession } from "next-auth/react";
 
-export default async function AdminCategoriesPage() {
-  const categories = await getCategories();
-  
+export default function AdminCategoriesPage() {
+  const { data: session } = useSession();
+  const { data: categories, isLoading } = useQuery({ queryKey: "categoryAll", queryFn: getCategories })
+
   return (
     <div>
       <header className="flex justify-between items-center">
@@ -37,26 +41,28 @@ export default async function AdminCategoriesPage() {
             <TableHead>Acciones</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
-          {categories?.map(({ id, name, image }: any) => (
-            <TableRow key={id}>
-              <TableCell>{id}</TableCell>
-              <TableCell>{name}</TableCell>
-              <TableCell>
-                <img className="aspect-square w-16" src={image} alt={name} />
-              </TableCell>
-              <TableCell className="flex gap-2">
-                <Link
-                  href={`/admin/categories/edit/${id}`}
-                  className={buttonVariants({ variant: "secondary" })}
-                >
-                  Editar
-                </Link>
-                <ButtonDeleteCategory id={id} />
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
+        {isLoading
+          ? <TableBody> <TableRow> <TableCell>Cargando..</TableCell></TableRow></TableBody>
+          : (<TableBody>
+            {categories?.map(({ id, name, image }: any) => (
+              <TableRow key={id}>
+                <TableCell>{id}</TableCell>
+                <TableCell>{name}</TableCell>
+                <TableCell>
+                  <img className="aspect-square w-16" src={image} alt={name} />
+                </TableCell>
+                <TableCell className="flex gap-2">
+                  <Link
+                    href={`/admin/categories/edit/${id}`}
+                    className={buttonVariants({ variant: "secondary" })}
+                  >
+                    Editar
+                  </Link>
+                  <ButtonDeleteCategory id={id} token={session?.user?.accessToken} />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>)}
       </Table>
     </div>
   );

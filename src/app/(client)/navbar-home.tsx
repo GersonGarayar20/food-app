@@ -10,8 +10,9 @@ import UserProfile from "./components/AvatarImage";
 import { pollerOne } from "@/fonts";
 
 export default async function NavbarHome() {
-  const {user} = await getServerSession(authOptions);
-  console.log("secion profile", { user })
+  const data= await getServerSession(authOptions);
+ 
+ 
 
   return (
     <header className="py-4 flex justify-between items-center">
@@ -28,17 +29,17 @@ export default async function NavbarHome() {
         <div className="relative bg-white dark:bg-transparent rounded-3xl p-1 lg:top-0 lg:right-0">
           <CounterCart />
         </div>
-        {user?.name 
-          ?(<Link href={"/profile"}>
+        {data == null
+          ? <Link href={"/login"} className="bg-white text-black rounded-lg p-1 px-2">iniciar sesión</Link>
+          : (<Link href={"/profile"}>
             {
-              (user?.image) 
-              ?<img src={user?.image} alt="imagen profile"/>
-              :<UserProfile userName={user?.name} /> 
+              (data.user?.image)
+                ? <img src={data.user?.image} alt="imagen profile" />
+                : <UserProfile userName={data.user?.name}/>
             }
-          
+        
           </Link>)
-          : <Link href={"/login"} className="bg-white text-black rounded-lg h-fu">iniciar sesión</Link>
-        }
+        }  
       </div>
     </header>
   );

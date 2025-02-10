@@ -7,6 +7,7 @@ interface UserProfileProps {
 }
 
 export default  function UserProfile({ userName }:UserProfileProps){
+
   return <Avatar name={userName} size={"40"} round={true}  fgColor='black' color='#ffff' className='font-bold cursor-pointer'/>
 
 };

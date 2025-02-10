@@ -1,7 +1,9 @@
+
 import { BASE_URL } from "./base-url";
 import { CategoryI } from "@/types/index";
-
+  
 export async function getCategories(): Promise<CategoryI[]> {
+  
   const res = await fetch(`${BASE_URL}/categories`);
   const json = await res.json();
   console.log(BASE_URL,7,"entro a las getcategories",json)
@@ -11,7 +13,9 @@ export async function getCategories(): Promise<CategoryI[]> {
 export async function getCategory(
   id: string | number
 ): Promise<CategoryI | null> {
-  const res = await fetch(`${BASE_URL}/categories/${id}`);
+  const res = await fetch(`${BASE_URL}/categories/${id}`,{
+    cache: "no-store",
+  });
   const json = await res.json();
   return json.data;
 }
@@ -48,11 +52,16 @@ export async function updateCategory(
 }
 
 export async function deleteCategory(
-  id: string | number
+  id: string | number,token:string
 ): Promise<CategoryI | null> {
+
   const res = await fetch(`${BASE_URL}/categories/delete/${id}`, {
     method: "DELETE",
+    headers:{
+      "Authorization":`Bearer ${token}`
+    }
   });
+  
   const json = await res.json();
   return json.data;
 }

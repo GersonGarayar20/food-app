@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import ButtonDeleteProduct from "./button-delete-product";
 
 export default async function AdminProductsPage() {
+  
   const products = await getProducts();
 
   return (
