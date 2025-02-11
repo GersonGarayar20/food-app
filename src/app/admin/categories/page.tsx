@@ -19,6 +19,8 @@ import { useSession } from "next-auth/react";
 export default function AdminCategoriesPage() {
   const { data: session } = useSession();
   const { data: categories, isLoading } = useQuery({ queryKey: "categoryAll", queryFn: getCategories })
+  
+  if(!session) return( <div>Cargando ...</div>)
 
   return (
     <div>
