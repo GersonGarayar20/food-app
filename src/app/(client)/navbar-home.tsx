@@ -11,8 +11,7 @@ import { pollerOne } from "@/fonts";
 
 export default async function NavbarHome() {
   const data= await getServerSession(authOptions);
- 
-  console.log({data})
+
   return (
     <header className="py-4 flex justify-between items-center">
       <h2 className={cn(pollerOne.className, "text-3xl tracking-tighter md:tracking-normal")}>Bravazo</h2>

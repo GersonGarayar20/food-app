@@ -70,7 +70,7 @@ export async function createProduct(
   token: string
 ): Promise<ProductI | null> {
   try {
-    const res = await fetch(`http://localhost:5000/api/products/create`, {
+    const res = await fetch(`${BASE_URL}/products/create`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

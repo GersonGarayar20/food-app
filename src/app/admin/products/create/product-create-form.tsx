@@ -106,7 +106,7 @@ export default function ProductCreateForm({
       </div>
 
       <Button className="w-full" type="submit">
-        Crear Prodcuto
+        Crear Producto
       </Button>
     </form>
   );
