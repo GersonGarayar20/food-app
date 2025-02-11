@@ -8,7 +8,7 @@ export default async  function DashboardPage() {
 
   return (
     <div>
-      <h1 className="text-2xl">Bienvenido al Dashaboard <strong className="text-orange-300">{sesion.user.name}!</strong></h1>
+      <h1 className="text-2xl">Bienvenido al Dashaboard <strong className="text-orange-300">{sesion?.user?.name}!</strong></h1>
     </div>
   );
 }

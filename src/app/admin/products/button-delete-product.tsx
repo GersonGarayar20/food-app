@@ -11,7 +11,7 @@ export default function ButtonDeleteProduct({ id }: { id: number }) {
 
   const handleClick = () => {
     toast("Producto eliminado.");
-    deleteProduct(id,session?.user?.accessToken);
+    deleteProduct(id,session?.user?.accessToken!);
   };
 
   return (

@@ -13,7 +13,7 @@ export async function login(data: { email: string; password: string }) {
       throw new Error("La solicitud al servidor falló.");
     }
     const json = await res.json();
-    console.log("fetch auth",{json})
+    console.log("fetch auth",json?.data)
     return json.data;
   } catch (error) {
     console.error(

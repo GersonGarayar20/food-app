@@ -1,6 +1,6 @@
 .presentation{
 
-    animation: disappear 2s forwards 2s;
+    animation: disappear 1s forwards 1s;
 }
 
 @keyframes disappear {

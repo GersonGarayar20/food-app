@@ -60,3 +60,12 @@ export interface dataNotificationI {
   isSeen: boolean;
   notification: NotificationI;
 }
+
+export interface AuthUser {
+  id: string;
+  name: string;
+  email: string;
+  accessToken: string;
+  rol:string
+  // Agrega más campos según tu API
+}

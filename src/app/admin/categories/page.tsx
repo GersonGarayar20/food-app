@@ -58,7 +58,7 @@ export default function AdminCategoriesPage() {
                   >
                     Editar
                   </Link>
-                  <ButtonDeleteCategory id={id} token={session?.user?.accessToken} />
+                  <ButtonDeleteCategory id={id} token={session?.user?.accessToken!} />
                 </TableCell>
               </TableRow>
             ))}

@@ -12,16 +12,17 @@ import { pollerOne } from "@/fonts";
 export default async function NavbarHome() {
   const data= await getServerSession(authOptions);
  
- 
-
+  console.log({data})
   return (
     <header className="py-4 flex justify-between items-center">
       <h2 className={cn(pollerOne.className, "text-3xl tracking-tighter md:tracking-normal")}>Bravazo</h2>
 
       <div className="flex gap-4 items-center justify-center">
-        <Link href={"/admin"}>
+        {
+          data?.user?.rol == "admin" && <Link href={"/admin"}>
           <FolderKey className="w-8 h-8" />
         </Link>
+        }
         <Link href={"/favorites"}>
           <Heart className="w-8 h-8" />
         </Link>
@@ -35,7 +36,7 @@ export default async function NavbarHome() {
             {
               (data.user?.image)
                 ? <img src={data.user?.image} alt="imagen profile" />
-                : <UserProfile userName={data.user?.name}/>
+                : <UserProfile userName={data.user?.name!}/>
             }
         
           </Link>)

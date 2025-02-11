@@ -16,7 +16,7 @@ export default function ProductPage({
   token,
   id,
 }: {
-  token: string;
+  token: string | undefined;
   product: ProductI;
   id: number;
 }) {
@@ -105,18 +105,20 @@ export default function ProductPage({
                 <span className="lg:text-4xl">${product.price * count}</span>
               </div>
               <div className="flex justify-between w-full mx-auto lg:justify-start lg:gap-x-7">
-                <Button
-                  className="rounded-xl"
-                  variant="outline"
-                  size="icon"
-                  onClick={() => {
-                    isFavorite
-                      ? handleUnFavorite({ product, token })
-                      : handleFavorite({ product, token });
-                  }}
-                >
-                  {isFavorite ? <HeartFilled /> : <Heart />}
-                </Button>
+                {
+                  token != undefined && (<Button
+                    className="rounded-xl"
+                    variant="outline"
+                    size="icon"
+                    onClick={() => {
+                      isFavorite
+                        ? handleUnFavorite({ product, token })
+                        : handleFavorite({ product, token });
+                    }}
+                  >
+                    {isFavorite ? <HeartFilled /> : <Heart />}
+                  </Button>)
+                }
                 <Button
                   className="rounded-3xl px-12"
                   onClick={() => {
@@ -141,6 +143,6 @@ export default function ProductPage({
           </div>
         </div>
       </div>
-    </section>
+    </section >
   );
 }

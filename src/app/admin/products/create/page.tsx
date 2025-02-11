@@ -15,7 +15,7 @@ export default async function page() {
       </header>
       <ProductCreateForm
         categories={categories}
-        token={session.user.accessToken}
+        token={session?.user?.accessToken!}
       />
     </>
   );

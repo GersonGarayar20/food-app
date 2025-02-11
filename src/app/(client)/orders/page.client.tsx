@@ -11,7 +11,7 @@ import { getPagePayment } from "@/lib/fetch/payment";
 import { Session } from "next-auth";
 
 interface Props{
-  session:Session
+  session:Session | null
 }
 
 export default function OrderPage({session}:Props) {
